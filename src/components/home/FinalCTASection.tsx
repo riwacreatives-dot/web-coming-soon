@@ -16,13 +16,13 @@ export const FinalCTASection: React.FC = () => {
         <div className="w-full max-w-3xl h-64 bg-brand-red/15 filter blur-[120px] rounded-full" />
       </div>
 
-      <div className="p-8 sm:p-14 md:p-20 rounded-3xl border border-brand-red/30 bg-[#111116] text-white shadow-2xl relative">
+      <div className="p-8 sm:p-14 md:p-20 rounded-3xl border border-brand-red/30 bg-surface text-text-primary shadow-2xl relative">
         <div className="max-w-3xl space-y-6">
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.25em] text-brand-red font-bold block">
             12 / FINAL CALL TO ACTION
           </span>
 
-          <h2 className="font-display text-[clamp(2.4rem,7.5vw,5.5rem)] font-black uppercase tracking-tight text-white leading-[0.98]">
+          <h2 className="font-display text-[clamp(2.4rem,7.5vw,5.5rem)] font-black uppercase tracking-tight text-text-primary leading-[0.98]">
             <span>GOT SOMETHING</span><br />
             <span className="font-serif italic font-normal tracking-normal text-brand-red lowercase text-[1.12em]">
               unreasonable
@@ -31,7 +31,7 @@ export const FinalCTASection: React.FC = () => {
             <span>GOOD. WE SHOULD TALK</span><span className="text-brand-red font-black">.</span>
           </h2>
 
-          <p className="font-mono text-xs sm:text-sm md:text-base text-white/70 leading-relaxed max-w-xl">
+          <p className="font-mono text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed max-w-xl">
             Tell us what you're building, what you're imagining or what needs to change. Let's see what we can make happen.
           </p>
 
@@ -47,7 +47,7 @@ export const FinalCTASection: React.FC = () => {
 
             <a
               href="mailto:riwacreatives@gmail.com"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-white/20 hover:border-white text-white font-mono text-xs sm:text-sm uppercase tracking-wider hover:bg-white/5 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-line-border hover:border-brand-red text-text-primary font-mono text-xs sm:text-sm uppercase tracking-wider hover:bg-surface/50 transition-all"
             >
               <Mail size={15} className="text-brand-red" />
               <span>riwacreatives@gmail.com</span>

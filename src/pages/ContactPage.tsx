@@ -5,12 +5,12 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const ContactPage: React.FC = () => {
   useDocumentMeta({
-    title: 'Commission a Sprint — RIWA CREATIVES',
+    title: 'Start a Project with Riwa Creatives',
     description:
-      'Brief our senior founder desk directly. Commercial poster art, paid performance media, 3D web, or a full 90-day brand accelerator sprint. Guaranteed response within 12 hours.',
-    ogTitle: 'Commission a Sprint — RIWA CREATIVES Senior Founder Desk',
+      'Have a brand, campaign or digital project in mind? Start a conversation with Riwa Creatives.',
+    ogTitle: "Let's Make Something Happen — Riwa Creatives",
     ogDescription:
-      'Drop it, we will build it. Brief our founding partner desk directly for commercial art and performance scaling.',
+      'Have a project in mind? A brand to build? A campaign to launch? Or an idea that needs the right people behind it? Tell us what you are working on.',
   });
 
   return (

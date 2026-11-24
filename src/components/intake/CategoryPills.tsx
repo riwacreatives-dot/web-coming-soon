@@ -7,10 +7,13 @@ interface CategoryPillsProps {
 }
 
 const CATEGORIES = [
-  'Commercial Poster Art',
-  'Paid Performance Media',
-  '3D Web & Conversion Funnels',
-  'Full 90-Day Brand Accelerator',
+  'Brand & Identity',
+  'Commercial Creative & Advertising',
+  'Digital Marketing & Growth',
+  'Website & Technology',
+  'Content & Production',
+  'Events & Experiences',
+  'Something else',
 ];
 
 export const CategoryPills: React.FC<CategoryPillsProps> = ({ selected, onChange }) => {

@@ -47,26 +47,26 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
           <div className="flex items-center gap-2.5 sm:gap-5 font-mono text-xs sm:text-[13px] tracking-wide shrink-0">
             <Link
               to="/work"
-              data-cursor-text="GALLERY"
+              data-cursor-text="WORK"
               className={`transition-colors cursor-pointer ${
                 currentPath === '/work'
                   ? 'text-text-primary font-bold'
                   : 'text-text-secondary hover:text-text-primary'
               }`}
             >
-              Gallery
+              Work
             </Link>
 
             <Link
-              to="/vision"
-              data-cursor-text="VISION"
+              to="/about"
+              data-cursor-text="ABOUT"
               className={`hidden sm:inline-block transition-colors cursor-pointer ${
-                currentPath === '/vision'
+                currentPath === '/about' || currentPath === '/vision'
                   ? 'text-text-primary font-bold'
                   : 'text-text-secondary hover:text-text-primary'
               }`}
             >
-              Vision
+              About
             </Link>
 
             <Link
@@ -83,7 +83,7 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
 
             <Link
               to="/leadership"
-              data-cursor-text="TEAM"
+              data-cursor-text="LEADERSHIP"
               className={`hidden xl:inline-block transition-colors cursor-pointer ${
                 currentPath === '/leadership'
                   ? 'text-text-primary font-bold'
@@ -98,6 +98,14 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
               data-cursor-text="CONNECT"
               className={`transition-colors cursor-pointer font-semibold whitespace-nowrap ${
                 currentPath === '/contact'
+                  ? 'text-brand-red font-bold'
+                  : 'text-text-secondary hover:text-brand-red'
+              }`}
+            >
+              <span className="sm:hidden">Connect</span>
+              <span className="hidden sm:inline">Connect With Us</span>
+            </Link>
+          </div>
                   ? 'text-brand-red font-bold'
                   : 'text-text-secondary hover:text-brand-red'
               }`}

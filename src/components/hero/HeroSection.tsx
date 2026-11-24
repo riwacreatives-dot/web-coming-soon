@@ -14,7 +14,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+      className="relative w-full pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
     >
       {/* RIWA Minimalist Eyebrow Index */}
       <motion.div
@@ -25,13 +25,8 @@ export const HeroSection: React.FC = () => {
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
         <span className="text-text-primary font-semibold">
-          <span className="md:hidden">RIWA CREATIVES · AD ART &amp; SCALE</span>
-          <span className="hidden md:inline">
-            RIWA CREATIVES · INDEPENDENT COMMERCIAL AD ART &amp; GROWTH LABORATORY
-          </span>
+          RIWA CREATIVES · INDEPENDENT CREATIVE &amp; GROWTH STUDIO
         </span>
-        <span className="hidden sm:inline-block text-line-border">|</span>
-        <span className="hidden sm:inline-block text-brand-red font-bold">COMMERCIAL AD ART</span>
       </motion.div>
 
       {/* Bespoke Editorial Headline with Instrument Serif Italic Accent & Expanding Visual Capsule */}
@@ -68,28 +63,12 @@ export const HeroSection: React.FC = () => {
       >
         {/* Mobile Condensed Editorial Pitch (< 768px — keeps first fold showreel visible) */}
         <p className="md:hidden font-mono text-[13px] text-text-secondary leading-relaxed">
-          Commercial art competitors screenshot<span className="text-brand-red font-bold">.</span>{' '}
-          <InteractiveHoverWord
-            previewImage="/work/solanas-chilli-chicken.jpg"
-            previewLabel="Hotter Than Baddies"
-            tag="ART"
-          >
-            Museum-grade ad art
-          </InteractiveHoverWord>{' '}
-          ×{' '}
-          <InteractiveHoverWord
-            previewImage="/work/solanas-sushi.png"
-            previewLabel="Condensed Scale"
-            tag="COMMERCE"
-          >
-            commercial scale
-          </InteractiveHoverWord>
-          <span className="text-brand-red font-bold">.</span> Direct founder involvement<span className="text-brand-red font-bold">.</span>
+          We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences. Strategy, creative thinking and technology brought together.
         </p>
 
-        {/* Desktop / Laptop Full Editorial Statement (>= 768px — 100% Preserved) */}
+        {/* Desktop / Laptop Full Editorial Statement (>= 768px) */}
         <p className="hidden md:block max-w-xl font-mono text-sm sm:text-base text-text-secondary leading-relaxed">
-          Commercial art so bold competitors screenshot it<span className="text-brand-red font-bold">.</span> Disciplined media where provocative visual craft meets commercial growth<span className="text-brand-red font-bold">.</span> Founder-led sprints. No junior handoffs<span className="text-brand-red font-bold">.</span>
+          We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences<span className="text-brand-red font-bold">.</span> From the first spark to the final execution, we bring strategy, creative thinking and technology together to make brands impossible to overlook<span className="text-brand-red font-bold">.</span>
         </p>
 
         {/* Mobile Streamlined Single Hero CTA */}
@@ -99,12 +78,12 @@ export const HeroSection: React.FC = () => {
             onClick={() => navigate('/work')}
             className="flex-1 min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-line-border bg-surface text-text-primary font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
           >
-            <span>Selected Works</span>
+            <span>Selected Projects</span>
             <ArrowDownRight size={14} className="text-brand-red" />
           </button>
         </div>
 
-        {/* Desktop Dual Action Pills (>= 768px — 100% Preserved) */}
+        {/* Desktop Dual Action Pills (>= 768px) */}
         <div className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0 w-full sm:w-auto">
           <button
             type="button"
@@ -126,7 +105,7 @@ export const HeroSection: React.FC = () => {
             className="flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-brand-red text-white font-bold hover:brightness-110 shadow-lg shadow-brand-red/25 transition-all cursor-pointer"
           >
             <Sparkles size={13} />
-            <span>Commission Sprint</span>
+            <span>Commission a Project ✳</span>
           </button>
         </div>
       </motion.div>

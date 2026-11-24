@@ -6,12 +6,12 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const WorkPage: React.FC = () => {
   useDocumentMeta({
-    title: 'Selected Work & Art Direction — RIWA CREATIVES',
+    title: 'Selected Creative Work & Campaigns — Riwa Creatives',
     description:
-      'Award-winning commercial poster art, 3D fluid dynamics, and viral campaign suites. Featuring the Solanas 5-piece art masterpiece with +420% order growth.',
-    ogTitle: 'Selected Work & Commercial Art Direction — RIWA CREATIVES',
+      'Explore selected branding, advertising, campaign and digital experience projects by Riwa Creatives.',
+    ogTitle: 'Selected Creative Work & Campaigns — Riwa Creatives',
     ogDescription:
-      'Museum-grade commercial poster design, liquid 3D dim sum dynamics, and brutalist performance media.',
+      'Explore selected branding, advertising, campaign and digital experience projects by Riwa Creatives.',
     ogImage: 'https://riwacreatives.vercel.app/work/solanas-chilli-chicken.jpg',
   });
 

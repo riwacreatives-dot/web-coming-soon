@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, type Variants, type Transition } from 'framer-motion';
 import { RegionalHubModal } from './RegionalHubModal';
 import { ArrowUpRight, ShieldCheck } from 'lucide-react';
@@ -124,6 +125,56 @@ export const EditorialFooter: React.FC = () => {
           </button>
         </div>
 
+        {/* Editorial Directory Grid */}
+        <div className="py-10 md:py-14 border-b border-line-border grid grid-cols-1 md:grid-cols-12 gap-8 font-mono text-xs sm:text-sm">
+          {/* Brand Vision */}
+          <div className="md:col-span-5 space-y-3">
+            <span className="font-display text-lg sm:text-xl font-black uppercase text-text-primary tracking-tight block">
+              RIWA CREATIVES®
+            </span>
+            <p className="text-text-primary font-bold">
+              MAKING UNREASONABLE BRANDS HAPPEN<span className="text-brand-red font-black">.</span>
+            </p>
+            <p className="text-text-secondary text-xs sm:text-sm leading-relaxed max-w-sm">
+              Independent Creative &amp; Growth Studio. We build distinctive brand identities, ambitious campaigns and digital experiences that help businesses get noticed.
+            </p>
+          </div>
+
+          {/* Explore Links */}
+          <div className="md:col-span-3 space-y-3">
+            <span className="text-text-secondary uppercase tracking-widest text-[11px] font-bold block">
+              Explore
+            </span>
+            <ul className="space-y-2 text-text-primary">
+              <li><Link to="/" className="hover:text-brand-red transition-colors">Home</Link></li>
+              <li><Link to="/work" className="hover:text-brand-red transition-colors">Work</Link></li>
+              <li><Link to="/services" className="hover:text-brand-red transition-colors">Services</Link></li>
+              <li><Link to="/about" className="hover:text-brand-red transition-colors">About</Link></li>
+              <li><Link to="/leadership" className="hover:text-brand-red transition-colors">Leadership</Link></li>
+            </ul>
+          </div>
+
+          {/* Connect Links */}
+          <div className="md:col-span-4 space-y-3">
+            <span className="text-text-secondary uppercase tracking-widest text-[11px] font-bold block">
+              Connect
+            </span>
+            <ul className="space-y-2 text-text-primary">
+              <li><a href="mailto:riwacreatives@gmail.com" className="hover:text-brand-red transition-colors">Email · riwacreatives@gmail.com</a></li>
+              <li><a href="https://instagram.com/riwacreatives" target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-colors">Instagram · @riwacreatives</a></li>
+              <li><a href="https://linkedin.com/company/riwa-creatives" target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-colors">LinkedIn · Riwa Creatives</a></li>
+              <li><a href="https://wa.me/919871000000" target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-colors">WhatsApp · Studio Concierge</a></li>
+            </ul>
+
+            <div className="pt-3">
+              <span className="text-xs uppercase text-text-secondary block mb-1 font-bold">Have a good idea? Don't keep it to yourself.</span>
+              <Link to="/contact" className="inline-flex items-center gap-1.5 text-brand-red font-bold hover:underline">
+                <span>START A PROJECT ■</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Cinematic Monumental "RIWA." Logo with Scroll-Scrub Stretch */}
         <div
           ref={logoSectionRef}
@@ -191,7 +242,7 @@ export const EditorialFooter: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4 uppercase tracking-wider font-medium">
-            <span>RIWA CREATIVES © 2026</span>
+            <span>© {new Date().getFullYear()} RIWA CREATIVES. ALL RIGHTS RESERVED. · MADE WITH INTENTION.</span>
           </div>
         </div>
       </footer>

@@ -86,7 +86,7 @@ export const StudioCardWarpLoader: React.FC = () => {
             className="flex flex-col items-center"
           >
             <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.25em] text-brand-red font-semibold mb-3">
-              {isBetweenActive ? transitionTitle : 'AD ART & COMMERCIAL SCALE'}
+              {isBetweenActive ? transitionTitle : 'INDEPENDENT CREATIVE & GROWTH STUDIO'}
             </span>
 
             <h2 className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-white leading-none">
@@ -94,7 +94,7 @@ export const StudioCardWarpLoader: React.FC = () => {
             </h2>
 
             <p className="font-serif italic text-white/70 text-base sm:text-xl md:text-2xl mt-3 max-w-md font-normal">
-              Dikhega <span className="text-brand-red lowercase text-lg sm:text-2xl">toh</span> bikega.
+              Making <span className="text-brand-red lowercase text-lg sm:text-2xl">unreasonable</span> brands happen.
             </p>
 
             {/* Hairline Progress Meter */}

@@ -98,31 +98,24 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
       </AnimatePresence>
 
       {/* Header Eyebrow & View Switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-20">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-16">
+        <div className="max-w-2xl">
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-text-secondary block mb-3 font-semibold select-none">
             {standalone
-              ? '02 / ARCHIVE ARCHITECTURE · CLIENT CASE STUDIES'
-              : '03 / SELECTED WORKS & ART DIRECTION'}
+              ? 'SELECTED PROJECTS & CREATIVE EXECUTIONS'
+              : '03 / SELECTED WORK'}
           </span>
-          {standalone ? (
-            <h1 className="font-display text-[clamp(2.4rem,8.5vw,5.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-none">
-              <span>COMMERCIAL</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none">
-                ad art
-              </span>{' '}
-              <span>&amp; SCALE</span>
-              <span className="text-brand-red font-black">.</span>
-            </h1>
-          ) : (
-            <h2 className="font-display text-[clamp(2.4rem,8.5vw,5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-none">
-              <span>PROVEN</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none">
-                impact
-              </span>
-              <span className="text-brand-red font-black">.</span>
-            </h2>
-          )}
+          <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-none">
+            <span>LESS TALK.</span>{' '}
+            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none">
+              more
+            </span>{' '}
+            <span>WORK</span>
+            <span className="text-brand-red font-black">.</span>
+          </h2>
+          <p className="mt-3 font-mono text-xs sm:text-sm text-text-secondary leading-relaxed max-w-xl">
+            Ideas are easy to pitch. Making them real is the interesting part. Explore a selection of projects, experiments and creative executions that represent how we think, design and build.
+          </p>
         </div>
 
         {/* View Mode Switcher Pill */}

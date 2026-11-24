@@ -76,25 +76,28 @@ export const ServiceRow: React.FC<ServiceRowProps> = ({
             className="overflow-hidden"
           >
             <div className="pb-7 md:pb-10 pt-1 md:pt-2 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 pl-0 md:pl-16">
-              {/* Full Description & KPI */}
+              {/* Full Description & Headline */}
               <div className="lg:col-span-6 space-y-4">
                 <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-brand-red font-bold block">
-                  ✦ Discipline Objective
+                  ✦ {service.headline || 'Capability Focus'}
                 </span>
                 <p className="font-mono text-xs sm:text-sm text-text-secondary leading-relaxed">
+                  {service.shortDesc}
+                </p>
+                <p className="font-mono text-xs sm:text-sm text-text-secondary/80 leading-relaxed">
                   {service.fullDesc}
                 </p>
 
                 <div className="inline-flex items-center gap-3 p-3 rounded-lg bg-surface border border-line-border font-mono text-xs sm:text-sm">
-                  <span className="text-text-secondary">Benchmark Metric:</span>
-                  <span className="text-brand-red font-bold">{service.kpiLabel}</span>
+                  <span className="text-text-secondary">Core Outcome:</span>
+                  <span className="text-brand-red font-bold">{service.flagshipKPI || 'Direct Impact'}</span>
                 </div>
               </div>
 
-              {/* Deliverables Checklist & CTA */}
+              {/* Deliverables Checklist & Specific CTA */}
               <div className="lg:col-span-6 space-y-4 font-mono">
                 <span className="text-xs sm:text-sm uppercase tracking-[0.2em] text-brand-red font-bold block">
-                  ✦ Included Deliverables
+                  ✦ Services &amp; Deliverables
                 </span>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-text-primary">
                   {service.deliverables.map((d) => (
@@ -111,7 +114,7 @@ export const ServiceRow: React.FC<ServiceRowProps> = ({
                     onClick={() => navigate('/contact')}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:brightness-110 shadow-lg shadow-brand-red/20 transition-all cursor-pointer uppercase tracking-wider"
                   >
-                    <span>Request Capability Sprint</span>
+                    <span>{service.ctaText || 'START A PROJECT ↗'}</span>
                     <ArrowUpRight size={14} />
                   </button>
                 </div>

@@ -1,107 +1,113 @@
-import { ServiceItem } from '../types';
+export interface CapabilityItem {
+  id: string;
+  index: string;
+  name: string;
+  headline: string;
+  categoryTag: string;
+  shortDesc: string;
+  fullDesc: string;
+  ctaText: string;
+  deliverables: string[];
+  flagshipKPI?: string;
+  kpiLabel?: string;
+}
 
-export const SERVICES_DATA: ServiceItem[] = [
+export const CAPABILITIES_DATA: CapabilityItem[] = [
   {
-    id: 'commercial-posters',
+    id: 'brand-identity',
     index: '01',
-    name: 'Commercial Poster Design',
-    categoryTag: 'Key Visuals & CGI',
-    shortDesc: 'Award-winning commercial ad posters, viral punchlines, 3D CGI product renders, and hypnotic visual gravity.',
-    fullDesc: 'We craft arresting visual art that stops the scroll dead in its tracks. From our acclaimed 5-poster Solanas suite to 3D CGI motion renders, we build iconic visual gravity that prints revenue.',
-    flagshipKPI: '4.8s Avg Watch Time',
-    kpiLabel: '3.4x Hook Rate',
+    name: 'Brand & Identity',
+    categoryTag: 'Identity & Systems',
+    headline: 'MAKE YOUR BRAND MEAN SOMETHING.',
+    shortDesc:
+      'We build distinctive brand identities that give businesses a recognisable voice, a consistent visual language and a reason to stand apart.',
+    fullDesc:
+      'From emerging startups to established companies, we design visual identities and strategic positioning systems that give your business cultural weight, instant recognition, and staying power.',
+    ctaText: 'BUILD YOUR IDENTITY ↗',
+    flagshipKPI: 'Distinctive Recognition',
+    kpiLabel: 'Bespoke Visual Systems',
     deliverables: [
-      'Commercial Campaign Posters & OOH Billboards',
-      'Viral Hook Framing & Bold Punchline Copywriting',
-      'Culinary Art Direction & Precision Food Styling',
-      'Photorealistic 3D CGI Product Renders',
-      'Bespoke Visual Identity Systems',
+      'Brand strategy and positioning',
+      'Brand naming and identity',
+      'Logo and visual systems',
+      'Brand guidelines',
+      'Graphic and communication design',
+      'Packaging and promotional design',
+      'Art direction',
     ],
   },
   {
-    id: 'performance-ads',
+    id: 'commercial-advertising',
     index: '02',
-    name: 'Paid Performance Media',
-    categoryTag: 'Meta & Google P-Max',
-    shortDesc: 'Disciplined paid acquisition across Meta, Google P-Max, YouTube & TikTok engineered for sustainable unit economics.',
-    fullDesc: 'We build disciplined performance acquisition campaigns with rigorous creative rotation, high-intent targeting, and continuous tuning that scales sustainably without ad fatigue.',
-    flagshipKPI: '5.4x Avg ROAS',
-    kpiLabel: '34% Lower Blended CAC',
+    name: 'Commercial Creative & Advertising',
+    categoryTag: 'Advertising & Motion',
+    headline: 'MAKE PEOPLE STOP SCROLLING.',
+    shortDesc:
+      'We create visual-first advertising and commercial campaigns designed to capture attention, communicate value and make brands memorable.',
+    fullDesc:
+      'In a feed filled with predictable templates, we craft provocative posters, cinematic motion, and culture-first commercial campaigns that people actually pause for, remember, and share.',
+    ctaText: 'CREATE A CAMPAIGN ↗',
+    flagshipKPI: 'Scroll-Stopping Craft',
+    kpiLabel: 'High Watch-Time',
     deliverables: [
-      'Meta Ads (Advantage+ & Custom Retargeting)',
-      'Google Search, Performance Max & YouTube',
-      'TikTok & Spark Ads Video Testing Engine',
-      'Dynamic Product Ads & Catalog Feed Scaling',
-      'Real-time Dashboard & Weekly Bid Tuning',
+      'Commercial advertising concepts',
+      'Creative direction',
+      'Campaign development',
+      'Product advertising',
+      'Promotional videos and reels',
+      'Motion graphics and animation',
+      'Social-first campaign creatives',
+      'Digital campaign assets',
     ],
   },
   {
-    id: 'web-funnels',
+    id: 'digital-growth',
     index: '03',
-    name: 'Brand Experiences & High-Conversion Web',
-    categoryTag: 'Three.js & Headless',
-    shortDesc: 'Immersive 3D interactive web experiences, headless storefronts, and conversion-engineered landing pages.',
-    fullDesc: 'We engineer ultra-fast, visually striking web experiences combining interactive Three.js product visualizers and high-converting design psychology to turn attention into loyal patrons.',
-    flagshipKPI: '+42% Conversion Lift',
-    kpiLabel: 'Sub-0.8s LCP Load Time',
+    name: 'Digital & Growth',
+    categoryTag: 'Growth & Strategy',
+    headline: 'ATTENTION IS GOOD. ACTION IS BETTER.',
+    shortDesc:
+      'We help brands connect with the right audiences through digital communication, content and growth-focused marketing.',
+    fullDesc:
+      'Creative work must drive real outcomes. We combine strategic content distribution, targeted audience acquisition, and disciplined digital advertising to turn initial curiosity into engaged customers.',
+    ctaText: 'ACCELERATE YOUR GROWTH ↗',
+    flagshipKPI: 'Disciplined Growth',
+    kpiLabel: 'High-Intent Acquisition',
     deliverables: [
-      'Headless E-Commerce & Custom Web Apps',
-      'Interactive Three.js 3D Brand Experiences',
-      'High-Converting Advertorials & Landers',
-      'Sub-second Page Load & Core Web Vitals',
-      'Rigorous Multi-variant A/B Testing',
+      'Social media strategy and management',
+      'Instagram and LinkedIn campaigns',
+      'Content strategy',
+      'Digital advertising',
+      'Audience acquisition',
+      'Campaign management',
+      'Marketing strategy',
+      'Performance analysis',
     ],
   },
   {
-    id: 'geo-seo',
+    id: 'technology-experiences',
     index: '04',
-    name: 'AI Search & GEO Dominance',
-    categoryTag: 'GEO & AI Search',
-    shortDesc: 'Generative Engine Optimization (GEO) & technical knowledge graphs to own ChatGPT, Perplexity & Google.',
-    fullDesc: 'High-value buyers now ask ChatGPT, Claude, and Perplexity for vendor recommendations. We structure your digital entity, technical schema, and authoritative knowledge graph to make your brand the #1 cited authority.',
-    flagshipKPI: '#1 AI Citation Rank',
-    kpiLabel: '+280% Organic AI Traffic',
+    name: 'Technology & Experiences',
+    categoryTag: 'Web & Digital Craft',
+    headline: 'TURN AMBITIOUS IDEAS INTO WORKING EXPERIENCES.',
+    shortDesc:
+      'We bring creative thinking and technology together to build digital products, platforms and experiences that serve real business objectives.',
+    fullDesc:
+      'We design and engineer ultra-fast, visually striking web experiences, custom platforms, and digital event infrastructure with clean code, purposeful interactions, and zero unnecessary fluff.',
+    ctaText: 'BUILD SOMETHING NEW ↗',
+    flagshipKPI: 'Sub-Second Speed',
+    kpiLabel: 'Immersive Experience',
     deliverables: [
-      'Generative Engine Optimization (GEO)',
-      'Technical Semantic Schema & Knowledge Graph',
-      'High-Intent Programmatic Keyword Silos',
-      'Digital PR & High-Authority Backlinks',
-      'Citation Audits across Perplexity & Gemini',
-    ],
-  },
-  {
-    id: 'retention-crm',
-    index: '05',
-    name: 'Lifecycle & Retention CRM',
-    categoryTag: 'Klaviyo & Retention',
-    shortDesc: 'Turn one-time purchasers into lifetime brand evangelists via Klaviyo, SMS, and VIP flows.',
-    fullDesc: 'We build tailored email & SMS customer journeys, thoughtful re-engagement flows, replenishment reminders, and VIP tiering that cultivate true customer Lifetime Value (LTV).',
-    flagshipKPI: '38% Revenue via CRM',
-    kpiLabel: '48% Repeat Purchase Rate',
-    deliverables: [
-      'Full Klaviyo Flow Architecture (14+ Automations)',
-      'Two-Way Omnichannel SMS Campaigns',
-      'RFM Predictive Customer Segmentation',
-      'Post-Purchase Unboxing & Onboarding Journeys',
-      'Interactive Brand Quizzes & Engagement Flows',
-    ],
-  },
-  {
-    id: 'growth-intelligence',
-    index: '06',
-    name: 'Growth Intelligence & Attribution',
-    categoryTag: 'Server-Side CAPI',
-    shortDesc: 'Zero-loss server-side tracking, Triple Whale calibration, and blended MER revenue dashboards.',
-    fullDesc: 'We deploy server-side Conversion API (CAPI), First-Party Identity Resolution, and bespoke multi-touch attribution models so you know down to the exact rupee what is driving profit.',
-    flagshipKPI: '99.4% Tracking Accuracy',
-    kpiLabel: 'Real-time Blended MER',
-    deliverables: [
-      'Server-side Meta & Google CAPI via Cloud Run',
-      'Triple Whale & Northbeam Setup & Calibration',
-      'Blended Marketing Efficiency Ratio (MER) KPIs',
-      'Real-time Executive Board Dashboards',
-      'Cohort LTV vs CAC Payback Period Modeling',
+      'Website and landing page development',
+      'UI/UX design',
+      'Web applications',
+      'AI-powered solutions',
+      'Digital automation',
+      'Event websites and digital infrastructure',
+      'Digital event experiences',
     ],
   },
 ];
 
+// Backward-compatible alias for existing imports
+export const SERVICES_DATA = CAPABILITIES_DATA;

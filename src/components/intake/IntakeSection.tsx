@@ -171,17 +171,17 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
         >
           {standalone ? (
             <h1 className="font-display text-[clamp(2.1rem,6.2vw,5.25rem)] lg:text-[clamp(2.4rem,5.8vw,5.75rem)] font-black uppercase tracking-tight text-text-primary leading-[0.98] select-none mb-6">
-              {/* Line 1: LET'S BUILD */}
+              {/* Line 1: LET'S MAKE */}
               <span className="block overflow-hidden pb-1 -mb-1">
                 <motion.span
                   variants={lineRevealVariants}
                   className="block whitespace-nowrap"
                 >
-                  LET'S BUILD
+                  LET'S MAKE
                 </motion.span>
               </span>
 
-              {/* Line 2: SOMETHING iconic. */}
+              {/* Line 2: SOMETHING happen. */}
               <span className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 mt-1 sm:mt-2">
                 <span className="overflow-hidden pb-1 -mb-1">
                   <motion.span
@@ -200,7 +200,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
                   }}
                   className="inline-block font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none cursor-pointer transition-colors"
                 >
-                  iconic
+                  happen
                 </motion.span>
                 <motion.span
                   variants={dotPopVariants}
@@ -216,17 +216,17 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
             </h1>
           ) : (
             <h2 className="font-display text-[clamp(2rem,6vw,5rem)] lg:text-[clamp(2.25rem,5.5vw,5.5rem)] font-black uppercase tracking-tight text-text-primary leading-[0.98] select-none mb-6">
-              {/* Line 1: LET'S BUILD */}
+              {/* Line 1: LET'S MAKE */}
               <span className="block overflow-hidden pb-1 -mb-1">
                 <motion.span
                   variants={lineRevealVariants}
                   className="block whitespace-nowrap"
                 >
-                  LET'S BUILD
+                  LET'S MAKE
                 </motion.span>
               </span>
 
-              {/* Line 2: SOMETHING iconic. */}
+              {/* Line 2: SOMETHING happen. */}
               <span className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 mt-1 sm:mt-2">
                 <span className="overflow-hidden pb-1 -mb-1">
                   <motion.span
@@ -245,7 +245,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
                   }}
                   className="inline-block font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none cursor-pointer transition-colors"
                 >
-                  iconic
+                  happen
                 </motion.span>
                 <motion.span
                   variants={dotPopVariants}
@@ -263,9 +263,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
         </motion.div>
 
         <p className="font-mono text-sm sm:text-base text-text-secondary max-w-3xl leading-relaxed">
-          "<span className="text-brand-red font-bold">Drop it, we'll build it.</span>" Whether you require{' '}
-          <span className="text-brand-red font-bold">museum-grade commercial artwork</span>, a multi-channel acquisition engine, or a full{' '}
-          <span className="text-brand-red font-bold">90-day scaling sprint</span>—brief our founding partner desk directly<span className="text-brand-red font-bold">.</span> We operate with founder-led precision and zero junior handoffs<span className="text-brand-red font-bold">.</span>
+          Have a project in mind? A brand to build? A campaign to launch? Or an idea that needs the right people behind it? We'd love to hear about it. Tell us a little about what you're working on. We'll take it from there.
         </p>
 
         {/* Direct Channels Quick Bar */}

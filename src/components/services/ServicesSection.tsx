@@ -75,35 +75,25 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ standalone = f
       </AnimatePresence>
 
       {/* Header Eyebrow */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-20">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-16">
+        <div className="max-w-2xl">
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold block mb-3 select-none">
             {standalone
-              ? '04 / AGENCY ARCHITECTURE · SIX REVENUE DISCIPLINES'
-              : '04 / DISCIPLINES & REVENUE CAPABILITIES'}
+              ? 'OUR CAPABILITIES · STRATEGY TO EXECUTION'
+              : '04 / OUR CAPABILITIES'}
           </span>
-          {standalone ? (
-            <h1 className="font-display text-[clamp(2.4rem,7vw,5.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.05]">
-              <span>SIX DISCIPLINES</span><span className="text-brand-red font-bold">.</span><br />
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                zero
-              </span>{' '}
-              <span>FLUFF</span><span className="text-brand-red font-bold">.</span>
-            </h1>
-          ) : (
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-text-primary leading-[1.08]">
-              <span>SIX DISCIPLINES</span><span className="text-brand-red font-bold">.</span><br />
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                zero
-              </span>{' '}
-              <span>FLUFF</span><span className="text-brand-red font-bold">.</span>
-            </h2>
-          )}
+          <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.05]">
+            <span>BIG IDEAS.</span><br />
+            <span>BUILT FROM</span>{' '}
+            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
+              every
+            </span>{' '}
+            <span>ANGLE</span><span className="text-brand-red font-bold">.</span>
+          </h2>
+          <p className="mt-4 max-w-xl font-mono text-xs sm:text-sm text-text-secondary leading-relaxed">
+            Different challenges demand different thinking. Sometimes a brand needs a new identity. Sometimes it needs attention. Sometimes it needs an entirely new digital experience. We bring the right creative and technical disciplines together to make it happen.
+          </p>
         </div>
-
-        <p className="max-w-md font-mono text-xs sm:text-sm text-text-secondary leading-relaxed">
-          Six synchronized revenue disciplines designed to take your brand from <span className="text-brand-red font-bold">ad fatigue</span> to predictable <span className="text-brand-red font-bold">8-figure run rates</span><span className="text-brand-red font-bold">.</span>
-        </p>
       </div>
 
       {/* Dual-Column Line-Appear Rows */}

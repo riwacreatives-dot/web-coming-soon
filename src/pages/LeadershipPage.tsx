@@ -6,12 +6,12 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const LeadershipPage: React.FC = () => {
   useDocumentMeta({
-    title: 'Studio Leadership & Architects — RIWA CREATIVES',
+    title: 'Studio Leadership & Creative Direction — Riwa Creatives',
     description:
-      'Founder-led, artist-built. Meet the senior architects behind RIWA Creatives — Abhinav Singh, Chief Growth Architect, and the senior sprint squad.',
-    ogTitle: 'Studio Leadership — RIWA CREATIVES',
+      'Meet the team shaping the ideas and experiences at Riwa Creatives — founded by Ranjan Kumar.',
+    ogTitle: 'Studio Leadership — Riwa Creatives',
     ogDescription:
-      'We reject the traditional model of delegating delivery to entry-level interns. Every sprint is architected by senior partners.',
+      'Behind every project is a team of people who think, challenge, build and execute. Meet the minds at Riwa Creatives.',
   });
 
   return (

@@ -23,41 +23,25 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
       } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
     >
       {/* Header Eyebrow */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-20">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-16">
+        <div className="max-w-2xl">
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold block mb-3 select-none">
             {standalone
-              ? '05 / STUDIO LEADERSHIP · SENIOR ARCHITECTS'
-              : '05 / STUDIO LEADERSHIP & SENIOR ARCHITECTS'}
+              ? 'STUDIO LEADERSHIP · CREATIVE DIRECTION'
+              : '09 / LEADERSHIP & PEOPLE'}
           </span>
-          {standalone ? (
-            <h1 className="font-display text-[clamp(2.4rem,7vw,5.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.05]">
-              <span>FOUNDER</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                led
-              </span><span className="text-brand-red font-bold">.</span><br />
-              <span>ARTIST</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                built
-              </span><span className="text-brand-red font-bold">.</span>
-            </h1>
-          ) : (
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-text-primary leading-[1.08]">
-              <span>FOUNDER</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                led
-              </span><span className="text-brand-red font-bold">.</span><br />
-              <span>ARTIST</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                built
-              </span><span className="text-brand-red font-bold">.</span>
-            </h2>
-          )}
+          <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.05]">
+            <span>DIFFERENT MINDS.</span><br />
+            <span>ONE</span>{' '}
+            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
+              creative
+            </span>{' '}
+            <span>DIRECTION</span><span className="text-brand-red font-bold">.</span>
+          </h2>
+          <p className="mt-4 max-w-xl font-mono text-xs sm:text-sm text-text-secondary leading-relaxed">
+            Behind every project is a team of people who think, challenge, build and execute. Meet the people shaping the ideas and experiences at Riwa Creatives.
+          </p>
         </div>
-
-        <p className="max-w-md font-mono text-xs sm:text-sm text-text-secondary leading-relaxed">
-          We reject the traditional agency model of winning accounts with founders then delegating delivery to entry-level interns<span className="text-brand-red font-bold">.</span> Every sprint is architected and executed directly by <span className="text-brand-red font-bold">senior partners</span><span className="text-brand-red font-bold">.</span>
-        </p>
       </div>
 
       {/* 2-Column Founder Cards Grid */}

@@ -6,12 +6,12 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const ServicesPage: React.FC = () => {
   useDocumentMeta({
-    title: 'Six Revenue Disciplines — RIWA CREATIVES',
+    title: 'Branding, Advertising & Digital Growth — Riwa Creatives',
     description:
-      'Commercial poster design, paid performance media, 3D web funnels, AI search dominance, lifecycle CRM, and growth intelligence. Six synchronized revenue disciplines.',
-    ogTitle: 'Six Revenue Disciplines — RIWA CREATIVES',
+      "Discover Riwa Creatives' capabilities across brand identity, commercial creative, digital growth and technology-led experiences.",
+    ogTitle: 'Capabilities & Services — Riwa Creatives',
     ogDescription:
-      'From ad fatigue to predictable 8-figure run rates. Six synchronized capabilities executed directly by senior architects.',
+      'Big ideas built from every angle: Brand & Identity, Commercial Creative & Advertising, Digital & Growth, and Technology & Experiences.',
   });
 
   return (

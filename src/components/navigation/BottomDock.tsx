@@ -12,8 +12,8 @@ interface BottomDockProps {
 
 const ROUTE_SECTIONS = [
   { path: '/', code: '01', label: 'HERO' },
-  { path: '/vision', code: '02', label: 'PROTOCOL' },
-  { path: '/work', code: '03', label: 'WORK' },
+  { path: '/work', code: '02', label: 'WORK' },
+  { path: '/about', code: '03', label: 'ABOUT' },
   { path: '/services', code: '04', label: 'SCOPE' },
   { path: '/leadership', code: '05', label: 'LEAD' },
   { path: '/contact', code: '06', label: 'BRIEF' },
@@ -68,7 +68,7 @@ export const BottomDock: React.FC<BottomDockProps> = ({
             </button>
             <span className="hidden sm:inline text-line-border">|</span>
             <span className="hidden sm:inline text-text-secondary">
-              DIKHEGA <span className="font-serif italic text-brand-red font-normal text-xs lowercase">toh</span> BIKEGA
+              MAKING <span className="font-serif italic text-brand-red font-normal text-xs lowercase">unreasonable</span> BRANDS HAPPEN
             </span>
           </div>
 

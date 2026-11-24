@@ -1,65 +1,71 @@
 import React from 'react';
 import { HeroSection } from '../components/hero/HeroSection';
-import { ScrollVelocityMarquee } from '../components/common/ScrollVelocityMarquee';
-import { ManifestoSection } from '../components/manifesto/ManifestoSection';
+import { BrandTicker } from '../components/home/BrandTicker';
 import { SelectedWorks } from '../components/work/SelectedWorks';
 import { ServicesSection } from '../components/services/ServicesSection';
+import { DifferenceSection } from '../components/home/DifferenceSection';
+import { ProcessSection } from '../components/home/ProcessSection';
+import { WhoWeWorkWithSection } from '../components/home/WhoWeWorkWithSection';
+import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
 import { LeadershipSection } from '../components/leadership/LeadershipSection';
-import { IntakeSection } from '../components/intake/IntakeSection';
+import { TestimonialsSection } from '../components/home/TestimonialsSection';
+import { FAQSection } from '../components/home/FAQSection';
+import { FinalCTASection } from '../components/home/FinalCTASection';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const HomePage: React.FC = () => {
   useDocumentMeta({
-    title: 'RIWA CREATIVES — We Make It Happen',
+    title: 'Riwa Creatives — Independent Creative & Growth Studio',
     description:
-      'Independent commercial ad art studio & brand growth engine. Museum-grade poster design, high-conversion web, and disciplined performance scaling. ₹400 Cr+ client revenue delivered.',
-    ogTitle: 'RIWA CREATIVES — We Make It Happen',
+      'Riwa Creatives is an independent creative and growth studio bringing together branding, commercial advertising, digital marketing and technology to help ambitious businesses build distinctive brands and experiences.',
+    ogTitle: 'Riwa Creatives — Making Unreasonable Brands Happen',
     ogDescription:
-      'Engineered Growth. Unapologetic Design. Commercial poster design, 3D web funnels, and performance scaling.',
+      'We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences. Making unreasonable brands happen.',
   });
 
   return (
     <>
       <main className="w-full">
+        {/* SECTION 01 — HERO */}
         <HeroSection />
 
-        {/* Kinetic Velocity Marquee 01 */}
-        <ScrollVelocityMarquee
-          items={[
-            'SOLANAS RETRO POP-ART',
-            'DIKHEGA TOH BIKEGA',
-            'COMMERCIAL POSTER DIRECTION',
-            'WORK THAT STOPS THE SCROLL',
-            '86,000+ ORGANIC SHARES',
-            'THINKS LIKE A FOUNDER',
-          ]}
-          baseVelocity={1.4}
-        />
+        {/* SECTION 02 — BRAND TICKER */}
+        <BrandTicker />
 
+        {/* SECTION 03 — SELECTED WORK */}
         <SelectedWorks />
 
-        {/* Kinetic Velocity Marquee 02 */}
-        <ScrollVelocityMarquee
-          items={[
-            'BUILT BY ARTISTS',
-            'SCALED WITH DISCIPLINE',
-            'ZERO VANITY METRICS',
-            'DIRECT FOUNDER ACCESS',
-            'CULINARY ART DIRECTION',
-            'HONEST WORK · REAL RESULTS',
-          ]}
-          baseVelocity={-1.4}
-        />
-
-        <ManifestoSection />
+        {/* SECTION 04 — OUR CAPABILITIES */}
         <ServicesSection />
+
+        {/* SECTION 05 — THE RIWA DIFFERENCE */}
+        <DifferenceSection />
+
+        {/* SECTION 06 — OUR PROCESS */}
+        <ProcessSection />
+
+        {/* SECTION 07 — WHO WE WORK WITH */}
+        <WhoWeWorkWithSection />
+
+        {/* SECTION 08 — ABOUT RIWA */}
+        <AboutRiwaSection />
+
+        {/* SECTION 09 — LEADERSHIP */}
         <LeadershipSection />
-        <IntakeSection />
+
+        {/* SECTION 10 — TESTIMONIALS */}
+        <TestimonialsSection />
+
+        {/* SECTION 11 — FAQ */}
+        <FAQSection />
+
+        {/* SECTION 12 — FINAL CTA */}
+        <FinalCTASection />
       </main>
 
+      {/* FOOTER */}
       <EditorialFooter />
     </>
   );
 };
-

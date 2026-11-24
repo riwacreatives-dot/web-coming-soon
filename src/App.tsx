@@ -17,6 +17,7 @@ import { WhatsAppCTA } from './components/common/WhatsAppCTA';
 // Code-split route components to avoid monolithic 600kB+ initial bundle
 const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })));
 const WorkPage = lazy(() => import('./pages/WorkPage').then((m) => ({ default: m.WorkPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
 const VisionPage = lazy(() => import('./pages/VisionPage').then((m) => ({ default: m.VisionPage })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage })));
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage').then((m) => ({ default: m.LeadershipPage })));
@@ -121,12 +122,12 @@ export const AppContent: React.FC = () => {
                 <Routes>
                   <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
                   <Route path="/work" element={<PageTransition><WorkPage /></PageTransition>} />
-                  <Route path="/vision" element={<PageTransition><VisionPage /></PageTransition>} />
-                  <Route path="/protocol" element={<Navigate to="/vision" replace />} />
-                  <Route path="/manifesto" element={<Navigate to="/vision" replace />} />
+                  <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+                  <Route path="/vision" element={<Navigate to="/about" replace />} />
+                  <Route path="/protocol" element={<Navigate to="/about" replace />} />
+                  <Route path="/manifesto" element={<Navigate to="/about" replace />} />
                   <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
                   <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
-                  <Route path="/about" element={<Navigate to="/leadership" replace />} />
                   <Route path="/team" element={<Navigate to="/leadership" replace />} />
                   <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
                   <Route path="/brief" element={<Navigate to="/contact" replace />} />

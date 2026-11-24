@@ -6,17 +6,17 @@ interface BudgetTiersProps {
 }
 
 export const BUDGET_TIERS = [
-  '< ₹5,00,000 (Growth Tier)',
-  '₹5,00,000 – ₹20,00,000 (Scale Sprint)',
-  '₹20,00,000 – ₹50,00,000 (Omnichannel Flywheel)',
-  '₹50,00,000+ (Enterprise Scale)',
+  '< ₹2,50,000 (Emerging / Seed)',
+  '₹2,50,000 – ₹5,00,000 (Studio Sprint)',
+  '₹5,00,000 – ₹15,00,000 (Full Campaign)',
+  '₹15,00,000+ (Custom / Flagship)',
 ];
 
 export const BudgetTiers: React.FC<BudgetTiersProps> = ({ selected, onChange }) => {
   return (
     <div className="space-y-3 font-mono">
       <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-text-secondary block">
-        02 / Monthly Media Budget (Rupees Only)
+        02 / Approximate Budget Range
       </label>
 
       <div className="flex flex-wrap gap-2 sm:gap-2.5">

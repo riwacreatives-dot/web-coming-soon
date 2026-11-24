@@ -8,6 +8,7 @@ import { ProcessSection } from '../components/home/ProcessSection';
 import { WhoWeWorkWithSection } from '../components/home/WhoWeWorkWithSection';
 import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
 import { LeadershipSection } from '../components/leadership/LeadershipSection';
+import { ManifestoSection } from '../components/home/ManifestoSection';
 import { TestimonialsSection } from '../components/home/TestimonialsSection';
 import { FAQSection } from '../components/home/FAQSection';
 import { FinalCTASection } from '../components/home/FinalCTASection';
@@ -51,8 +52,11 @@ export const HomePage: React.FC = () => {
         {/* SECTION 08 — ABOUT RIWA */}
         <AboutRiwaSection />
 
-        {/* SECTION 09 — LEADERSHIP */}
+        {/* SECTION 08 — LEADERSHIP */}
         <LeadershipSection />
+
+        {/* SECTION 09 — THE RIWA MANIFESTO */}
+        <ManifestoSection />
 
         {/* SECTION 10 — TESTIMONIALS */}
         <TestimonialsSection />

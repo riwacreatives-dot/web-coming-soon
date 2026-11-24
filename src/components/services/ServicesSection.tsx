@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES_DATA } from '../../data/servicesData';
 import { ServiceRow } from './ServiceRow';
-import { SplitHeading } from '../common/SplitHeading';
 import { ServiceItem } from '../../types';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { Sparkles, TrendingUp } from 'lucide-react';
@@ -36,16 +35,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ standalone = f
   };
 
   return (
-    <div className="w-full bg-[#111116] text-white border-y border-white/10 transition-colors">
+    <div className="w-full bg-[#171719] text-[#F4F1EA] border-b border-[#2C2C30] transition-colors">
       <section
         id="services"
         className={`relative w-full ${
           standalone
-            ? 'pt-24 sm:pt-32 md:pt-36 pb-14 sm:pb-28 md:py-36'
-            : 'py-14 sm:py-24 md:py-36'
+            ? 'pt-24 sm:pt-32 md:pt-36 pb-16 sm:pb-28 md:py-36'
+            : 'py-16 sm:py-24 md:py-36'
         } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
       >
-        {/* Floating Hover Badge following cursor on desktop */}
+        {/* Floating Benchmark Badge on Desktop */}
         <AnimatePresence>
           {!isMobile && hoveredService && (
             <motion.div
@@ -60,14 +59,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ standalone = f
                 pointerEvents: 'none',
                 zIndex: 90,
               }}
-              className="hidden md:flex items-center gap-3 px-4 py-2.5 rounded-xl border border-white/20 bg-black/90 text-white shadow-2xl backdrop-blur-xl font-mono text-xs"
+              className="hidden md:flex items-center gap-3 px-4 py-2.5 rounded-xl border border-[#2C2C30] bg-[#111113]/95 text-[#F4F1EA] shadow-2xl backdrop-blur-xl font-mono text-xs"
             >
-              <Sparkles size={13} className="text-brand-red" />
+              <Sparkles size={13} className="text-[#FD7D3C]" />
               <div>
-                <span className="block text-xs text-white/50 uppercase tracking-wider">
-                  Flagship Benchmark
+                <span className="block text-xs text-[#9E9D98] uppercase tracking-wider">
+                  Flagship KPI
                 </span>
-                <span className="font-bold text-brand-red flex items-center gap-1">
+                <span className="font-bold text-[#FD7D3C] flex items-center gap-1">
                   <TrendingUp size={12} /> {hoveredService.flagshipKPI}
                 </span>
               </div>
@@ -75,43 +74,54 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ standalone = f
           )}
         </AnimatePresence>
 
-        {/* Header Eyebrow */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-10 sm:mb-16">
-          <div className="max-w-2xl">
-            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-white/60 font-semibold block mb-3 select-none">
-              {standalone
-                ? 'OUR CAPABILITIES · STRATEGY TO EXECUTION'
-                : '04 / OUR CAPABILITIES'}
+        {/* 12-Column Swiss Editorial Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left Column: Anchored Headline & Statement */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28">
+            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.24em] text-[#9E9D98] font-semibold block mb-4 select-none">
+              {standalone ? 'OUR CAPABILITIES · STRATEGY TO EXECUTION' : '03 / WHAT WE DO'}
             </span>
-            <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-white leading-[1.05]">
-              <span>BIG IDEAS.</span><br />
-              <span>BUILT FROM</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
-                every
-              </span>{' '}
-              <span>ANGLE</span><span className="text-brand-red font-bold">.</span>
-            </h2>
-            <p className="mt-4 max-w-xl font-mono text-xs sm:text-sm text-white/70 leading-relaxed">
-              Different challenges demand different thinking. Sometimes a brand needs a new identity. Sometimes it needs attention. Sometimes it needs an entirely new digital experience or live activation. We bring the right creative and technical disciplines together to make it happen.
-            </p>
-          </div>
-        </div>
 
-        {/* Dual-Column Line-Appear Rows */}
-        <div className="border-b border-white/10">
-          {SERVICES_DATA.map((service) => (
-            <ServiceRow
-              key={service.id}
-              service={service}
-              isOpen={openServiceId === service.id}
-              onToggle={() =>
-                setOpenServiceId(openServiceId === service.id ? null : service.id)
-              }
-              onHoverStart={handleHoverStart}
-              onHoverEnd={handleHoverEnd}
-              onMouseMove={handleMouseMove}
-            />
-          ))}
+            <h2 className="font-display text-[clamp(2.4rem,6.5vw,4.5rem)] font-extrabold uppercase tracking-tight text-[#F4F1EA] leading-[0.98]">
+              <span>BIG IDEAS.</span><br />
+              <span>BUILT FROM</span><br />
+              <span className="font-serif italic font-normal tracking-normal text-[#FD7D3C] text-[1.12em] lowercase select-none">
+                all
+              </span>{' '}
+              <span>ANGLES</span><span className="text-[#FD7D3C] font-bold">.</span>
+            </h2>
+
+            <p className="mt-5 font-sans text-sm sm:text-base text-[#9E9D98] leading-relaxed max-w-md">
+              Different challenges demand different thinking. Sometimes a brand needs a new identity. Sometimes it needs attention. Sometimes it needs an entirely new digital platform or physical event activation. We bring the right creative and technical disciplines together to make it happen.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-2 font-mono text-xs text-[#9E9D98]">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#2C2C30] bg-[#1F1F23]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FD7D3C]" />
+                <span>05 Core Disciplines</span>
+              </span>
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#2C2C30] bg-[#1F1F23]">
+                <span>Zero Outsourcing</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Right Column: Service Index with Fine Divider Lines */}
+          <div className="lg:col-span-7 border-t border-[#2C2C30]">
+            {SERVICES_DATA.map((service) => (
+              <ServiceRow
+                key={service.id}
+                service={service}
+                isOpen={openServiceId === service.id}
+                onToggle={() =>
+                  setOpenServiceId(openServiceId === service.id ? null : service.id)
+                }
+                onHoverStart={handleHoverStart}
+                onHoverEnd={handleHoverEnd}
+                onMouseMove={handleMouseMove}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </div>

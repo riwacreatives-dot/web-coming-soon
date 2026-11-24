@@ -3,44 +3,59 @@ import { motion } from 'framer-motion';
 
 export const ManifestoSection: React.FC = () => {
   return (
-    <div className="w-full bg-[#08090d] text-white border-y border-brand-red/25 relative overflow-hidden transition-colors">
-      {/* Ambient Electric Glow */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center -z-10">
-        <div className="w-full max-w-2xl h-56 bg-brand-red/15 filter blur-[110px] rounded-full" />
+    <div className="w-full bg-[#FD7D3C] text-[#171719] border-y-2 border-[#171719] relative overflow-hidden select-none transition-colors">
+      {/* Background Graphic Watermark: Geometric Crow Silhouette */}
+      <div className="absolute right-[-5%] bottom-[-10%] w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] opacity-10 pointer-events-none">
+        <svg viewBox="0 0 100 100" fill="none" className="w-full h-full text-[#171719]">
+          <polygon
+            points="50,8 88,32 78,78 50,94 22,78 12,32"
+            stroke="currentColor"
+            strokeWidth="3"
+            fill="none"
+          />
+          <path
+            d="M 32 36 L 50 20 L 72 32 L 84 46 L 56 46 L 46 62 L 36 60 L 44 48 Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+
+      {/* Poster Grid Markers */}
+      <div className="absolute top-6 left-6 sm:left-12 font-mono text-[11px] uppercase tracking-[0.25em] text-[#171719]/70">
+        [ 06 / MANIFESTO · RIWA CREATIVE PHILOSOPHY ]
+      </div>
+      <div className="absolute top-6 right-6 sm:right-12 hidden sm:block font-mono text-[11px] uppercase tracking-[0.25em] text-[#171719]/70">
+        [ POSTER 01 // HIGH CONVICTION ]
       </div>
 
       <section
         id="manifesto"
-        className="py-24 sm:py-36 px-4 sm:px-8 md:px-12 max-w-5xl mx-auto text-center"
+        className="relative z-10 py-24 sm:py-36 md:py-44 px-4 sm:px-8 md:px-12 max-w-6xl mx-auto"
       >
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-8"
         >
-          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.25em] text-brand-orange font-bold block mb-5 select-none">
-            ✦ 09 / THE RIWA MANIFESTO ✦
-          </span>
-
-          <h2 className="font-display text-[clamp(2.4rem,7.5vw,5.5rem)] font-black uppercase tracking-tight text-white leading-[1.02] mb-8">
-            WE DON'T BELIEVE IN{' '}
-            <span className="font-serif italic font-normal tracking-normal text-brand-red lowercase text-[1.12em]">
-              ordinary
-            </span>
-            <span className="text-brand-red font-black">.</span>
+          {/* Monumental Headline */}
+          <h2 className="font-display text-[clamp(2.8rem,9vw,7.5rem)] font-extrabold uppercase tracking-tight text-[#171719] leading-[0.92]">
+            <span>GOOD IDEAS</span><br />
+            <span>DON'T ASK</span><br />
+            <span>FOR PERMISSION</span>
+            <span className="text-white">.</span>
           </h2>
 
-          <div className="space-y-6 font-sans text-sm sm:text-base md:text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
-            <p>
-              We believe in questions that challenge. Ideas that disrupt. Design that communicates. Work that means something.
+          {/* Supporting Manifesto Subtitle */}
+          <div className="pt-4 border-t-2 border-[#171719] max-w-3xl flex flex-col sm:flex-row sm:items-start justify-between gap-6">
+            <p className="font-display font-bold text-xl sm:text-2xl md:text-3xl uppercase tracking-tight text-[#171719] leading-snug">
+              THEY NEED THE RIGHT PEOPLE TO MAKE THEM HAPPEN.
             </p>
-            <p>
-              We believe that brands deserve more than templates. That creativity deserves discipline. That execution matters as much as imagination. And that the best work is always worth pushing further.
-            </p>
-            <p className="font-display font-bold text-lg sm:text-2xl uppercase tracking-wider text-white pt-4">
-              THAT'S THE RIWA WAY<span className="text-brand-red">.</span>
-            </p>
+
+            <span className="font-mono text-xs uppercase tracking-widest text-[#171719]/80 shrink-0 sm:pt-1">
+              — THE RIWA CREED
+            </span>
           </div>
         </motion.div>
       </section>

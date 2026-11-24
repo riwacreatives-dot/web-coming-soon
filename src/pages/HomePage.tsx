@@ -5,11 +5,10 @@ import { SelectedWorks } from '../components/work/SelectedWorks';
 import { ServicesSection } from '../components/services/ServicesSection';
 import { DifferenceSection } from '../components/home/DifferenceSection';
 import { ProcessSection } from '../components/home/ProcessSection';
-import { WhoWeWorkWithSection } from '../components/home/WhoWeWorkWithSection';
-import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
-import { LeadershipSection } from '../components/leadership/LeadershipSection';
 import { ManifestoSection } from '../components/home/ManifestoSection';
-import { TestimonialsSection } from '../components/home/TestimonialsSection';
+import { LeadershipSection } from '../components/leadership/LeadershipSection';
+import { StudioBeliefSection } from '../components/home/StudioBeliefSection';
+import { WhyRiwaSection } from '../components/home/WhyRiwaSection';
 import { FAQSection } from '../components/home/FAQSection';
 import { FinalCTASection } from '../components/home/FinalCTASection';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
@@ -19,7 +18,7 @@ export const HomePage: React.FC = () => {
   useDocumentMeta({
     title: 'Riwa Creatives — Independent Creative & Growth Studio',
     description:
-      'Riwa Creatives is an independent creative and growth studio bringing together branding, commercial advertising, digital marketing and technology to help ambitious businesses build distinctive brands and experiences.',
+      'Riwa Creatives is an independent creative and growth studio bringing together branding, commercial advertising, digital experiences and event activations to help ambitious businesses build distinctive brands.',
     ogTitle: 'Riwa Creatives — Making Unreasonable Brands Happen',
     ogDescription:
       'We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences. Making unreasonable brands happen.',
@@ -28,47 +27,44 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <main className="w-full">
-        {/* SECTION 01 — HERO */}
+        {/* SECTION 01 — HERO (Warm Ivory #F4F1EA) */}
         <HeroSection />
 
-        {/* SECTION 02 — BRAND TICKER */}
+        {/* BRAND DISCIPLINE TICKER */}
         <BrandTicker />
 
-        {/* SECTION 03 — SELECTED WORK */}
+        {/* SECTION 02 — SELECTED WORK (Pure White #FFFFFF) */}
         <SelectedWorks />
 
-        {/* SECTION 04 — OUR CAPABILITIES */}
+        {/* SECTION 03 — WHAT WE DO (Ink Black #171719) */}
         <ServicesSection />
 
-        {/* SECTION 05 — THE RIWA DIFFERENCE */}
+        {/* SECTION 04 — NOT ANOTHER AGENCY (Concrete Grey #DAD8D1) */}
         <DifferenceSection />
 
-        {/* SECTION 06 — OUR PROCESS */}
+        {/* SECTION 05 — FROM FIRST THOUGHT TO FINAL FRAME (Warm Ivory #F4F1EA) */}
         <ProcessSection />
 
-        {/* SECTION 07 — WHO WE WORK WITH */}
-        <WhoWeWorkWithSection />
-
-        {/* SECTION 08 — ABOUT RIWA */}
-        <AboutRiwaSection />
-
-        {/* SECTION 08 — LEADERSHIP */}
-        <LeadershipSection />
-
-        {/* SECTION 09 — THE RIWA MANIFESTO */}
+        {/* SECTION 06 — SIGNATURE BRAND MANIFESTO (ACTUAL RIWA ORANGE #FD7D3C) */}
         <ManifestoSection />
 
-        {/* SECTION 10 — TESTIMONIALS */}
-        <TestimonialsSection />
+        {/* SECTION 07 — DIFFERENT MINDS. ONE DIRECTION. (Ink Black #171719) */}
+        <LeadershipSection />
 
-        {/* SECTION 11 — FAQ */}
+        {/* SECTION 08 — STUDIO BELIEF (Deep Black #0A0A0C) */}
+        <StudioBeliefSection />
+
+        {/* SECTION 09 — WHY RIWA (Warm Ivory #F4F1EA) */}
+        <WhyRiwaSection />
+
+        {/* SECTION 10 — FAQ (Pure White #FFFFFF) */}
         <FAQSection />
 
-        {/* SECTION 12 — FINAL CTA */}
+        {/* SECTION 11 — CONTACT CTA (Ink Black #171719) */}
         <FinalCTASection />
       </main>
 
-      {/* FOOTER */}
+      {/* SECTION 12 — EDITORIAL FOOTER (Ink Black #171719) */}
       <EditorialFooter />
     </>
   );

@@ -2,132 +2,141 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShowreelViewport } from './ShowreelViewport';
-import { HeroMeta } from './HeroMeta';
-import { SplitHeading } from '../common/SplitHeading';
-import { ExpandingVisualPill } from '../common/ExpandingVisualPill';
-import { InteractiveHoverWord } from '../common/InteractiveHoverWord';
-import { ArrowDownRight, Sparkles } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const navigate = useNavigate();
 
+  const handleScrollToWork = () => {
+    const el = document.getElementById('work');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/work');
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="relative w-full pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+      className="relative w-full bg-[#F4F1EA] text-[#171719] pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors overflow-hidden"
     >
-      {/* RIWA Minimalist Eyebrow Index */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center gap-2 sm:gap-3 mb-3 md:mb-5 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none"
-      >
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
-        <span className="text-text-primary font-semibold">
-          RIWA CREATIVES · INDEPENDENT CREATIVE &amp; GROWTH STUDIO
+      {/* Swiss Architectural Coordinate Overlay & Geometric Crow Watermark */}
+      <div className="absolute top-24 right-4 sm:right-12 hidden lg:flex flex-col items-end pointer-events-none select-none opacity-40">
+        <span className="font-mono text-[10px] tracking-[0.28em] text-[#767571] uppercase">
+          INDEX 01 / EDITORIAL COVER
         </span>
-      </motion.div>
-
-      {/* Bespoke Editorial Headline with Instrument Serif Italic Accent & Expanding Visual Capsule */}
-      <div className="mb-3.5 md:mb-6">
-        <h1 className="font-display text-[clamp(2.15rem,8.2vw,5.5rem)] md:text-[clamp(2.4rem,7.2vw,5.5rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.92] md:leading-[0.93] select-none">
-          <div className="flex items-center flex-wrap gap-x-2 sm:gap-x-3 gap-y-1 sm:gap-y-2">
-            <SplitHeading as="span" delay={0.05} trigger="mount">
-              WE MAKE
-            </SplitHeading>
-            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none">
-              unreasonable
-            </span>
-            <ExpandingVisualPill
-              mediaSrc="/work/solanas-poster.jpg"
-              alt="Solanas Dim Sum Silk Dynamics"
-              targetWidth="6.5rem"
-              delay={0.25}
-            />
-          </div>
-          <div className="block mt-0.5 md:mt-1">
-            <SplitHeading as="span" delay={0.22} trigger="mount" accentChar=".">
-              BRANDS HAPPEN.
-            </SplitHeading>
-          </div>
-        </h1>
+        <span className="font-mono text-[10px] tracking-[0.2em] text-[#767571] mt-1">
+          28°38'N · 77°13'E // DEL
+        </span>
+        <div className="w-16 h-[1px] bg-[#171719]/20 mt-3" />
       </div>
 
-      {/* Human Editorial Copywriting & Action Pills */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-6 md:mb-14"
-      >
-        {/* Mobile Condensed Editorial Pitch (< 768px — keeps first fold showreel visible) */}
-        <p className="md:hidden font-mono text-[13px] text-text-secondary leading-relaxed">
-          We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences. Strategy, creative thinking and technology brought together.
-        </p>
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* RIWA Studio Identification Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-2 sm:gap-3 mb-4 md:mb-6 font-mono text-[11px] sm:text-xs uppercase tracking-[0.24em] text-[#767571] select-none"
+        >
+          <span className="inline-block w-2 h-2 bg-[#FD7D3C] shrink-0" />
+          <span className="text-[#171719] font-bold">
+            RIWA CREATIVES · INDEPENDENT CREATIVE &amp; GROWTH STUDIO
+          </span>
+        </motion.div>
 
-        {/* Desktop / Laptop Full Editorial Statement (>= 768px) */}
-        <p className="hidden md:block max-w-xl font-mono text-sm sm:text-base text-text-secondary leading-relaxed">
-          We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences<span className="text-brand-red font-bold">.</span> From the first spark to the final execution, we bring strategy, creative thinking and technology together to make brands impossible to overlook<span className="text-brand-red font-bold">.</span>
-        </p>
-
-        {/* Mobile Streamlined Single Hero CTA */}
-        <div className="md:hidden flex items-center justify-between gap-3 font-mono text-xs uppercase tracking-wider">
-          <button
-            type="button"
-            onClick={() => navigate('/work')}
-            className="flex-1 min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-line-border bg-surface text-text-primary font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
+        {/* Master Editorial Headline: Syne ExtraBold + Instrument Serif Italic Accent */}
+        <div className="mb-6 md:mb-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-[clamp(2.5rem,8.5vw,6.5rem)] font-extrabold uppercase tracking-tight text-[#171719] leading-[0.92] select-none"
           >
-            <span>Selected Projects</span>
-            <ArrowDownRight size={14} className="text-brand-red" />
-          </button>
+            <div className="block">WE MAKE</div>
+            <div className="flex items-center flex-wrap gap-x-3 sm:gap-x-4 gap-y-1">
+              <span className="font-serif italic font-normal tracking-normal text-[#FD7D3C] text-[1.16em] lowercase select-none">
+                unreasonable
+              </span>
+              <span className="text-[#171719]">BRANDS</span>
+            </div>
+            <div className="block mt-0.5">
+              HAPPEN<span className="text-[#FD7D3C]">.</span>
+            </div>
+          </motion.h1>
         </div>
 
-        {/* Desktop Dual Action Pills (>= 768px) */}
-        <div className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0 w-full sm:w-auto">
-          <button
-            type="button"
-            onClick={() => navigate('/work')}
-            data-cursor-text="EXPLORE"
-            className="group flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-line-border hover:border-text-primary transition-all text-text-primary bg-surface/40 backdrop-blur-md cursor-pointer hover:shadow-sm"
-          >
-            <span>Selected Projects</span>
-            <ArrowDownRight
-              size={13}
-              className="text-text-secondary group-hover:text-text-primary group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
-            />
-          </button>
+        {/* Supporting Editorial Rationale & High-Conviction CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-10 mb-8 md:mb-14 pb-8 border-b border-[#171719]/15"
+        >
+          {/* Editorial Description */}
+          <p className="max-w-xl font-sans text-sm sm:text-base md:text-lg text-[#605F5B] leading-relaxed">
+            An independent creative &amp; growth studio turning ambitious ideas into brands, experiences and meaningful momentum<span className="text-[#FD7D3C] font-bold">.</span> From strategy and visual craft to digital execution and live activations.
+          </p>
 
-          <button
-            type="button"
-            onClick={() => navigate('/contact')}
-            data-cursor-text="COMMISSION"
-            className="flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-brand-red text-white font-bold hover:brightness-110 shadow-lg shadow-brand-red/25 transition-all cursor-pointer"
+          {/* Action CTAs */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0">
+            <button
+              type="button"
+              onClick={handleScrollToWork}
+              className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-[#171719]/25 hover:border-[#171719] bg-white/70 hover:bg-white text-[#171719] font-semibold transition-all cursor-pointer shadow-sm hover:shadow"
+            >
+              <span>Explore Our Work</span>
+              <ArrowDownRight
+                size={14}
+                className="text-[#767571] group-hover:text-[#171719] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
+              />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigate('/contact')}
+              className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#FD7D3C] text-[#171719] font-bold hover:brightness-105 active:scale-95 transition-all cursor-pointer shadow-md shadow-[#FD7D3C]/20"
+            >
+              <span>Start a Project</span>
+              <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Cinematic Showreel Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-8"
+        >
+          <ShowreelViewport />
+        </motion.div>
+
+        {/* Restrained Editorial Scroll Indicator & Studio Metric Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#171719]/10 font-mono text-[11px] sm:text-xs text-[#767571] uppercase tracking-[0.2em] select-none">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FD7D3C] animate-pulse" />
+            <span className="font-semibold text-[#171719]">ACCEPTING CLIENTS</span>
+            <span>· Q1/Q2 SPRINTS</span>
+          </div>
+
+          <div className="hidden md:flex items-center gap-6">
+            <span>[ 01 BRAND STRATEGY ]</span>
+            <span>[ 02 CREATIVE CAMPAIGNS ]</span>
+            <span>[ 03 DIGITAL ]</span>
+            <span>[ 04 EXPERIENCES ]</span>
+          </div>
+
+          <div
+            onClick={handleScrollToWork}
+            className="flex items-center gap-1 hover:text-[#171719] cursor-pointer transition-colors"
           >
-            <Sparkles size={13} />
-            <span>Commission a Project ✳</span>
-          </button>
+            <span>[ SCROLL TO EXPLORE ↓ ]</span>
+          </div>
         </div>
-      </motion.div>
-
-      {/* Embedded Cinematic Showreel Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 35 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.55, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-8 md:mb-12"
-      >
-        <ShowreelViewport />
-      </motion.div>
-
-      {/* Hero Metadata Bar */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.8 }}
-      >
-        <HeroMeta />
-      </motion.div>
+      </div>
     </section>
   );
 };

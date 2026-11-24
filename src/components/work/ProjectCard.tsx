@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { ProjectItem } from '../../types';
-import { LiquidArtworkCanvas } from '../common/LiquidArtworkCanvas';
 import { useIsMobile } from '../../hooks/useIsMobile';
 
 interface ProjectCardProps {
@@ -13,37 +12,29 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onSelect }) => {
   const isMobile = useIsMobile();
-  const [scrubPercent, setScrubPercent] = useState(50);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const percent = (x / rect.width) * 100;
-    setScrubPercent(percent);
-  };
-
-  const activeDesktopHover = !isMobile && isHovered;
+  // Alternating layout formula: index % 3 === 0 (full bleed showcase) vs 1 & 2 (editorial cards)
+  const isFeature = index % 3 === 0;
 
   return (
     <div className="w-full group">
       {/* Top Metadata Bar */}
-      <div className="flex items-center justify-between gap-2 py-3 border-b border-line-border font-mono text-[11px] sm:text-sm uppercase tracking-wider text-text-secondary">
+      <div className="flex items-center justify-between gap-3 py-3 border-b border-[#171719]/15 font-mono text-xs sm:text-sm uppercase tracking-wider text-[#767571]">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-          <span className="font-bold text-brand-red whitespace-nowrap shrink-0">// 0{index + 1}</span>
-          <span className="font-bold text-text-primary truncate">{project.client}</span>
+          <span className="font-bold text-[#FD7D3C] whitespace-nowrap shrink-0">// 0{index + 1}</span>
+          <span className="font-bold text-[#171719] truncate">{project.client}</span>
         </div>
 
-        <div className="hidden sm:block text-text-secondary text-xs sm:text-sm">
+        <div className="hidden sm:block text-[#767571] text-xs">
           {project.category}
         </div>
 
         <div className="flex items-center gap-3 shrink-0">
-          <span className="px-2.5 sm:px-3 py-0.5 rounded-full bg-brand-red/10 text-brand-red font-bold text-[10px] sm:text-xs border border-brand-red/30 whitespace-nowrap">
+          <span className="px-3 py-0.5 rounded-full bg-[#FD7D3C]/15 text-[#171719] font-bold text-xs border border-[#FD7D3C]/30 whitespace-nowrap">
             {project.metric}
           </span>
-          <span className="hidden md:inline text-text-secondary text-xs sm:text-sm">
+          <span className="hidden md:inline text-[#767571] text-xs">
             {project.year}
           </span>
         </div>
@@ -52,113 +43,47 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onSele
       {/* Main Interactive Media Canvas */}
       <div
         onClick={() => onSelect(project)}
-        onMouseMove={handleMouseMove}
         onMouseEnter={() => !isMobile && setIsHovered(true)}
-        onMouseLeave={() => {
-          if (!isMobile) {
-            setIsHovered(false);
-            setScrubPercent(50);
-          }
-        }}
-        className="relative my-3 md:my-4 aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/10] w-full rounded-2xl overflow-hidden border border-line-border bg-black cursor-pointer shadow-xl transition-all duration-500 group-hover:border-line-border"
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
+        className={`relative my-4 w-full rounded-2xl overflow-hidden border border-[#171719]/15 bg-[#171719] cursor-pointer shadow-lg transition-all duration-500 ${
+          isFeature
+            ? 'aspect-[16/10] sm:aspect-[21/10]'
+            : 'aspect-[4/3] sm:aspect-[16/10]'
+        }`}
       >
-        {/* Ambient Blurred Backdrop */}
         <img
           src={project.heroImage}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover blur-2xl opacity-35 scale-110 pointer-events-none"
+          alt={project.title}
+          loading="lazy"
+          className="h-full w-full object-cover object-top filter brightness-95 group-hover:scale-102 group-hover:brightness-100 transition-transform duration-700 ease-out"
         />
 
-        {/* Crisp Center Stage Hero Artwork (WebGL shader strictly virtualized on Desktop hover) */}
-        <motion.div
-          animate={{
-            scale: activeDesktopHover ? 1.03 : 1,
-            x: activeDesktopHover ? (scrubPercent - 50) * -0.15 : 0,
-          }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="relative z-10 h-full w-full flex items-center justify-center overflow-hidden"
-        >
-          {activeDesktopHover ? (
-            <LiquidArtworkCanvas
-              imageSrc={project.heroImage}
-              alt={project.title}
-              interactive={true}
-              className="h-full w-full max-w-full"
-            />
-          ) : (
-            <img
-              src={project.heroImage}
-              alt={project.title}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full max-w-full object-cover object-top filter brightness-95 contrast-105 pointer-events-none"
-            />
-          )}
-        </motion.div>
+        {/* Ambient Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-        {/* Ambient Gradient Overlays (Subtle on mobile to keep poster art clear; full overlay on desktop) */}
-        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/15 pointer-events-none z-10" />
-        <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none z-10" />
-
-        {/* Top Floating Badge */}
-        <div className="absolute top-3.5 left-3.5 sm:top-6 sm:left-6 z-20">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 font-mono text-[10px] sm:text-xs uppercase tracking-wider text-white">
-            <Sparkles size={11} className="text-brand-red" />
-            <span>{project.badge}</span>
-          </span>
-        </div>
-
-        {/* Interactive Scrub Guide (Desktop Hover Only) */}
-        {activeDesktopHover && (
-          <div
-            style={{ left: `${scrubPercent}%` }}
-            className="absolute top-0 bottom-0 w-[1px] bg-brand-red/60 pointer-events-none z-20 hidden md:block"
-          >
-            <span className="absolute top-4 -left-10 px-2.5 py-0.5 rounded bg-brand-red text-white font-mono text-xs font-bold uppercase tracking-widest">
-              Scrub
+        {/* Floating Bottom Card Details */}
+        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-white pointer-events-none">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#FD7D3C] font-bold block mb-1">
+              ✦ {project.badge}
             </span>
-          </div>
-        )}
-
-        {/* Desktop Overlaid Headline & CTA (>= 768px — 100% Preserved) */}
-        <div className="hidden md:flex absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-20 flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="max-w-2xl">
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase text-white tracking-tight leading-none drop-shadow-lg group-hover:text-brand-red transition-colors duration-300">
+            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-white leading-tight">
               {project.title}
             </h3>
-            <p className="mt-1.5 font-mono text-xs sm:text-sm text-white/80 drop-shadow">
-              {project.headline}
+            <p className="mt-1 font-sans text-xs sm:text-sm text-white/80 max-w-lg line-clamp-2">
+              {project.brief}
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black font-mono text-xs font-bold uppercase tracking-wider group-hover:bg-brand-red group-hover:text-white transition-all shadow-xl">
-              <span>View Artwork</span>
-              <ArrowUpRight size={13} />
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="hidden sm:inline font-mono text-xs uppercase tracking-wider text-white/70">
+              View Case Study
             </span>
+            <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-[#FD7D3C] group-hover:text-[#171719] transition-all">
+              <ArrowUpRight size={16} />
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Mobile-Only Editorial Caption Block Below Artwork (< 768px — keeps poster 90%+ unobscured) */}
-      <div
-        onClick={() => onSelect(project)}
-        className="md:hidden pt-1 pb-4 flex items-end justify-between gap-3 cursor-pointer touch-manipulation"
-      >
-        <div className="min-w-0 flex-1">
-          <h3 className="font-display text-xl font-black uppercase text-text-primary tracking-tight leading-tight">
-            {project.title}
-          </h3>
-          <p className="mt-1 font-mono text-xs text-text-secondary line-clamp-2">
-            {project.headline}
-          </p>
-        </div>
-
-        <span className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-surface border border-line-border text-text-primary font-mono text-[11px] font-bold uppercase tracking-wider shrink-0 active:scale-95 transition-transform">
-          <span>View</span>
-          <ArrowUpRight size={13} className="text-brand-red" />
-        </span>
       </div>
     </div>
   );

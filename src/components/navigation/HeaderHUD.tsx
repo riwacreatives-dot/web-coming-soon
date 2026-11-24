@@ -106,14 +106,6 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
               <span className="hidden sm:inline">Connect With Us</span>
             </Link>
           </div>
-                  ? 'text-brand-red font-bold'
-                  : 'text-text-secondary hover:text-brand-red'
-              }`}
-            >
-              <span className="sm:hidden">Connect</span>
-              <span className="hidden sm:inline">Connect With Us</span>
-            </Link>
-          </div>
 
           {/* Utility Divider */}
           <div className="h-4 w-[1px] bg-line-border shrink-0" />

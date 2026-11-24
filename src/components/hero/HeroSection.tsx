@@ -14,14 +14,14 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+      className="relative w-full pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
     >
       {/* RIWA Minimalist Eyebrow Index */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-2 sm:gap-3 mb-2.5 md:mb-4 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none"
+        className="flex items-center gap-2 sm:gap-3 mb-3 md:mb-5 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
         <span className="text-text-primary font-semibold">

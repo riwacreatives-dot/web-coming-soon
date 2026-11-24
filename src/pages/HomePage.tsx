@@ -13,7 +13,7 @@ export const HomePage: React.FC = () => {
   useDocumentMeta({
     title: 'RIWA CREATIVES — We Make It Happen',
     description:
-      'Independent commercial ad art studio & performance growth engine. Museum-grade poster design, 3D web funnels, and ruthless mathematical scaling. ₹400 Cr+ client revenue delivered.',
+      'Independent commercial ad art studio & brand growth engine. Museum-grade poster design, high-conversion web, and disciplined performance scaling. ₹400 Cr+ client revenue delivered.',
     ogTitle: 'RIWA CREATIVES — We Make It Happen',
     ogDescription:
       'Engineered Growth. Unapologetic Design. Commercial poster design, 3D web funnels, and performance scaling.',
@@ -27,11 +27,12 @@ export const HomePage: React.FC = () => {
         {/* Kinetic Velocity Marquee 01 */}
         <ScrollVelocityMarquee
           items={[
-            'SOLANAS 5-PIECE ART SUITE',
+            'SOLANAS RETRO POP-ART',
             'DIKHEGA TOH BIKEGA',
-            'MUSEUM-GRADE AD ART',
-            'PREDATORY MATHEMATICAL SCALE',
-            'HIGH-TICKET RAPID SCALE',
+            'COMMERCIAL POSTER DIRECTION',
+            'WORK THAT STOPS THE SCROLL',
+            '86,000+ ORGANIC SHARES',
+            'THINKS LIKE A FOUNDER',
           ]}
           baseVelocity={1.4}
         />
@@ -41,11 +42,12 @@ export const HomePage: React.FC = () => {
         {/* Kinetic Velocity Marquee 02 */}
         <ScrollVelocityMarquee
           items={[
-            'SIX REVENUE DISCIPLINES',
-            'SUB-0.8s LCP SPEED',
-            'ZERO JUNIOR HANDOFFS',
-            '₹400 CR+ SCALED REVENUE',
-            'SENIOR FOUNDER SQUAD',
+            'BUILT BY ARTISTS',
+            'SCALED WITH DISCIPLINE',
+            'ZERO VANITY METRICS',
+            'DIRECT FOUNDER ACCESS',
+            'CULINARY ART DIRECTION',
+            'HONEST WORK · REAL RESULTS',
           ]}
           baseVelocity={-1.4}
         />

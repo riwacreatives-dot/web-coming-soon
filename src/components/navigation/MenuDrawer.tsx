@@ -27,31 +27,31 @@ const NAV_ITEMS: NavItem[] = [
   {
     number: '02',
     label: 'THE PROTOCOL',
-    subtext: 'Obsessive Art & Ruthless Math',
+    subtext: 'Provocative Art & Commercial Results',
     path: '/vision',
   },
   {
     number: '03',
     label: 'SELECTED WORK',
-    subtext: 'Solanas 5-Piece Suite & 3D Web',
+    subtext: 'Solanas Pop-Art Suite & Digital Craft',
     path: '/work',
   },
   {
     number: '04',
     label: 'DISCIPLINES',
-    subtext: '6 High-Ticket Capabilities',
+    subtext: '6 Creative & Growth Disciplines',
     path: '/services',
   },
   {
     number: '05',
     label: 'LEADERSHIP',
-    subtext: 'Founder-Led Creative Architecture',
+    subtext: 'Meet The Senior Founders',
     path: '/leadership',
   },
   {
     number: '06',
     label: 'COMMISSION SPRINT',
-    subtext: 'Direct Senior Founder Desk',
+    subtext: 'Brief The Founders Directly',
     path: '/contact',
   },
 ];
@@ -222,16 +222,16 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
                   ✦ The RIWA Protocol
                 </span>
                 <p className="font-mono text-xs sm:text-sm text-white/70 leading-relaxed">
-                  Independent commercial ad art direction, 3D fluid dynamics, and ruthless growth engineering for high-ticket consumer brands.
+                  Independent commercial ad art direction, 3D fluid dynamics, and disciplined growth strategy for ambitious modern brands.
                 </p>
                 <div className="grid grid-cols-2 gap-3 font-mono text-xs pt-2">
                   <div className="p-3 rounded-lg border border-white/10 bg-white/5">
-                    <span className="text-brand-red font-bold block text-xs">OBSESSIVE ART</span>
-                    <span className="text-white/50 text-[10px]">CGI & Key Visuals</span>
+                    <span className="text-brand-red font-bold block text-xs">PROVOCATIVE ART</span>
+                    <span className="text-white/50 text-[10px]">Posters & CGI Visuals</span>
                   </div>
                   <div className="p-3 rounded-lg border border-white/10 bg-white/5">
-                    <span className="text-brand-red font-bold block text-xs">RUTHLESS MATH</span>
-                    <span className="text-white/50 text-[10px]">Scale & Retention</span>
+                    <span className="text-brand-red font-bold block text-xs">MEASURED SCALE</span>
+                    <span className="text-white/50 text-[10px]">Media & Retention</span>
                   </div>
                 </div>
               </div>

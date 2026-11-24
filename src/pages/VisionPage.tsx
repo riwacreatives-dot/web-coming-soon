@@ -8,10 +8,10 @@ export const VisionPage: React.FC = () => {
   useDocumentMeta({
     title: 'The RIWA Protocol — RIWA CREATIVES',
     description:
-      'Our uncompromising manifesto: obsessive commercial art meets ruthless mathematical scale. Zero junior handoffs. Senior founder-led execution on every sprint.',
-    ogTitle: 'The RIWA Protocol — Obsessive Art × Ruthless Math',
+      'Our studio philosophy: obsessive commercial art meets disciplined brand growth. Zero junior handoffs. Senior founder-led craft on every sprint.',
+    ogTitle: 'The RIWA Protocol — Provocative Art × Commercial Discipline',
     ogDescription:
-      'We operate at the razor-edge where provocative art meets predatory math. The anti-agency growth framework.',
+      'We operate at the intersection where provocative commercial art meets disciplined brand growth. The founder-led studio framework.',
   });
 
   return (
@@ -22,10 +22,10 @@ export const VisionPage: React.FC = () => {
         <ScrollVelocityMarquee
           items={[
             'THE RIWA PROTOCOL',
-            'MATHEMATICAL CONVERSION',
-            'COMMERCIAL VISUAL GRAVITY',
-            'PREDATORY MATH MODELING',
-            'SUB-0.8s LCP SPEED',
+            'PROVOCATIVE VISUAL ART',
+            'COMMERCIAL DISCIPLINE',
+            'DIKHEGA TOH BIKEGA',
+            'HONEST WORK · REAL RESULTS',
           ]}
           baseVelocity={-1.4}
         />

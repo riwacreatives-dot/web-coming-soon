@@ -448,7 +448,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
               <span className="text-brand-red font-bold">{selectedDisciplines.join(', ')}</span><span className="text-brand-red font-bold">.</span>
             </p>
             <p className="text-xs text-white/60 mt-2">
-              Abhinav Singh & the senior team will review your brand telemetry and reach out within 12 hours<span className="text-brand-red font-bold">.</span>
+              Abhinav Singh &amp; the senior team will review your brand brief and reach out within 12 hours<span className="text-brand-red font-bold">.</span>
             </p>
           </div>
 

@@ -55,7 +55,7 @@ export const TelemetryCard: React.FC<TelemetryCardProps> = ({ type, x, y }) => {
           <div className="flex items-center justify-between border-b border-white/10 pb-2">
             <span className="flex items-center gap-1.5 text-brand-red font-bold uppercase tracking-wider text-xs">
               <Zap size={12} />
-              <span>Predatory Math Telemetry</span>
+              <span>Commercial Media Performance</span>
             </span>
             <span className="text-xs text-emerald-400 font-bold">● LIVE</span>
           </div>

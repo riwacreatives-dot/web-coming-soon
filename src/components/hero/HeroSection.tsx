@@ -14,14 +14,14 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full pt-20 sm:pt-24 md:pt-28 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center"
+      className="relative w-full pt-16 sm:pt-20 md:pt-20 pb-8 md:pb-16 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center"
     >
       {/* RIWA Minimalist Eyebrow Index */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex items-center justify-center gap-2 sm:gap-3 mb-3 md:mb-5 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none text-center"
+        className="flex items-center justify-center gap-2 sm:gap-3 mb-2 md:mb-4 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none text-center"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
         <span className="text-text-primary font-semibold">
@@ -35,13 +35,13 @@ export const HeroSection: React.FC = () => {
       </motion.div>
 
       {/* Bespoke Editorial Headline with Instrument Serif Italic Accent & Expanding Visual Capsule */}
-      <div className="mb-4 md:mb-6 text-center flex flex-col items-center justify-center w-full">
-        <h1 className="font-display text-[clamp(2rem,7.5vw,5.5rem)] md:text-[clamp(2.5rem,6.2vw,5.25rem)] lg:text-[clamp(2.75rem,5.5vw,5rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.94] md:leading-[0.95] select-none text-center">
-          <div className="flex items-center justify-center flex-wrap gap-x-2 sm:gap-x-3 gap-y-1 sm:gap-y-2">
+      <div className="mb-3 md:mb-5 text-center flex flex-col items-center justify-center w-full">
+        <h1 className="font-display text-[clamp(2.15rem,5.8vw,4.5rem)] md:text-[clamp(2.6rem,5.2vw,4.5rem)] lg:text-[clamp(3rem,4.8vw,4.75rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.96] md:leading-[0.96] select-none text-center">
+          <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-x-2 sm:gap-x-3 gap-y-1 sm:gap-y-0">
             <SplitHeading as="span" delay={0.05} trigger="mount">
               WE MAKE
             </SplitHeading>
-            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none">
+            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
               unreasonable
             </span>
             <ExpandingVisualPill
@@ -51,7 +51,7 @@ export const HeroSection: React.FC = () => {
               delay={0.25}
             />
           </div>
-          <div className="block mt-0.5 md:mt-2 text-center">
+          <div className="block mt-1 sm:mt-2 text-center whitespace-nowrap">
             <SplitHeading as="span" delay={0.22} trigger="mount" accentChar=".">
               BRANDS HAPPEN.
             </SplitHeading>
@@ -67,7 +67,7 @@ export const HeroSection: React.FC = () => {
         className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto gap-4 md:gap-6 mb-8 md:mb-12 w-full"
       >
         {/* Mobile Condensed Editorial Pitch (< 768px — keeps first fold showreel visible) */}
-        <p className="md:hidden font-mono text-[13px] text-text-secondary leading-relaxed text-center px-2">
+        <p className="md:hidden font-mono text-xs sm:text-[13px] text-text-secondary leading-relaxed text-center px-2">
           Commercial art competitors screenshot<span className="text-brand-red font-bold">.</span>{' '}
           <InteractiveHoverWord
             previewImage="/work/solanas-chilli-chicken.jpg"
@@ -80,32 +80,16 @@ export const HeroSection: React.FC = () => {
           <InteractiveHoverWord
             previewImage="/work/solanas-sushi.png"
             previewLabel="Condensed Scale"
-            tag="MATH"
+            tag="COMMERCE"
           >
-            predatory scale
+            commercial scale
           </InteractiveHoverWord>
-          <span className="text-brand-red font-bold">.</span> No junior handoffs<span className="text-brand-red font-bold">.</span>
+          <span className="text-brand-red font-bold">.</span> Direct founder involvement<span className="text-brand-red font-bold">.</span>
         </p>
 
-        {/* Desktop / Laptop Full Editorial Statement (>= 768px — 100% Preserved) */}
+        {/* Desktop / Laptop Full Editorial Statement (>= 768px — Clean, Human, Balanced) */}
         <p className="hidden md:block max-w-2xl mx-auto font-mono text-sm sm:text-base text-text-secondary leading-relaxed text-center">
-          Commercial art so bold competitors screenshot it<span className="text-brand-red font-bold">.</span> Performance media so disciplined your unit economics compound<span className="text-brand-red font-bold">.</span> We engineer category leaders where{' '}
-          <InteractiveHoverWord
-            previewImage="/work/solanas-chilli-chicken.jpg"
-            previewLabel="Hotter Than Baddies"
-            tag="STREET ART"
-          >
-            museum-grade ad art
-          </InteractiveHoverWord>{' '}
-          meets{' '}
-          <InteractiveHoverWord
-            previewImage="/work/solanas-sushi.png"
-            previewLabel="Condensed Scale"
-            tag="PROFIT"
-          >
-            predatory mathematical scale
-          </InteractiveHoverWord>
-          <span className="text-brand-red font-bold">.</span> No junior handoffs<span className="text-brand-red font-bold">.</span> Zero fluff<span className="text-brand-red font-bold">.</span>
+          Commercial art so bold competitors screenshot it<span className="text-brand-red font-bold">.</span> Disciplined media where provocative visual craft meets commercial growth<span className="text-brand-red font-bold">.</span> Founder-led sprints. No junior handoffs<span className="text-brand-red font-bold">.</span>
         </p>
 
         {/* Mobile Streamlined Single Hero CTA */}

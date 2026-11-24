@@ -92,7 +92,7 @@ export const RegionalHubModal: React.FC<RegionalHubModalProps> = ({ type, onClos
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs uppercase tracking-widest text-[#F5B31B] font-bold">
-                    ✦ Hyper-Local Street Media Division
+                    ✦ Regional Street &amp; Cultural Media Division
                   </span>
                 </div>
                 <h3 className="font-display text-3xl font-extrabold uppercase text-white">
@@ -119,7 +119,7 @@ export const RegionalHubModal: React.FC<RegionalHubModalProps> = ({ type, onClos
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-[#F5B31B] shrink-0" />
-                  <span>Hyper-Geofenced Footfall Meta Campaigns</span>
+                  <span>Geofenced Footfall Meta Campaigns</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-[#F5B31B] shrink-0" />
@@ -225,7 +225,7 @@ export const RegionalHubModal: React.FC<RegionalHubModalProps> = ({ type, onClos
 
             <div className="space-y-3 text-xs sm:text-sm text-white/80 leading-relaxed">
               <p>
-                We are scaling RIWA rapidly and need a high-velocity right-hand person to operate alongside Abhinav Singh across high-ticket client pitches, commercial ad campaigns, and squad orchestration.
+                We are expanding RIWA deliberately and need an ambitious right-hand person to operate alongside Abhinav Singh across flagship client partnerships, commercial ad campaigns, and creative orchestration.
               </p>
 
               <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">

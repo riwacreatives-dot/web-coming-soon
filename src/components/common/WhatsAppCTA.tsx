@@ -20,7 +20,7 @@ export const WhatsAppCTA: React.FC = () => {
       whileTap={{ scale: 0.94 }}
       aria-label="Connect via WhatsApp"
       data-cursor-text="WHATSAPP"
-      className="fixed bottom-20 md:bottom-16 right-4 sm:right-6 z-50 flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-[#25D366] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[0_8px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.6)] transition-all cursor-pointer backdrop-blur-sm"
+      className="fixed bottom-24 md:bottom-20 right-5 sm:right-8 z-50 flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-[#25D366] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[0_8px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.6)] transition-all cursor-pointer backdrop-blur-sm"
     >
       <svg
         viewBox="0 0 24 24"

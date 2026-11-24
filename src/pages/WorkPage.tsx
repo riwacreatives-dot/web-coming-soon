@@ -23,11 +23,12 @@ export const WorkPage: React.FC = () => {
         {/* Marquee Banner */}
         <ScrollVelocityMarquee
           items={[
-            'SOLANAS 5-PIECE ART SUITE',
+            'SOLANAS RETRO POP-ART',
             'DIKHEGA TOH BIKEGA',
-            'MUSEUM-GRADE AD ART',
-            'PREDATORY MATHEMATICAL SCALE',
-            'HIGH-TICKET RAPID SCALE',
+            'COMMERCIAL POSTER DIRECTION',
+            'WORK THAT STOPS THE SCROLL',
+            '86,000+ ORGANIC SHARES',
+            'THINKS LIKE A FOUNDER',
           ]}
           baseVelocity={1.4}
         />

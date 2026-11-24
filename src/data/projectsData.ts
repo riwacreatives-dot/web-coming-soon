@@ -35,7 +35,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     deliverables: [
       '3D Fluid Silk Dynamics Renders',
       'Precision Overhead Food Styling',
-      'High-Ticket Restaurant Key Art',
+      'Flagship Restaurant Key Art',
       'Instagram Cinematic Reel Suite',
     ],
   },
@@ -61,10 +61,10 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 'hyperbrand-dtc',
     client: 'HyperBrand Global DTC',
-    title: 'Zero-Leak Omnichannel Accelerator',
-    category: '3D Web & Conversion Funnel',
+    title: 'Omnichannel Brand Growth Sprint',
+    category: 'Interactive Web & Brand Identity',
     headline: 'Headless Three.js Storefront & Advantage+ Flywheel',
-    description: 'Engineered high-velocity advertorial landers, Three.js 3D visualizers, and algorithmic bid rules scaling from ad fatigue to predictable 8-figure revenue.',
+    description: 'Engineered high-velocity advertorial landers, Three.js 3D visualizers, and disciplined paid media scaling from creative fatigue to sustainable 8-figure revenue.',
     heroImage: '/work/solanas-green-dimsum.png',
     badge: 'GROWTH SPRINT',
     metric: '₹14.8 Cr Net Revenue Lift',
@@ -73,7 +73,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     deliverables: [
       'Headless Next.js & Three.js Architecture',
       'Sub-0.8s LCP Page Speed Optimization',
-      'Algorithmic Meta Advantage+ Rules',
+      'Disciplined Meta Advantage+ Architecture',
       'Full Klaviyo VIP Loyalty Flows',
     ],
   },

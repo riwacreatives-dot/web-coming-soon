@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TelemetryCard } from './TelemetryCard';
-import { TelemetrySimulator } from './TelemetrySimulator';
+import { SprintProcess } from './SprintProcess';
 import { TextScrubReveal } from '../common/TextScrubReveal';
 import { useIsTouchDevice } from '../../hooks/useIsMobile';
 import { Eye, Flame, Layers, Network, ArrowUpRight, ShieldCheck, Sparkles, TrendingUp, X, Zap } from 'lucide-react';
@@ -17,34 +17,34 @@ interface Pillar {
 const PILLARS: Pillar[] = [
   {
     number: '01',
-    title: 'AERIAL FORESIGHT',
-    tagline: 'Audit Math Before Burning Cash',
+    title: 'FOUNDER-LED CRAFT',
+    tagline: 'Direct Senior Access Always',
     description:
-      'With high-altitude commercial foresight, we audit unit economics, contribution margins, break-even CAC, and server-side tracking before spending a single rupee.',
+      'We reject the traditional agency model of selling with founders then handing delivery to interns. Abhinav and our senior directors personally lead every poster, render, and campaign.',
     icon: <Eye size={16} className="text-brand-red" />,
   },
   {
     number: '02',
-    title: 'VISUAL GRAVITY',
-    tagline: 'Museum-Grade Commercial Ad Art',
+    title: 'PROVOCATIVE ART',
+    tagline: 'Work People Actually Remember',
     description:
-      'Mediocrity is invisible in 2026. We produce museum-grade food photography, 3D fluid art direction, and viral street posters that halt thumb-scrolls dead in their tracks.',
+      'Most commercial ads blend into the noise. We produce high-impact street posters, 3D fluid food styling, and culture-first visuals that make people stop, screenshot, and share.',
     icon: <Flame size={16} className="text-brand-red" />,
   },
   {
     number: '03',
-    title: 'ZERO-LEAK FUNNELS',
-    tagline: 'Sub-0.8s Headless Speed',
+    title: 'FAST, CLEAN FUNNELS',
+    tagline: 'Sub-Second Page Speed',
     description:
-      'We engineer bespoke headless storefronts and interactive visualizers, compounding conversion rates as an appreciating financial asset with zero page lag.',
+      'Arresting creative is useless if your landing page takes 4 seconds to load. We engineer lightweight, zero-lag advertorials and headless storefronts that convert curiosity into buyers.',
     icon: <Layers size={16} className="text-brand-red" />,
   },
   {
     number: '04',
-    title: 'PREDATORY SCALE',
-    tagline: 'Autonomous Omni-Channel Flywheel',
+    title: 'DISCIPLINED SCALE',
+    tagline: 'Real Margin Over Vanity Views',
     description:
-      'We sync Meta Advantage+, Google P-Max, and algorithmic retention into one self-reinforcing flywheel that absorbs competitor market share when ad costs spike.',
+      'We track what actually deposits into your bank account. Meta Advantage+, Google Performance Max, and customer retention flows tuned daily for healthy contribution margin.',
     icon: <Network size={16} className="text-brand-red" />,
   },
 ];
@@ -136,7 +136,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
         </span>
         <span className="hidden sm:inline-block text-line-border">|</span>
         <span className="hidden sm:inline-block text-brand-red font-bold">
-          {standalone ? 'MATHEMATICAL CONVERSION ARCHITECTURE' : 'SENIOR FOUNDER DISCIPLINE'}
+          {standalone ? 'CRAFT × COMMERCIAL DISCIPLINE' : 'SENIOR FOUNDER DISCIPLINE'}
         </span>
       </div>
 
@@ -158,7 +158,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
               data-inview={isHeadingInView ? 'true' : 'false'}
               className="mobile-scroll-focus font-serif italic font-normal tracking-normal text-brand-red text-[1.18em] lowercase cursor-pointer underline decoration-brand-red/50 decoration-2 underline-offset-8 hover:brightness-110 transition-colors"
             >
-              obsessive art
+              provocative art
               {isTouch && <sup className="ml-0.5 text-[10px] not-italic font-mono">✦</sup>}
             </span>{' '}
             <span className="text-text-secondary font-light mx-1 md:mx-2">×</span>{' '}
@@ -172,7 +172,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
               data-inview={isHeadingInView ? 'true' : 'false'}
               className="mobile-scroll-focus cursor-pointer text-text-primary underline decoration-line-border hover:decoration-brand-red decoration-2 underline-offset-8 hover:text-brand-red transition-all md:whitespace-nowrap"
             >
-              RUTHLESS MATH
+              COMMERCIAL SCALE
               {isTouch && <sup className="ml-0.5 text-[10px] text-brand-red font-mono">✦</sup>}
             </span>
             <span className="text-brand-red font-black">.</span>
@@ -182,7 +182,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
             ref={headingRef}
             className="font-display text-[clamp(1.5rem,5.8vw,4.5rem)] md:text-[clamp(1.85rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.12]"
           >
-            <span>WE OPERATE AT THE RAZOR-EDGE OF</span>{' '}
+            <span>WE OPERATE AT THE INTERSECTION OF</span>{' '}
             <span
               role={isTouch ? 'button' : undefined}
               tabIndex={isTouch ? 0 : undefined}
@@ -193,7 +193,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
               data-inview={isHeadingInView ? 'true' : 'false'}
               className="mobile-scroll-focus font-serif italic font-normal tracking-normal text-brand-red text-[1.18em] lowercase cursor-pointer underline decoration-brand-red/50 decoration-2 underline-offset-8 hover:brightness-110 transition-colors"
             >
-              obsessive art
+              provocative art
               {isTouch && <sup className="ml-0.5 text-[10px] not-italic font-mono">✦</sup>}
             </span>{' '}
             <span className="text-text-secondary font-light mx-1 md:mx-2">×</span>{' '}
@@ -207,7 +207,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
               data-inview={isHeadingInView ? 'true' : 'false'}
               className="mobile-scroll-focus cursor-pointer text-text-primary underline decoration-line-border hover:decoration-brand-red decoration-2 underline-offset-8 hover:text-brand-red transition-all md:whitespace-nowrap"
             >
-              RUTHLESS MATH
+              COMMERCIAL SCALE
               {isTouch && <sup className="ml-0.5 text-[10px] text-brand-red font-mono">✦</sup>}
             </span>
             <span className="text-brand-red font-black">.</span>
@@ -256,7 +256,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
                 ) : (
                   <div className="space-y-2.5 pr-6">
                     <span className="flex items-center gap-1.5 text-brand-red font-bold uppercase text-[10px]">
-                      <Zap size={11} /> Predatory Math Telemetry · LIVE
+                      <Zap size={11} /> Commercial Media Performance · LIVE
                     </span>
                     <div className="grid grid-cols-3 gap-2">
                       <div className="p-2 rounded bg-white/5 border border-white/10">
@@ -359,8 +359,8 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ standalone =
         </div>
       </div>
 
-      {/* Interactive Predatory Math Telemetry Simulator */}
-      <TelemetrySimulator />
+      {/* Real 14-Day Sprint Process & Deliverables */}
+      <SprintProcess />
     </section>
   );
 };

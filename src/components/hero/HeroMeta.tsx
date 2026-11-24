@@ -37,7 +37,7 @@ export const HeroMeta: React.FC = () => {
       <div className="hidden sm:grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-line-border font-mono text-[11px] sm:text-xs md:text-sm tracking-wider uppercase text-text-secondary select-none">
         <div>
           <span className="block text-brand-red font-bold">01 / SPRINT VELOCITY</span>
-          <span className="text-text-primary">14-DAY HIGH-TICKET SPRINTS</span>
+          <span className="text-text-primary">14-DAY STUDIO SPRINTS</span>
         </div>
 
         <div>

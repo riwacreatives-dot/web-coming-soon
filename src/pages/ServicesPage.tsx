@@ -22,10 +22,10 @@ export const ServicesPage: React.FC = () => {
         <ScrollVelocityMarquee
           items={[
             'SIX REVENUE DISCIPLINES',
-            'ZERO JUNIOR HANDOFFS',
+            'DIRECT SENIOR ACCESS',
             'COMMERCIAL POSTER ART',
-            'PREDATORY MEDIA STRATEGY',
-            '3D PERFORMANCE WEB',
+            'PAID MEDIA ACQUISITION',
+            'FAST HEADLESS DIGITAL SITES',
           ]}
           baseVelocity={1.4}
         />

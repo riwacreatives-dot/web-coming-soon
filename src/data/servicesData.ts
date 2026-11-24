@@ -23,8 +23,8 @@ export const SERVICES_DATA: ServiceItem[] = [
     index: '02',
     name: 'Paid Performance Media',
     categoryTag: 'Meta & Google P-Max',
-    shortDesc: 'Aggressive paid acquisition across Meta, Google P-Max, YouTube & TikTok with algorithmic bid mastery.',
-    fullDesc: 'We build multi-tiered performance acquisition engines with automated bidding rules, dynamic audience clustering, and high-frequency creative rotation that scales profitably without ad fatigue.',
+    shortDesc: 'Disciplined paid acquisition across Meta, Google P-Max, YouTube & TikTok engineered for sustainable unit economics.',
+    fullDesc: 'We build disciplined performance acquisition campaigns with rigorous creative rotation, high-intent targeting, and continuous tuning that scales sustainably without ad fatigue.',
     flagshipKPI: '5.4x Avg ROAS',
     kpiLabel: '34% Lower Blended CAC',
     deliverables: [
@@ -38,10 +38,10 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'web-funnels',
     index: '03',
-    name: '3D Web & Conversion Funnels',
+    name: 'Brand Experiences & High-Conversion Web',
     categoryTag: 'Three.js & Headless',
     shortDesc: 'Immersive 3D interactive web experiences, headless storefronts, and conversion-engineered landing pages.',
-    fullDesc: 'We engineer ultra-fast, visually striking web experiences using modern Three.js 3D product visualizers and ruthless CRO psychology to turn clicks into buyers.',
+    fullDesc: 'We engineer ultra-fast, visually striking web experiences combining interactive Three.js product visualizers and high-converting design psychology to turn attention into loyal patrons.',
     flagshipKPI: '+42% Conversion Lift',
     kpiLabel: 'Sub-0.8s LCP Load Time',
     deliverables: [
@@ -75,7 +75,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     name: 'Lifecycle & Retention CRM',
     categoryTag: 'Klaviyo & Retention',
     shortDesc: 'Turn one-time purchasers into lifetime brand evangelists via Klaviyo, SMS, and VIP flows.',
-    fullDesc: 'We build hyper-segmented email & SMS journeys, predictive churn interventions, replenishment automations, and VIP tiering that supercharge customer Lifetime Value (LTV).',
+    fullDesc: 'We build tailored email & SMS customer journeys, thoughtful re-engagement flows, replenishment reminders, and VIP tiering that cultivate true customer Lifetime Value (LTV).',
     flagshipKPI: '38% Revenue via CRM',
     kpiLabel: '48% Repeat Purchase Rate',
     deliverables: [
@@ -83,7 +83,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Two-Way Omnichannel SMS Campaigns',
       'RFM Predictive Customer Segmentation',
       'Post-Purchase Unboxing & Onboarding Journeys',
-      'Zero-Party Data Quizzes & Interactive Funnels',
+      'Interactive Brand Quizzes & Engagement Flows',
     ],
   },
   {

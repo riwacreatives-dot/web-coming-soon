@@ -15,6 +15,7 @@ interface SelectedWorksProps {
 export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false }) => {
   const isMobile = useIsMobile();
   const hasToggledRef = useRef(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [hoveredProject, setHoveredProject] = useState<ProjectItem | null>(null);
   const [viewMode, setViewMode] = useState<'index' | 'gallery'>(() =>
@@ -37,6 +38,19 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
     setSelectedProject(project);
   };
 
+  const CATEGORIES = [
+    { label: 'All Projects', value: 'All' },
+    { label: 'Advertising', value: 'Commercial' },
+    { label: 'Branding', value: 'Brand' },
+    { label: 'Technology', value: 'Technology' },
+    { label: 'Events & Experiences', value: 'Events' },
+  ];
+
+  const filteredProjects = PROJECTS_DATA.filter((project) => {
+    if (selectedCategory === 'All') return true;
+    return project.category.toLowerCase().includes(selectedCategory.toLowerCase());
+  });
+
   // Inertial Floating Media Mouse Coordinates
   const mouseX = useMotionValue(-500);
   const mouseY = useMotionValue(-500);
@@ -50,15 +64,16 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
   };
 
   return (
-    <section
-      id="work"
-      className={`relative w-full ${
-        standalone
-          ? 'pt-24 sm:pt-32 md:pt-36 pb-14 sm:pb-28 md:pb-32'
-          : 'py-14 sm:py-28 md:py-32 border-t border-line-border'
-      } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
-      onMouseMove={handleContainerMouseMove}
-    >
+    <div className="w-full bg-[#F5F4F0] dark:bg-[#07090d] border-y border-line-border transition-colors">
+      <section
+        id="work"
+        className={`relative w-full ${
+          standalone
+            ? 'pt-24 sm:pt-32 md:pt-36 pb-14 sm:pb-28 md:pb-32'
+            : 'py-14 sm:py-24 md:py-32'
+        } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
+        onMouseMove={handleContainerMouseMove}
+      >
       {/* RIWA Floating Media Preview Portal (Desktop Cursor Only) */}
       <AnimatePresence>
         {!isMobile && hoveredProject && viewMode === 'index' && (
@@ -149,10 +164,28 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
         </div>
       </div>
 
+      {/* Category Filter Pills */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-8 sm:mb-12 no-scrollbar">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat.value}
+            type="button"
+            onClick={() => setSelectedCategory(cat.value)}
+            className={`min-h-[38px] px-4 py-1.5 rounded-full font-mono text-xs uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer touch-manipulation border ${
+              selectedCategory === cat.value
+                ? 'bg-brand-red text-white border-brand-red font-bold shadow-md shadow-brand-red/20'
+                : 'bg-surface/80 border-line-border text-text-secondary hover:text-text-primary hover:border-brand-red/40'
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
       {/* Mode A: RIWA Inertial Floating Project Rows */}
       {viewMode === 'index' ? (
         <div className="border-t border-line-border">
-          {PROJECTS_DATA.map((project, idx) => (
+          {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
               onClick={() => handleProjectSelect(project)}
@@ -205,7 +238,7 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
       ) : (
         /* Mode B: Full Gallery Viewports */
         <div className="space-y-16 sm:space-y-24">
-          {PROJECTS_DATA.map((project, idx) => (
+          {filteredProjects.map((project, idx) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -222,5 +255,6 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
         onClose={() => setSelectedProject(null)}
       />
     </section>
+  </div>
   );
 };

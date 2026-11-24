@@ -97,6 +97,34 @@ export const CAPABILITIES_DATA: ServiceItem[] = [
       'Digital event experiences',
     ],
   },
+  {
+    id: 'events-experiences',
+    index: '05',
+    name: 'Events, Experiences & Activations',
+    categoryTag: 'Live Events & Production',
+    headline: "WE DON'T JUST PROMOTE EVENTS. WE MAKE THEM HAPPEN.",
+    shortDesc:
+      'From the first announcement to the final applause, we help organizations conceptualize, promote and execute experiences that bring people together.',
+    fullDesc:
+      'Whether running a 1,200+ builder hackathon, an international model UN, or a high-energy college festival, we engineer the brand identity, stage visuals, participant acquisition funnels, and on-ground production that leave a lasting imprint.',
+    ctaText: 'MAKE YOUR EVENT HAPPEN ↗',
+    flagshipKPI: 'Turnkey Event Production',
+    kpiLabel: 'Audience & Stage Impact',
+    deliverables: [
+      'Event planning and management',
+      'Hackathon conceptualization and execution',
+      'MUN and conference management',
+      'College festivals and youth events',
+      'Corporate events and conferences',
+      'Event branding and creative production',
+      'Delegate and participant acquisition',
+      'Sponsorship strategy and acquisition',
+      'Event marketing and promotions',
+      'Registration and ticketing infrastructure',
+      'Event websites and digital experiences',
+      'On-ground event coordination',
+    ],
+  },
 ];
 
 // Backward-compatible alias for existing imports

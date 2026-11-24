@@ -9,6 +9,7 @@ const TICKER_ITEMS = [
   'DIGITAL',
   'CAMPAIGNS',
   'GROWTH',
+  'EVENTS',
   'EXPERIENCES',
 ];
 

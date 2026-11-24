@@ -16,6 +16,10 @@ export default {
         'line-border': 'var(--border-line)',
         'brand-red': 'var(--accent-red)',
         'brand-amber': 'var(--accent-amber)',
+        'brand-orange': '#F27A21',
+        'brand-charcoal': '#111116',
+        'warm-white': '#F5F4F0',
+        'concrete-grey': '#E7E7E9',
       },
       fontFamily: {
         display: ['Syne', 'Plus Jakarta Sans', 'sans-serif'],

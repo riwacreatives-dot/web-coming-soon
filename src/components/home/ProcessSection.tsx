@@ -57,10 +57,11 @@ export const ProcessSection: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section
-      id="process"
-      className="relative w-full py-16 sm:py-24 md:py-32 border-t border-line-border px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
-    >
+    <div className="w-full bg-[#F5F4F0] dark:bg-[#08090c] border-y border-line-border transition-colors">
+      <section
+        id="process"
+        className="relative w-full py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+      >
       {/* Eyebrow & Headline */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-12 sm:mb-20">
         <div className="max-w-3xl">
@@ -155,5 +156,6 @@ export const ProcessSection: React.FC = () => {
         </div>
       </div>
     </section>
-  );
+  </div>
+);
 };

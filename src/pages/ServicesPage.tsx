@@ -6,12 +6,12 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const ServicesPage: React.FC = () => {
   useDocumentMeta({
-    title: 'Branding, Advertising & Digital Growth — Riwa Creatives',
+    title: 'Brand, Advertising, Technology & Events — Riwa Creatives',
     description:
-      "Discover Riwa Creatives' capabilities across brand identity, commercial creative, digital growth and technology-led experiences.",
+      "Discover Riwa Creatives' 5 core capabilities: Brand & Identity, Commercial Creative, Digital Growth, Technology, and Live Events & Activations.",
     ogTitle: 'Capabilities & Services — Riwa Creatives',
     ogDescription:
-      'Big ideas built from every angle: Brand & Identity, Commercial Creative & Advertising, Digital & Growth, and Technology & Experiences.',
+      'Big ideas built from every angle: Brand & Identity, Commercial Creative & Advertising, Digital & Growth, Technology, and Events, Experiences & Activations.',
   });
 
   return (
@@ -21,11 +21,13 @@ export const ServicesPage: React.FC = () => {
 
         <ScrollVelocityMarquee
           items={[
-            'SIX REVENUE DISCIPLINES',
+            'FIVE CORE DISCIPLINES',
+            'BRAND & IDENTITY',
+            'COMMERCIAL AD ART',
+            'DIGITAL & GROWTH',
+            'TECHNOLOGY & PLATFORMS',
+            'LIVE EVENTS & ACTIVATIONS',
             'DIRECT SENIOR ACCESS',
-            'COMMERCIAL POSTER ART',
-            'PAID MEDIA ACQUISITION',
-            'FAST HEADLESS DIGITAL SITES',
           ]}
           baseVelocity={1.4}
         />

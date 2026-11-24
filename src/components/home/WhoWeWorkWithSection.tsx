@@ -70,23 +70,23 @@ export const WhoWeWorkWithSection: React.FC = () => {
         </div>
       </div>
 
-      {/* 4 Audience Cards */}
+      {/* 4 Audience Cards — Light, Restrained Editorial Columns */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {AUDIENCES.map((a, idx) => (
           <motion.div
             key={a.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: idx * 0.08 }}
-            className="p-6 sm:p-7 rounded-2xl border border-line-border bg-surface/40 hover:bg-surface/80 hover:border-brand-red/40 transition-all duration-300 flex flex-col justify-between"
+            transition={{ duration: 0.45, delay: idx * 0.08 }}
+            className="p-6 sm:p-7 rounded-2xl border border-line-border/70 bg-surface/30 hover:bg-surface hover:border-brand-red/30 transition-all duration-300 flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-5">
                 <span className="font-mono text-xs font-bold text-brand-red uppercase tracking-widest">
-                  {a.number}
+                  // {a.number}
                 </span>
-                <div className="w-8 h-8 rounded-full bg-brand-red/10 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-surface border border-line-border flex items-center justify-center text-brand-red">
                   {a.icon}
                 </div>
               </div>
@@ -96,7 +96,7 @@ export const WhoWeWorkWithSection: React.FC = () => {
               </h3>
             </div>
 
-            <p className="font-mono text-xs sm:text-sm text-text-secondary leading-relaxed mt-4">
+            <p className="font-sans text-xs sm:text-sm text-text-secondary leading-relaxed mt-4">
               {a.description}
             </p>
           </motion.div>
@@ -104,7 +104,7 @@ export const WhoWeWorkWithSection: React.FC = () => {
       </div>
 
       {/* Shared Belief Footer Tag */}
-      <div className="mt-10 p-5 rounded-xl border border-line-border bg-surface/30 font-mono text-xs sm:text-sm text-center text-text-secondary">
+      <div className="mt-10 p-5 rounded-full border border-line-border bg-surface/40 font-mono text-xs sm:text-sm text-center text-text-secondary max-w-2xl mx-auto">
         <span>Different industries. Different ambitions. One shared belief: </span>
         <span className="text-brand-red font-bold">ordinary isn't the goal.</span>
       </div>

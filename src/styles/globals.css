@@ -13,6 +13,7 @@
   --border-line-strong: rgba(255, 255, 255, 0.25);
   --accent-red: #ff2a55;
   --accent-amber: #f5b31b;
+  --accent-orange: #f27a21;
   --spotlight-base: #ffffff;
   --spotlight-accent: #ff2a55;
 }
@@ -27,6 +28,7 @@
   --border-line-strong: rgba(0, 0, 0, 0.25);
   --accent-red: #e11d48;
   --accent-amber: #d97706;
+  --accent-orange: #f27a21;
   --spotlight-base: #0a0b0e;
   --spotlight-accent: #e11d48;
 }
@@ -35,16 +37,16 @@
    Light Mode Box Shadows & Contrast Elevation (Addresses Item 2 & 3)
    ========================================================================== */
 
-:root[data-theme="light"] [class*="rounded-2xl"].border,
-:root[data-theme="light"] [class*="rounded-xl"].border,
-:root[data-theme="light"] [class*="rounded-3xl"].border,
+:root[data-theme="light"] [class*="rounded-2xl"].border:not(.dark-card):not([data-theme="dark"]),
+:root[data-theme="light"] [class*="rounded-xl"].border:not(.dark-card):not([data-theme="dark"]),
+:root[data-theme="light"] [class*="rounded-3xl"].border:not(.dark-card):not([data-theme="dark"]),
 :root[data-theme="light"] form.border {
-  background-color: #ffffff !important;
-  border-color: rgba(0, 0, 0, 0.12) !important;
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
   box-shadow: 
     0 1px 3px rgba(0, 0, 0, 0.04),
     0 8px 24px -4px rgba(0, 0, 0, 0.07),
-    0 20px 48px -8px rgba(0, 0, 0, 0.05) !important;
+    0 20px 48px -8px rgba(0, 0, 0, 0.05);
 }
 
 :root[data-theme="light"] [class*="rounded-2xl"].border:hover,

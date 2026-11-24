@@ -47,60 +47,69 @@ export const DifferenceSection: React.FC = () => {
         id="difference"
         className="relative w-full py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Sticky Editorial Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+        {/* Header Eyebrow & Headline Block */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="max-w-3xl">
             <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold block mb-3 select-none">
               05 / THE RIWA DIFFERENCE
             </span>
-            <h2 className="font-display text-[clamp(2.2rem,6vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.02]">
+            <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.05]">
               <span>NOT ANOTHER</span><br />
               <span>AGENCY</span>{' '}
               <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
                 playing
-              </span><br />
+              </span>{' '}
               <span>IT SAFE</span><span className="text-brand-red font-bold">.</span>
             </h2>
-            <p className="mt-5 font-mono text-xs sm:text-sm text-text-secondary leading-relaxed max-w-md">
+            <p className="mt-4 font-mono text-xs sm:text-sm text-text-secondary leading-relaxed max-w-2xl">
               We believe good creative work should do more than look good. It should have a point of view, solve a problem and leave something behind. That's why we bring creative thinking, strategic direction and hands-on execution under one roof.
             </p>
+          </div>
 
-            <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-line-border bg-surface/70 font-mono text-xs uppercase tracking-wider text-text-primary">
+          <div className="shrink-0 self-start md:self-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-line-border bg-surface font-mono text-xs uppercase tracking-wider text-text-primary shadow-sm">
               <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
               <span>Zero Templates · 100% Intention</span>
             </div>
           </div>
+        </div>
 
-          {/* Right Asymmetrical Typographic Rows */}
-          <div className="lg:col-span-7 divide-y divide-line-border border-t border-b border-line-border">
-            {PRINCIPLES.map((p, idx) => (
-              <motion.div
-                key={p.number}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.45, delay: idx * 0.07 }}
-                className="group py-8 sm:py-10 transition-all duration-300 hover:pl-3 cursor-default"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs sm:text-sm font-bold text-brand-red uppercase tracking-widest">
-                    // {p.number}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-surface border border-line-border flex items-center justify-center text-text-secondary group-hover:text-brand-red group-hover:border-brand-red transition-all">
-                    {p.icon}
-                  </div>
+        {/* 4 Editorial Horizontal Manifesto Rows */}
+        <div className="border-t border-b border-line-border divide-y divide-line-border">
+          {PRINCIPLES.map((p, idx) => (
+            <motion.div
+              key={p.number}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: idx * 0.07 }}
+              className="group py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-start transition-all duration-300 md:hover:px-4 md:hover:bg-surface/30 cursor-default"
+            >
+              {/* Number & Icon */}
+              <div className="md:col-span-2 flex items-center gap-3">
+                <span className="font-mono text-sm sm:text-base font-bold text-brand-red uppercase tracking-widest">
+                  // {p.number}
+                </span>
+                <div className="w-8 h-8 rounded-full bg-surface border border-line-border flex items-center justify-center text-text-secondary group-hover:text-brand-red group-hover:border-brand-red transition-all">
+                  {p.icon}
                 </div>
+              </div>
 
-                <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors mb-3">
+              {/* Title */}
+              <div className="md:col-span-4">
+                <h3 className="font-display text-lg sm:text-xl md:text-2xl font-black uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors">
                   {p.title}
                 </h3>
+              </div>
 
-                <p className="font-sans text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl">
+              {/* Description */}
+              <div className="md:col-span-6">
+                <p className="font-sans text-sm sm:text-base text-text-secondary leading-relaxed">
                   {p.description}
                 </p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
     </div>

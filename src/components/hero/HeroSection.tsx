@@ -14,14 +14,14 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full pt-[4.5rem] sm:pt-28 md:pt-32 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+      className="relative w-full pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
     >
       {/* RIWA Minimalist Eyebrow Index */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-2 sm:gap-3 mb-4 md:mb-8 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none"
+        className="flex items-center gap-2 sm:gap-3 mb-2.5 md:mb-4 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-text-secondary select-none"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
         <span className="text-text-primary font-semibold">
@@ -35,8 +35,8 @@ export const HeroSection: React.FC = () => {
       </motion.div>
 
       {/* Bespoke Editorial Headline with Instrument Serif Italic Accent & Expanding Visual Capsule */}
-      <div className="mb-5 md:mb-14">
-        <h1 className="font-display text-[clamp(2.25rem,10vw,6.5rem)] md:text-[clamp(2.5rem,9.2vw,6.5rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.94] md:leading-[0.95] select-none">
+      <div className="mb-3.5 md:mb-6">
+        <h1 className="font-display text-[clamp(2.15rem,8.2vw,5.5rem)] md:text-[clamp(2.4rem,7.2vw,5.5rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.92] md:leading-[0.93] select-none">
           <div className="flex items-center flex-wrap gap-x-2 sm:gap-x-3 gap-y-1 sm:gap-y-2">
             <SplitHeading as="span" delay={0.05} trigger="mount">
               WE MAKE
@@ -51,7 +51,7 @@ export const HeroSection: React.FC = () => {
               delay={0.25}
             />
           </div>
-          <div className="block mt-0.5 md:mt-2">
+          <div className="block mt-0.5 md:mt-1">
             <SplitHeading as="span" delay={0.22} trigger="mount" accentChar=".">
               BRANDS HAPPEN.
             </SplitHeading>
@@ -64,7 +64,7 @@ export const HeroSection: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-6 md:mb-18"
+        className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-6 md:mb-14"
       >
         {/* Mobile Condensed Editorial Pitch (< 768px — keeps first fold showreel visible) */}
         <p className="md:hidden font-mono text-[13px] text-text-secondary leading-relaxed">

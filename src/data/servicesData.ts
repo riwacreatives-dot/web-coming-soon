@@ -1,18 +1,8 @@
-export interface CapabilityItem {
-  id: string;
-  index: string;
-  name: string;
-  headline: string;
-  categoryTag: string;
-  shortDesc: string;
-  fullDesc: string;
-  ctaText: string;
-  deliverables: string[];
-  flagshipKPI?: string;
-  kpiLabel?: string;
-}
+import { ServiceItem } from '../types';
 
-export const CAPABILITIES_DATA: CapabilityItem[] = [
+export type CapabilityItem = ServiceItem;
+
+export const CAPABILITIES_DATA: ServiceItem[] = [
   {
     id: 'brand-identity',
     index: '01',

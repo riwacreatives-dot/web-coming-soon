@@ -20,8 +20,10 @@ export interface ServiceItem {
   index: string;
   name: string;
   categoryTag: string;
+  headline?: string;
   shortDesc: string;
   fullDesc: string;
+  ctaText?: string;
   flagshipKPI: string;
   kpiLabel: string;
   deliverables: string[];

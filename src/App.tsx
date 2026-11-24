@@ -50,7 +50,7 @@ export const AppContent: React.FC = () => {
       <TransitionProvider>
         <SmoothScroll>
           <ScrollToTop />
-          <div className="relative min-h-screen bg-canvas text-text-primary transition-colors duration-300 overflow-x-hidden pb-16 md:pb-14">
+          <div className="relative min-h-screen bg-canvas text-text-primary transition-colors duration-300 overflow-x-hidden pb-16 md:pb-20">
             {/* Top Red Laser Scroll Progress Bar */}
             <ScrollProgressBar />
 

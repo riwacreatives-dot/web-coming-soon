@@ -34,9 +34,9 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
             title="RIWA Creatives Home"
             className="group flex items-center gap-1.5 cursor-pointer select-none shrink-0"
           >
-            <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-text-primary text-canvas flex items-center justify-center font-display font-black text-sm sm:text-base tracking-tighter group-hover:bg-[#FD7D3C] group-hover:text-[#171719] transition-all shadow-sm">
+            <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-text-primary text-canvas flex items-center justify-center font-display font-black text-sm sm:text-base tracking-tighter group-hover:bg-brand-red group-hover:text-white transition-all shadow-sm">
               <span>R</span>
-              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#FD7D3C]" />
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-brand-red" />
             </div>
           </Link>
 
@@ -98,8 +98,8 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
               data-cursor-text="CONNECT"
               className={`transition-colors cursor-pointer font-semibold whitespace-nowrap ${
                 currentPath === '/contact'
-                  ? 'text-[#FD7D3C] font-bold'
-                  : 'text-text-secondary hover:text-[#FD7D3C]'
+                  ? 'text-brand-red font-bold'
+                  : 'text-text-secondary hover:text-brand-red'
               }`}
             >
               <span className="sm:hidden">Connect</span>
@@ -128,7 +128,7 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
               onClick={isMenuOpen ? onCloseMenu : onOpenMenu}
               data-cursor-text="MENU"
               title="Open Studio Menu"
-              className="min-h-[36px] min-w-[36px] flex items-center justify-center p-1.5 sm:px-2.5 sm:py-1.5 rounded-full border border-line-border bg-surface text-text-primary hover:border-[#FD7D3C] hover:text-[#FD7D3C] font-mono text-xs uppercase tracking-wider transition-all cursor-pointer gap-1.5 touch-manipulation"
+              className="min-h-[36px] min-w-[36px] flex items-center justify-center p-1.5 sm:px-2.5 sm:py-1.5 rounded-full border border-line-border bg-surface text-text-primary hover:border-brand-red hover:text-brand-red font-mono text-xs uppercase tracking-wider transition-all cursor-pointer gap-1.5 touch-manipulation"
             >
               {isMenuOpen ? <X size={13} /> : <Menu size={13} />}
               <span className="hidden md:inline font-bold text-[11px]">{isMenuOpen ? 'Close' : 'Menu'}</span>
@@ -157,10 +157,10 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
           >
             <div className="relative w-7 h-7 rounded-lg bg-text-primary text-canvas flex items-center justify-center font-display font-black text-sm tracking-tighter shadow-sm">
               <span>R</span>
-              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#FD7D3C]" />
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-brand-red" />
             </div>
             <span className="font-display font-black text-xs uppercase tracking-wider text-text-primary">
-              RIWA<span className="text-[#FD7D3C]">.</span>
+              RIWA<span className="text-brand-red">.</span>
             </span>
           </Link>
 

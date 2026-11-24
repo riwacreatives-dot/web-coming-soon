@@ -1,172 +1,157 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Compass, Palette, Rocket } from 'lucide-react';
 
-interface ProcessStep {
+interface ProcessStage {
   number: string;
   name: string;
-  headline: string;
+  tagline: string;
   description: string;
-  deliverables: string[];
-  icon: React.ReactNode;
 }
 
-const PROCESS_STAGES: ProcessStep[] = [
+const STAGES: ProcessStage[] = [
   {
     number: '01',
     name: 'DISCOVER',
-    headline: 'Understand the objective, audience & opportunity.',
+    tagline: 'Listen · Question · Audit',
     description:
-      'We listen, question and probe beneath the surface. We immerse ourselves in your market dynamics, competitive whitespace, customer psychology and core commercial objectives before proposing a single creative asset.',
-    deliverables: ['Market whitespace audit', 'Stakeholder alignment', 'Audience profiling', 'Strategic sprint brief'],
-    icon: <Search size={18} />,
+      'We learn about your business, audience, cultural whitespace, and core ambitions before deciding what needs to happen.',
   },
   {
     number: '02',
     name: 'DEFINE',
-    headline: 'Develop the creative direction & strategy.',
+    tagline: 'Strategy · Concepts · Direction',
     description:
-      'We distill complex briefs into sharp, high-conviction creative territories. We establish the conceptual foundation, tone of voice, narrative angle and technical roadmap that guide all subsequent execution.',
-    deliverables: ['Brand positioning narrative', 'Visual territory moodboards', 'Creative direction deck', 'Sprint milestones'],
-    icon: <Compass size={18} />,
+      'We turn the brief into a sharp creative direction, narrative angle, and strategic execution plan.',
   },
   {
     number: '03',
     name: 'CREATE',
-    headline: 'Design, develop & execute the idea.',
+    tagline: 'Design · Film · Code · Stage',
     description:
-      'Where imagination becomes reality. Our principal designers, copywriters, 3D artists, filmmakers and engineers craft bespoke visual systems, commercial campaigns, web experiences and physical activations.',
-    deliverables: ['Identity design & guidelines', 'Campaign key visuals & copy', 'Responsive digital platforms', 'Experiential collateral'],
-    icon: <Palette size={18} />,
+      'Where concepts take form: visual systems, campaign key visuals, responsive digital experiences, and event architecture.',
   },
   {
     number: '04',
-    name: 'DELIVER',
-    headline: 'Launch, communicate & improve.',
+    name: 'EXECUTE',
+    tagline: 'Refine · Deliver · Launch',
     description:
-      'We bring the work into the world with meticulous production rigor. From print press checks and ad rollout to high-traffic web deployment and live event staging, we refine and optimize every touchpoint.',
-    deliverables: ['Production-ready assets', 'Clean code & deployment', 'Launch management', 'Impact measurement'],
-    icon: <Rocket size={18} />,
+      'We obsess over every production detail—press checks, code performance, ad rollout, and live event staging.',
+  },
+  {
+    number: '05',
+    name: 'EVOLVE',
+    tagline: 'Review · Learn · Strengthen',
+    description:
+      'We study audience response and market feedback so every subsequent sprint hits harder.',
   },
 ];
 
 export const ProcessSection: React.FC = () => {
-  const [activeStage, setActiveStage] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <div className="w-full bg-[#F4F1EA] text-[#171719] border-b border-[#171719]/15 transition-colors">
+    <div className="w-full bg-[#FFFFFF] text-[#111116] border-b border-[#111116]/15 transition-colors">
       <section
         id="process"
         className="relative w-full py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
-        {/* Eyebrow & Headline Block */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-12 sm:mb-20">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 sm:mb-20">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.24em] text-[#767571] font-semibold block mb-3 select-none">
-              05 / FROM FIRST THOUGHT TO FINAL FRAME
+            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] font-semibold block mb-3 select-none">
+              05 / OUR PROCESS
             </span>
-            <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-[#171719] leading-[0.98]">
+            <h2 className="font-display text-[clamp(2.25rem,6.8vw,4.5rem)] font-black uppercase tracking-tight text-[#111116] leading-[0.98]">
               <span>FROM FIRST THOUGHT</span><br />
               <span>TO</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-[#FD7D3C] text-[1.12em] lowercase select-none">
+              <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
                 final
               </span>{' '}
-              <span>FRAME</span><span className="text-[#FD7D3C] font-bold">.</span>
+              <span>FRAME</span><span className="text-[#EA1E4D]">.</span>
             </h2>
-            <p className="mt-4 font-sans text-sm sm:text-base text-[#605F5B] leading-relaxed max-w-2xl">
-              Great creative work is never accidental. It is the result of disciplined exploration, clear strategic convictions and meticulous execution across four deliberate stages.
-            </p>
           </div>
 
-          <div className="hidden sm:block font-mono text-xs text-[#767571] text-right">
-            <span>[ 04 DELIBERATE STAGES ]</span><br />
-            <span className="text-[#171719] font-bold">14-DAY CORE SPRINTS</span>
-          </div>
+          <p className="font-sans text-sm sm:text-base text-[#52525B] leading-relaxed max-w-sm">
+            Five disciplined stages moving an unreasonable idea from initial interrogation into real-world impact.
+          </p>
         </div>
 
-        {/* Swiss Grid Editorial Process Display */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
-          {/* Stage Selector Buttons */}
-          <div className="lg:col-span-5 flex flex-col gap-2.5">
-            {PROCESS_STAGES.map((stage, idx) => {
-              const isActive = activeStage === idx;
+        {/* DESKTOP: Horizontal Swiss Editorial Timeline (>= 1024px) */}
+        <div className="hidden lg:block">
+          <div className="relative border-t-2 border-[#111116]/20 grid grid-cols-5 gap-6 pt-8">
+            {STAGES.map((stage, idx) => {
+              const isActive = activeIdx === idx;
               return (
-                <button
+                <div
                   key={stage.number}
-                  type="button"
-                  onClick={() => setActiveStage(idx)}
-                  className={`w-full p-4 sm:p-5 rounded-xl text-left border transition-all cursor-pointer font-mono flex items-center justify-between ${
-                    isActive
-                      ? 'border-[#171719] bg-[#FFFFFF] shadow-md text-[#171719]'
-                      : 'border-[#171719]/15 bg-[#F4F1EA] text-[#605F5B] hover:border-[#171719]/40 hover:text-[#171719]'
-                  }`}
+                  onMouseEnter={() => setActiveIdx(idx)}
+                  onClick={() => setActiveIdx(idx)}
+                  className="relative cursor-pointer group"
                 >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={`text-xs font-bold ${
-                        isActive ? 'text-[#FD7D3C]' : 'text-[#767571]'
-                      }`}
-                    >
-                      // {stage.number}
-                    </span>
-                    <span className="font-display font-bold text-sm sm:text-base uppercase tracking-tight">
-                      {stage.name}
-                    </span>
-                  </div>
-
+                  {/* Top Active Node Dot sitting cleanly on the border line */}
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs transition-colors ${
-                      isActive ? 'bg-[#FD7D3C] text-[#171719]' : 'text-[#767571]'
+                    className={`absolute -top-[39px] left-0 w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 ${
+                      isActive
+                        ? 'bg-[#EA1E4D] border-[#EA1E4D] scale-125'
+                        : 'bg-white border-[#111116]/40 group-hover:border-[#EA1E4D]'
+                    }`}
+                  />
+
+                  <span
+                    className={`font-display text-4xl font-black block mb-4 transition-colors ${
+                      isActive ? 'text-[#EA1E4D]' : 'text-[#111116]/20 group-hover:text-[#111116]/50'
                     }`}
                   >
-                    {stage.icon}
-                  </div>
-                </button>
+                    {stage.number}
+                  </span>
+
+                  <h3 className="font-display text-xl font-black uppercase tracking-tight text-[#111116] mb-1.5">
+                    {stage.name}
+                  </h3>
+
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#EA1E4D] font-bold block mb-3">
+                    {stage.tagline}
+                  </span>
+
+                  <p className="font-sans text-xs sm:text-sm text-[#52525B] leading-relaxed">
+                    {stage.description}
+                  </p>
+                </div>
               );
             })}
           </div>
+        </div>
 
-          {/* Active Stage Detailed Panel */}
-          <div className="lg:col-span-7">
+        {/* MOBILE & TABLET: Vertical Editorial Timeline (< 1024px) */}
+        <div className="lg:hidden relative pl-7 border-l-2 border-[#111116]/20 space-y-10">
+          {STAGES.map((stage, idx) => (
             <motion.div
-              key={activeStage}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="p-7 sm:p-10 md:p-12 rounded-2xl border border-[#171719]/20 bg-[#FFFFFF] shadow-lg flex flex-col justify-between min-h-[380px]"
+              key={stage.number}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.4, delay: idx * 0.06 }}
+              className="relative"
             >
-              <div>
-                <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-[#767571] pb-4 border-b border-[#171719]/15 mb-6">
-                  <span>Stage {PROCESS_STAGES[activeStage].number} of 04</span>
-                  <span className="text-[#FD7D3C] font-bold">
-                    {PROCESS_STAGES[activeStage].name}
-                  </span>
-                </div>
+              {/* Timeline marker dot */}
+              <span className="absolute -left-[35px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#EA1E4D] border-2 border-white shadow-sm" />
 
-                <h3 className="font-display text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-[#171719] mb-3">
-                  {PROCESS_STAGES[activeStage].headline}
-                </h3>
-
-                <p className="font-sans text-sm sm:text-base text-[#605F5B] leading-relaxed mb-8">
-                  {PROCESS_STAGES[activeStage].description}
-                </p>
-              </div>
-
-              <div>
-                <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#767571] font-bold block mb-3">
-                  ✦ Stage Outputs &amp; Deliverables
+              <div className="flex items-baseline gap-3 mb-1.5">
+                <span className="font-mono text-xs font-bold text-[#EA1E4D]">// {stage.number}</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#71717A]">
+                  {stage.tagline}
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs text-[#171719]">
-                  {PROCESS_STAGES[activeStage].deliverables.map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FD7D3C] shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
+
+              <h3 className="font-display text-2xl font-black uppercase tracking-tight text-[#111116] mb-2">
+                {stage.name}
+              </h3>
+
+              <p className="font-sans text-sm text-[#52525B] leading-relaxed">
+                {stage.description}
+              </p>
             </motion.div>
-          </div>
+          ))}
         </div>
       </section>
     </div>

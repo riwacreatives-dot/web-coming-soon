@@ -1,13 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, TrendingUp, Building2, Users } from 'lucide-react';
 
 interface Audience {
   id: string;
   number: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
 }
 
 const AUDIENCES: Audience[] = [
@@ -15,99 +13,80 @@ const AUDIENCES: Audience[] = [
     id: 'startups',
     number: '01',
     title: 'STARTUPS & FOUNDERS',
-    description: 'For people turning an idea into a brand, a product or a business.',
-    icon: <Sparkles size={18} className="text-brand-red" />,
+    description: 'For founders turning an early conviction into a brand, a product, or a category-defining company.',
   },
   {
     id: 'growing-biz',
     number: '02',
     title: 'GROWING BUSINESSES',
     description:
-      'For established businesses ready to sharpen their identity, improve their digital presence and reach new audiences.',
-    icon: <TrendingUp size={18} className="text-brand-red" />,
+      'For established businesses ready to sharpen their identity, elevate their commercial creative, and win new audiences.',
   },
   {
     id: 'brands',
     number: '03',
     title: 'BRANDS & ORGANIZATIONS',
     description:
-      'For teams looking for fresh creative thinking, compelling campaigns and meaningful brand communication.',
-    icon: <Building2 size={18} className="text-brand-red" />,
+      'For teams seeking sharper creative direction, memorable campaigns, and cohesive communication across touchpoints.',
   },
   {
     id: 'events',
     number: '04',
     title: 'EVENTS & COMMUNITIES',
     description:
-      'For organizers creating experiences, building communities and bringing people together.',
-    icon: <Users size={18} className="text-brand-red" />,
+      'For organizers designing live experiences, college festivals, hackathons, and conferences that bring people together.',
   },
 ];
 
 export const WhoWeWorkWithSection: React.FC = () => {
   return (
-    <section
-      id="audiences"
-      className="relative w-full py-16 sm:py-24 md:py-32 border-t border-line-border px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
-    >
-      {/* Eyebrow & Headline */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-12 sm:mb-20">
-        <div className="max-w-3xl">
-          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold block mb-3 select-none">
-            07 / WHO WE WORK WITH
+    <div className="w-full bg-[#F5F4F0] text-[#111116] border-b border-[#111116]/15 transition-colors">
+      <section
+        id="audiences"
+        className="relative w-full py-16 sm:py-24 md:py-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+      >
+        {/* Minimal Editorial Eyebrow & Headline */}
+        <div className="mb-12 sm:mb-16 max-w-3xl">
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] font-semibold block mb-3 select-none">
+            06 / WHO WE WORK WITH
           </span>
-          <h2 className="font-display text-[clamp(2.2rem,6.8vw,4.5rem)] font-extrabold uppercase tracking-tight text-text-primary leading-[1.05]">
+          <h2 className="font-display text-[clamp(2.1rem,6vw,4.2rem)] font-black uppercase tracking-tight text-[#111116] leading-[1.02]">
             <span>FOR THE AMBITIOUS,</span><br />
             <span>THE CURIOUS AND</span>{' '}
-            <span className="font-serif italic font-normal tracking-normal text-brand-red text-[1.14em] lowercase select-none">
+            <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
               the
             </span>{' '}
-            <span>READY</span><span className="text-brand-red font-bold">.</span>
+            <span>READY</span><span className="text-[#EA1E4D]">.</span>
           </h2>
-          <p className="mt-4 font-mono text-xs sm:text-sm text-text-secondary leading-relaxed max-w-2xl">
-            We work with people building something worth noticing.
-          </p>
         </div>
-      </div>
 
-      {/* 4 Audience Cards — Light, Restrained Editorial Columns */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {AUDIENCES.map((a, idx) => (
-          <motion.div
-            key={a.id}
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, delay: idx * 0.08 }}
-            className="p-6 sm:p-7 rounded-2xl border border-line-border/70 bg-surface/30 hover:bg-surface hover:border-brand-red/30 transition-all duration-300 flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-5">
-                <span className="font-mono text-xs font-bold text-brand-red uppercase tracking-widest">
+        {/* Clean 4-Column Typographic Grid (Hairline Dividers, Zero Heavy Cards) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[#111116]/15">
+          {AUDIENCES.map((a, idx) => (
+            <motion.div
+              key={a.id}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.4, delay: idx * 0.06 }}
+              className="p-6 sm:p-8 border-r border-b border-[#111116]/15 flex flex-col justify-between bg-[#F5F4F0] hover:bg-white transition-colors duration-300"
+            >
+              <div>
+                <span className="font-mono text-xs font-bold text-[#EA1E4D] tracking-widest block mb-6">
                   // {a.number}
                 </span>
-                <div className="w-8 h-8 rounded-full bg-surface border border-line-border flex items-center justify-center text-brand-red">
-                  {a.icon}
-                </div>
+                <h3 className="font-display text-lg sm:text-xl font-black uppercase tracking-tight text-[#111116] mb-3 leading-snug">
+                  {a.title}
+                </h3>
               </div>
 
-              <h3 className="font-display text-base sm:text-lg font-bold uppercase tracking-tight text-text-primary mb-2">
-                {a.title}
-              </h3>
-            </div>
-
-            <p className="font-sans text-xs sm:text-sm text-text-secondary leading-relaxed mt-4">
-              {a.description}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Shared Belief Footer Tag */}
-      <div className="mt-10 p-5 rounded-full border border-line-border bg-surface/40 font-mono text-xs sm:text-sm text-center text-text-secondary max-w-2xl mx-auto">
-        <span>Different industries. Different ambitions. One shared belief: </span>
-        <span className="text-brand-red font-bold">ordinary isn't the goal.</span>
-      </div>
-    </section>
+              <p className="font-sans text-xs sm:text-sm text-[#52525B] leading-relaxed mt-4">
+                {a.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };

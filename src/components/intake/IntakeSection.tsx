@@ -1,81 +1,91 @@
-import React, { useState } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { CategoryPills } from './CategoryPills';
 import { BudgetTiers, BUDGET_TIERS } from './BudgetTiers';
 import { ResponsiveModalShell } from '../common/ResponsiveModalShell';
-import { ArrowUpRight, CheckCircle2, Mail, Send } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Mail, Send, Sparkles } from 'lucide-react';
 
 interface IntakeSectionProps {
   standalone?: boolean;
 }
 
-const headlineVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.05,
-    },
-  },
-};
+interface CommissionType {
+  id: 'brand' | 'campaign' | 'digital' | 'event' | 'other';
+  code: string;
+  label: string;
+  subline: string;
+  defaultDisciplines: string[];
+  visionPlaceholder: string;
+  extraFieldLabel?: string;
+  extraFieldPlaceholder?: string;
+}
 
-const lineRevealVariants: Variants = {
-  hidden: {
-    y: '105%',
-    opacity: 0,
+const COMMISSION_TYPES: CommissionType[] = [
+  {
+    id: 'brand',
+    code: '01',
+    label: 'A BRAND',
+    subline: 'Identity, naming, visual systems & packaging',
+    defaultDisciplines: ['Brand & Identity'],
+    visionPlaceholder: 'Tell us about your company stage, brand personality, and what should set you apart...',
+    extraFieldLabel: 'Brand Scope / Stage',
+    extraFieldPlaceholder: 'e.g. New launch, full rebrand, visual guidelines',
   },
-  visible: {
-    y: '0%',
-    opacity: 1,
-    transition: {
-      duration: 0.85,
-      ease: [0.16, 1, 0.3, 1],
-    },
+  {
+    id: 'campaign',
+    code: '02',
+    label: 'A CAMPAIGN',
+    subline: 'Commercial key visuals, reels & paid growth sprints',
+    defaultDisciplines: ['Commercial Creative & Advertising', 'Digital Marketing & Growth'],
+    visionPlaceholder: 'What are we launching or selling? Share campaign timeline, channels, and key creative goals...',
+    extraFieldLabel: 'Primary Channels / Media',
+    extraFieldPlaceholder: 'e.g. Instagram reels, Meta ads, print posters, OOH',
   },
-};
-
-const iconicWordVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: 'blur(8px)',
+  {
+    id: 'digital',
+    code: '03',
+    label: 'A DIGITAL EXPERIENCE',
+    subline: 'Interactive websites, web apps & creative technology',
+    defaultDisciplines: ['Website & Technology'],
+    visionPlaceholder: 'Describe the website or digital product experience, interactive goals, and target launch window...',
+    extraFieldLabel: 'Target Launch / Current URL',
+    extraFieldPlaceholder: 'e.g. Target 4 weeks, current site example.com',
   },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.9,
-      ease: [0.16, 1, 0.3, 1],
-      delay: 0.15,
-    },
+  {
+    id: 'event',
+    code: '04',
+    label: 'AN EVENT',
+    subline: 'Hackathons, MUNs, festivals, stage & registration systems',
+    defaultDisciplines: ['Events & Experiences', 'Content & Production'],
+    visionPlaceholder: 'Share your event concept, expected crowd/delegate size, sponsorship targets, and venue/dates...',
+    extraFieldLabel: 'Event Format & Expected Scale',
+    extraFieldPlaceholder: 'e.g. 1,000+ builder Hackathon / MUN / College Fest (Dates & City)',
   },
-};
-
-const dotPopVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.2,
+  {
+    id: 'other',
+    code: '05',
+    label: 'SOMETHING ELSE',
+    subline: 'Hybrid sprint, advisory, or unreasonable collaboration',
+    defaultDisciplines: ['Something else'],
+    visionPlaceholder: "Don't worry about fitting a template—describe what you're building or imagining...",
   },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 450,
-      damping: 16,
-      delay: 0.28,
-    },
-  },
-};
+];
 
 export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false }) => {
+  const [searchParams] = useSearchParams();
+  const initialTypeParam = searchParams.get('type');
+
+  const [selectedTypeId, setSelectedTypeId] = useState<CommissionType['id'] | null>(() => {
+    const matched = COMMISSION_TYPES.find((t) => t.id === initialTypeParam);
+    return matched ? matched.id : 'brand';
+  });
+
   const [selectedDisciplines, setSelectedDisciplines] = useState<string[]>([
-    'Commercial Poster Art',
-    'Paid Performance Media',
+    'Brand & Identity',
   ]);
   const [selectedBudget, setSelectedBudget] = useState<string>(BUDGET_TIERS[1]);
+  const [extraDetail, setExtraDetail] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -84,379 +94,366 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
     projectVision: '',
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmittedModalOpen, setIsSubmittedModalOpen] = useState(false);
+  const [copiedSummary, setCopiedSummary] = useState(false);
+  const [formattedBriefText, setFormattedBriefText] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    const matched = COMMISSION_TYPES.find((t) => t.id === initialTypeParam);
+    if (matched) {
+      setSelectedTypeId(matched.id);
+      setSelectedDisciplines(matched.defaultDisciplines);
+    }
+  }, [initialTypeParam]);
+
+  const activeCommission =
+    COMMISSION_TYPES.find((t) => t.id === selectedTypeId) || COMMISSION_TYPES[0];
+
+  const handleSelectCommission = (type: CommissionType) => {
+    setSelectedTypeId(type.id);
+    setSelectedDisciplines(type.defaultDisciplines);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim()) return;
 
-    setIsSubmitting(true);
-
-    // Build structured email body
-    const subject = encodeURIComponent(`Growth Sprint Brief — ${formData.name}`);
-    const body = encodeURIComponent(
-      `NEW GROWTH BRIEF RECEIVED\n` +
-      `━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
-      `Name: ${formData.name}\n` +
+    const briefPlain =
+      `NEW COMMISSION BRIEF — ${activeCommission.code} (${activeCommission.label})\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+      `Name & Title: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
-      `Brand / Website: ${formData.brandOrWebsite || 'Not provided'}\n\n` +
+      `Brand / Org / Handle: ${formData.brandOrWebsite || 'Not provided'}\n` +
+      (extraDetail ? `${activeCommission.extraFieldLabel}: ${extraDetail}\n` : '') +
       `Selected Disciplines: ${selectedDisciplines.join(', ')}\n` +
-      `Budget Tier: ${selectedBudget}\n\n` +
-      `Project Vision:\n${formData.projectVision || 'Not provided'}\n\n` +
-      `━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-      `Submitted via riwacreatives.vercel.app\n` +
-      `Timestamp: ${new Date().toISOString()}`
+      `Approximate Budget: ${selectedBudget}\n\n` +
+      `Project Brief:\n${formData.projectVision || 'Not provided'}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Prepared via riwacreatives.in · ${new Date().toLocaleDateString()}`;
+
+    setFormattedBriefText(briefPlain);
+
+    const subject = encodeURIComponent(
+      `Riwa Commission Brief [${activeCommission.label}] — ${formData.name}`
     );
+    const body = encodeURIComponent(briefPlain);
 
-    // Try Web3Forms API first (free, no backend needed)
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY', // User needs to replace this
-          name: formData.name,
-          email: formData.email,
-          subject: `Growth Sprint Brief — ${formData.name}`,
-          message: `Disciplines: ${selectedDisciplines.join(', ')}\nBudget: ${selectedBudget}\nBrand: ${formData.brandOrWebsite}\n\nVision:\n${formData.projectVision}`,
-          from_name: 'RIWA Website',
-          to: 'riwacreatives@gmail.com',
-        }),
-      });
-
-      if (response.ok) {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        return;
-      }
-    } catch {
-      // Web3Forms failed, fall through to mailto
-    }
-
-    // Fallback: open mailto with structured data
+    // Trigger user's default mail client cleanly (without claiming unverified server persistence)
     window.location.href = `mailto:riwacreatives@gmail.com?subject=${subject}&body=${body}`;
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setIsSubmittedModalOpen(true);
   };
+
+  const handleCopyBrief = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard && formattedBriefText) {
+      navigator.clipboard.writeText(formattedBriefText).catch(() => {});
+      setCopiedSummary(true);
+      setTimeout(() => setCopiedSummary(false), 2500);
+    }
+  };
+
+  const isEventSelected = activeCommission.id === 'event';
+  const accentColor = isEventSelected ? '#FD7D3C' : '#EA1E4D';
 
   return (
     <section
       id="contact"
       className={`relative w-full ${
         standalone
-          ? 'pt-24 sm:pt-32 md:pt-36 pb-14 sm:pb-28 md:pb-32'
-          : 'py-14 sm:py-28 md:py-32 border-t border-line-border'
+          ? 'pt-28 sm:pt-36 pb-16 sm:pb-28'
+          : 'py-16 sm:py-28 border-t border-line-border'
       } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
     >
-      {/* Header Eyebrow */}
-      <div className="flex items-center gap-3 mb-10 font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold select-none">
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-red" />
-        <span className="text-text-primary font-semibold">
-          {standalone ? '06 / INTAKE & PARTNERSHIP INQUIRIES' : '06 / INTAKE & PARTNERSHIP INQUIRIES'}
-        </span>
+      {/* Top Studio Eyebrow */}
+      <div className="flex flex-wrap items-center gap-3 mb-8 font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold select-none">
+        <span className="inline-block w-2 h-2 rounded-full bg-[#EA1E4D]" />
+        <span className="text-text-primary font-bold">COMMISSION A PROJECT</span>
         <span className="text-line-border">|</span>
-        <span className="text-brand-red font-bold">SENIOR FOUNDER DESK</span>
+        <span style={{ color: accentColor }} className="font-bold">
+          DIRECT FOUNDER DESK · RANJAN KUMAR
+        </span>
       </div>
 
-      {/* Top Hero Section: Headline & Editorial Statement with Masked Stagger Animation */}
-      <div className="max-w-4xl mb-12 sm:mb-16">
-        <motion.div
-          variants={headlineVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          data-no-spotlight="true"
-        >
-          {standalone ? (
-            <h1 className="font-display text-[clamp(2.1rem,6.2vw,5.25rem)] lg:text-[clamp(2.4rem,5.8vw,5.75rem)] font-black uppercase tracking-tight text-text-primary leading-[0.98] select-none mb-6">
-              {/* Line 1: LET'S MAKE */}
-              <span className="block overflow-hidden pb-1 -mb-1">
-                <motion.span
-                  variants={lineRevealVariants}
-                  className="block whitespace-nowrap"
-                >
-                  LET'S MAKE
-                </motion.span>
-              </span>
-
-              {/* Line 2: SOMETHING happen. */}
-              <span className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 mt-1 sm:mt-2">
-                <span className="overflow-hidden pb-1 -mb-1">
-                  <motion.span
-                    variants={lineRevealVariants}
-                    className="inline-block"
-                  >
-                    SOMETHING
-                  </motion.span>
-                </span>{' '}
-                <motion.span
-                  variants={iconicWordVariants}
-                  whileHover={{
-                    scale: 1.05,
-                    textShadow: '0 0 32px rgba(255, 42, 85, 0.65)',
-                    transition: { duration: 0.2 },
-                  }}
-                  className="inline-block font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none cursor-pointer transition-colors"
-                >
-                  happen
-                </motion.span>
-                <motion.span
-                  variants={dotPopVariants}
-                  whileHover={{
-                    rotate: 45,
-                    scale: 1.3,
-                  }}
-                  className="inline-block text-brand-red font-black cursor-pointer select-none"
-                >
-                  .
-                </motion.span>
-              </span>
-            </h1>
-          ) : (
-            <h2 className="font-display text-[clamp(2rem,6vw,5rem)] lg:text-[clamp(2.25rem,5.5vw,5.5rem)] font-black uppercase tracking-tight text-text-primary leading-[0.98] select-none mb-6">
-              {/* Line 1: LET'S MAKE */}
-              <span className="block overflow-hidden pb-1 -mb-1">
-                <motion.span
-                  variants={lineRevealVariants}
-                  className="block whitespace-nowrap"
-                >
-                  LET'S MAKE
-                </motion.span>
-              </span>
-
-              {/* Line 2: SOMETHING happen. */}
-              <span className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 mt-1 sm:mt-2">
-                <span className="overflow-hidden pb-1 -mb-1">
-                  <motion.span
-                    variants={lineRevealVariants}
-                    className="inline-block"
-                  >
-                    SOMETHING
-                  </motion.span>
-                </span>{' '}
-                <motion.span
-                  variants={iconicWordVariants}
-                  whileHover={{
-                    scale: 1.05,
-                    textShadow: '0 0 32px rgba(255, 42, 85, 0.65)',
-                    transition: { duration: 0.2 },
-                  }}
-                  className="inline-block font-serif italic font-normal tracking-normal text-brand-red text-[1.12em] lowercase select-none cursor-pointer transition-colors"
-                >
-                  happen
-                </motion.span>
-                <motion.span
-                  variants={dotPopVariants}
-                  whileHover={{
-                    rotate: 45,
-                    scale: 1.3,
-                  }}
-                  className="inline-block text-brand-red font-black cursor-pointer select-none"
-                >
-                  .
-                </motion.span>
-              </span>
-            </h2>
-          )}
-        </motion.div>
-
-        <p className="font-mono text-sm sm:text-base text-text-secondary max-w-3xl leading-relaxed">
-          Have a project in mind? A brand to build? A campaign to launch? Or an idea that needs the right people behind it? We'd love to hear about it. Tell us a little about what you're working on. We'll take it from there.
+      {/* Main Prompt Headline */}
+      <div className="max-w-5xl mb-10 sm:mb-14">
+        <h1 className="font-display text-[clamp(2.35rem,7vw,5.4rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.94] mb-5">
+          <span>WHAT ARE WE</span>{' '}
+          <span
+            style={{ color: accentColor }}
+            className="font-serif italic font-normal tracking-normal lowercase text-[1.12em]"
+          >
+            making
+          </span>{' '}
+          <span>TODAY</span>
+          <span style={{ color: accentColor }}>?</span>
+        </h1>
+        <p className="font-sans text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
+          Select what you are building below to configure your studio commission brief. Direct email routing to{' '}
+          <a
+            href="mailto:riwacreatives@gmail.com"
+            className="text-text-primary font-bold underline decoration-[#EA1E4D]"
+          >
+            riwacreatives@gmail.com
+          </a>
+          .
         </p>
+      </div>
 
-        {/* Direct Channels Quick Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-line-border font-mono text-xs sm:text-sm">
-          <div className="p-3.5 sm:p-4 rounded-xl border border-line-border bg-surface/30">
-            <span className="text-xs uppercase text-brand-red tracking-widest font-bold block mb-1">
-              ✦ Senior Founder Desk
-            </span>
-            <a
-              href="mailto:riwacreatives@gmail.com"
-              className="font-bold text-text-primary hover:text-brand-red flex items-center gap-1.5 transition-colors text-xs sm:text-sm"
+      {/* STEP 01: Interactive Project Commissioning Categories */}
+      <div className="mb-12">
+        <span className="font-mono text-xs uppercase tracking-[0.2em] text-text-secondary font-bold block mb-4">
+          00 / CHOOSE YOUR COMMISSION CATEGORY
+        </span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+          {COMMISSION_TYPES.map((type) => {
+            const isSelected = activeCommission.id === type.id;
+            const activeBg = type.id === 'event' ? 'bg-[#FD7D3C] text-[#111116]' : 'bg-[#EA1E4D] text-white';
+            return (
+              <button
+                key={type.id}
+                type="button"
+                onClick={() => handleSelectCommission(type)}
+                className={`p-5 text-left border transition-all cursor-pointer flex flex-col justify-between min-h-[132px] ${
+                  isSelected
+                    ? `${activeBg} border-transparent shadow-lg`
+                    : 'bg-surface/40 border-line-border text-text-primary hover:border-text-primary/50'
+                }`}
+              >
+                <div className="flex items-center justify-between font-mono text-xs font-bold mb-3">
+                  <span>{type.code} —</span>
+                  <ArrowUpRight size={14} className={isSelected ? 'opacity-100' : 'opacity-40'} />
+                </div>
+
+                <div>
+                  <span className="font-display text-base sm:text-lg font-black uppercase tracking-tight block leading-tight mb-1">
+                    {type.label}
+                  </span>
+                  <span
+                    className={`font-sans text-xs block leading-snug ${
+                      isSelected
+                        ? type.id === 'event'
+                          ? 'text-[#111116]/85 font-medium'
+                          : 'text-white/90'
+                        : 'text-text-secondary'
+                    }`}
+                  >
+                    {type.subline}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* STEP 02: Dynamic Contextual Enquiry Form */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="lg:col-span-8">
+          <AnimatePresence mode="wait">
+            <motion.form
+              key={activeCommission.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28 }}
+              onSubmit={handleSubmit}
+              className="p-6 sm:p-10 border border-line-border bg-surface/40 backdrop-blur-sm space-y-8 shadow-xl"
             >
-              <Mail size={14} className="text-brand-red shrink-0" />
-              <span>riwacreatives@gmail.com</span>
-            </a>
-          </div>
+              <div className="pb-4 border-b border-line-border flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+                <span style={{ color: accentColor }} className="font-bold uppercase tracking-widest flex items-center gap-2">
+                  <Sparkles size={13} />
+                  COMMISSIONING: {activeCommission.code} — {activeCommission.label}
+                </span>
+                <span className="text-text-secondary">TAILORED BRIEF FIELDS</span>
+              </div>
 
-          <div className="p-3.5 sm:p-4 rounded-xl border border-line-border bg-surface/30">
-            <span className="text-xs uppercase text-brand-red tracking-widest font-bold block mb-1">
-              ✦ Instagram Direct Line
-            </span>
-            <a
-              href="https://instagram.com/madebyriwa"
-              target="_blank"
-              rel="noreferrer"
-              className="font-bold text-text-primary hover:text-brand-red flex items-center gap-1.5 transition-colors text-xs sm:text-sm"
-            >
-              <span>@madebyriwa</span>
-              <ArrowUpRight size={14} className="text-brand-red shrink-0" />
-            </a>
-          </div>
+              {/* Discipline Multi-Select */}
+              <CategoryPills
+                selected={selectedDisciplines}
+                onChange={setSelectedDisciplines}
+              />
 
-          <div className="p-3.5 sm:p-4 rounded-xl border border-line-border bg-surface/30">
-            <span className="text-xs uppercase text-brand-red tracking-widest font-bold block mb-1">
-              ✦ Response Velocity
+              {/* Budget Tiers */}
+              <BudgetTiers
+                selected={selectedBudget}
+                onChange={setSelectedBudget}
+              />
+
+              {/* Dynamic Context Field Based on Category */}
+              {activeCommission.extraFieldLabel && (
+                <div className="font-mono text-xs sm:text-sm">
+                  <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
+                    {activeCommission.extraFieldLabel}
+                  </label>
+                  <input
+                    type="text"
+                    placeholder={activeCommission.extraFieldPlaceholder}
+                    value={extraDetail}
+                    onChange={(e) => setExtraDetail(e.target.value)}
+                    className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-[#EA1E4D] focus:outline-none transition-colors"
+                  />
+                </div>
+              )}
+
+              {/* Standard Identity & Vision Fields */}
+              <div className="space-y-6 font-mono text-xs sm:text-sm">
+                <div>
+                  <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
+                    03 / Your Name &amp; Role *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    autoComplete="name"
+                    placeholder="e.g. Priya Sharma, Founder"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-[#EA1E4D] focus:outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
+                    04 / Work Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    autoComplete="email"
+                    inputMode="email"
+                    placeholder="e.g. priya@company.in"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-[#EA1E4D] focus:outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
+                    05 / Brand, Event Name or Social Handle
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="organization"
+                    placeholder="e.g. Solanas, @brandhandle, or company.in"
+                    value={formData.brandOrWebsite}
+                    onChange={(e) => setFormData({ ...formData, brandOrWebsite: e.target.value })}
+                    className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-[#EA1E4D] focus:outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
+                    06 / What Are We Making Together?
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder={activeCommission.visionPlaceholder}
+                    value={formData.projectVision}
+                    onChange={(e) => setFormData({ ...formData, projectVision: e.target.value })}
+                    className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-[#EA1E4D] focus:outline-none transition-colors resize-none"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  style={{ backgroundColor: accentColor }}
+                  className={`w-full sm:w-auto min-h-[52px] inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-mono text-xs sm:text-sm font-bold uppercase tracking-widest hover:brightness-110 shadow-xl transition-all cursor-pointer touch-manipulation ${
+                    isEventSelected ? 'text-[#111116]' : 'text-white'
+                  }`}
+                >
+                  <Send size={15} />
+                  <span>Prepare &amp; Send Commission Brief ↗</span>
+                </button>
+              </div>
+            </motion.form>
+          </AnimatePresence>
+        </div>
+
+        {/* Right Column: Direct Official Studio Channels */}
+        <div className="lg:col-span-4 space-y-4 font-mono">
+          <div className="p-6 border border-line-border bg-surface/40 space-y-4">
+            <span className="text-xs uppercase tracking-widest text-[#EA1E4D] font-bold block">
+              ✦ Direct Founder Desk
             </span>
-            <span className="font-bold text-text-primary block text-xs sm:text-sm">
-              &lt; 12 Hours Guaranteed<span className="text-brand-red font-bold">.</span>
-            </span>
+            <p className="font-sans text-sm text-text-secondary leading-relaxed">
+              Prefer starting directly with a note? Reach Ranjan Kumar and the creative squad through verified channels below.
+            </p>
+            <div className="space-y-3 pt-2 border-t border-line-border text-xs">
+              <a
+                href="mailto:riwacreatives@gmail.com"
+                className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <Mail size={14} className="text-[#EA1E4D]" />
+                  riwacreatives@gmail.com
+                </span>
+                <ArrowUpRight size={14} />
+              </a>
+              <a
+                href="https://instagram.com/madebyriwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold border-t border-line-border transition-colors"
+              >
+                <span>Instagram · @madebyriwa</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Form Shifted Below: Full-Width RIWA Interactive Form */}
-      <div className="w-full max-w-4xl">
-        <form
-          onSubmit={handleSubmit}
-          className="p-5 sm:p-12 rounded-2xl border border-line-border bg-surface/30 backdrop-blur-sm space-y-7 sm:space-y-10 shadow-xl"
-        >
-          {/* Section 01: Category Scope */}
-          <CategoryPills
-            selected={selectedDisciplines}
-            onChange={setSelectedDisciplines}
-          />
-
-          {/* Section 02: Budget Tiers (Rupees Only) */}
-          <BudgetTiers
-            selected={selectedBudget}
-            onChange={setSelectedBudget}
-          />
-
-          {/* Section 03 - 06: Underlined Minimalist Text Inputs */}
-          <div className="space-y-6 sm:space-y-8 font-mono text-xs sm:text-sm">
-            <div>
-              <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                03 / Your Name & Title *
-              </label>
-              <input
-                type="text"
-                required
-                autoComplete="name"
-                autoCapitalize="words"
-                enterKeyHint="next"
-                placeholder="e.g. Alex Vance, Founder & CEO"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-brand-red focus:outline-none transition-colors"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                04 / Work Email *
-              </label>
-              <input
-                type="email"
-                required
-                autoComplete="email"
-                inputMode="email"
-                enterKeyHint="next"
-                placeholder="e.g. alex@hyperbrand.io"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-brand-red focus:outline-none transition-colors"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                05 / Brand / Website / Social Handle
-              </label>
-              <input
-                type="text"
-                autoComplete="organization"
-                enterKeyHint="next"
-                placeholder="e.g. solanas.in or @solanas"
-                value={formData.brandOrWebsite}
-                onChange={(e) => setFormData({ ...formData, brandOrWebsite: e.target.value })}
-                className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-brand-red focus:outline-none transition-colors"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                06 / Project Vision, Bottlenecks & Revenue Targets
-              </label>
-              <textarea
-                rows={3}
-                enterKeyHint="done"
-                placeholder="Tell us what you want to achieve (current ROAS, target ₹ revenue, poster art direction)..."
-                value={formData.projectVision}
-                onChange={(e) => setFormData({ ...formData, projectVision: e.target.value })}
-                className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-brand-red focus:outline-none transition-colors resize-none"
-              />
-            </div>
-          </div>
-
-          {/* Submission Button */}
-          <div className="pt-2 sm:pt-4">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              data-cursor-text="SUBMIT"
-              className="w-full sm:w-auto min-h-[50px] inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-brand-red text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-widest hover:brightness-110 shadow-xl shadow-brand-red/25 transition-all cursor-pointer disabled:opacity-50 touch-manipulation"
-            >
-              {isSubmitting ? (
-                <span>Dispatching Brief...</span>
-              ) : (
-                <>
-                  <Send size={15} />
-                  <span>Submit Growth Brief ✦</span>
-                </>
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
-
-      {/* Confirmation Modal (Desktop Lightbox / Mobile Swipe Bottom Sheet) */}
+      {/* Honest Mailto Brief Action Modal (No Fabricated Backend Success) */}
       <ResponsiveModalShell
-        isOpen={isSubmitted}
-        onClose={() => setIsSubmitted(false)}
+        isOpen={isSubmittedModalOpen}
+        onClose={() => setIsSubmittedModalOpen(false)}
         maxWidthClass="max-w-lg"
         zIndexClass="z-[130]"
-        panelClassName="border border-brand-red/40 bg-[#0A0C10] text-white"
+        panelClassName="border border-[#EA1E4D]/40 bg-[#111116] text-white"
         mobileFooter={
           <button
             type="button"
-            onClick={() => setIsSubmitted(false)}
-            className="w-full min-h-[46px] px-6 rounded-full bg-white text-black font-mono text-xs font-bold uppercase tracking-wider touch-manipulation"
+            onClick={() => setIsSubmittedModalOpen(false)}
+            className="w-full min-h-[46px] px-6 rounded-full bg-white text-[#111116] font-mono text-xs font-bold uppercase tracking-wider"
           >
-            Return to Studio
+            Done
           </button>
         }
       >
-        <div className="p-6 sm:p-10 font-mono text-center space-y-6">
-          <div className="mx-auto w-12 h-12 rounded-full bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-red">
-            <CheckCircle2 size={24} />
-          </div>
-
+        <div className="p-6 sm:p-10 font-mono space-y-6">
           <div>
-            <span className="text-xs uppercase tracking-[0.2em] text-brand-red font-bold block mb-1">
-              ✦ Protocol Initiated
+            <span className="text-xs uppercase tracking-[0.2em] text-[#FD7D3C] font-bold block mb-2">
+              ✦ Commission Brief Draft Prepared
             </span>
-            <h3 className="font-display text-3xl font-extrabold uppercase text-white">
-              Brief Received<span className="text-brand-red font-black">.</span>
+            <h3 className="font-display text-2xl sm:text-3xl font-black uppercase text-white">
+              Send via Email Client<span className="text-[#EA1E4D]">.</span>
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 mt-2 leading-relaxed">
-              Thank you, <span className="text-white font-bold">{formData.name}</span><span className="text-brand-red font-bold">.</span> Our founder desk has received your brief for{' '}
-              <span className="text-brand-red font-bold">{selectedDisciplines.join(', ')}</span><span className="text-brand-red font-bold">.</span>
-            </p>
-            <p className="text-xs text-white/60 mt-2">
-              Abhinav Singh &amp; the senior team will review your brand brief and reach out within 12 hours<span className="text-brand-red font-bold">.</span>
+            <p className="font-sans text-xs sm:text-sm text-white/75 mt-2 leading-relaxed">
+              Your formatted brief for <strong className="text-white">{activeCommission.label}</strong> has been prepared and opened in your email app addressed to{' '}
+              <span className="text-white font-bold">riwacreatives@gmail.com</span>. If your browser didn&apos;t launch an email app automatically, copy the brief below and email it directly.
             </p>
           </div>
 
-          <div className="hidden md:block pt-4 border-t border-white/10">
+          <pre className="p-4 bg-black/50 border border-white/15 text-[11px] text-white/80 whitespace-pre-wrap max-h-44 overflow-y-auto leading-relaxed">
+            {formattedBriefText}
+          </pre>
+
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               type="button"
-              onClick={() => setIsSubmitted(false)}
-              className="px-6 py-2.5 rounded-full bg-white text-black text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-brand-red hover:text-white transition-all cursor-pointer"
+              onClick={handleCopyBrief}
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#EA1E4D] text-white text-xs font-bold uppercase tracking-wider hover:brightness-110 transition-all cursor-pointer"
             >
-              Return to Studio
+              {copiedSummary ? <Check size={14} /> : <Copy size={14} />}
+              <span>{copiedSummary ? 'Copied to Clipboard' : 'Copy Formatted Brief'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsSubmittedModalOpen(false)}
+              className="px-6 py-3 rounded-full border border-white/25 text-white text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#111116] transition-all cursor-pointer"
+            >
+              Close
             </button>
           </div>
         </div>

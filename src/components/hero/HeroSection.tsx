@@ -2,140 +2,144 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShowreelViewport } from './ShowreelViewport';
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
+import { HeroMeta } from './HeroMeta';
+import { SplitHeading } from '../common/SplitHeading';
+import { ExpandingVisualPill } from '../common/ExpandingVisualPill';
+import { ArrowDownRight, Sparkles } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleScrollToWork = () => {
-    const el = document.getElementById('work');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/work');
-    }
-  };
-
   return (
     <section
       id="hero"
-      className="relative w-full bg-[#F4F1EA] text-[#171719] pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors overflow-hidden"
+      className="relative w-full bg-[#FFFFFF] text-[#111116] pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors overflow-hidden"
     >
-      {/* Swiss Architectural Coordinate Overlay & Geometric Crow Watermark */}
-      <div className="absolute top-24 right-4 sm:right-12 hidden lg:flex flex-col items-end pointer-events-none select-none opacity-40">
-        <span className="font-mono text-[10px] tracking-[0.28em] text-[#767571] uppercase">
-          INDEX 01 / EDITORIAL COVER
-        </span>
-        <span className="font-mono text-[10px] tracking-[0.2em] text-[#767571] mt-1">
-          28°38'N · 77°13'E // DEL
-        </span>
-        <div className="w-16 h-[1px] bg-[#171719]/20 mt-3" />
-      </div>
+      {/* Subtle Swiss Architectural Coordinate Annotation */}
+      <div className="max-w-7xl mx-auto relative">
+        <div className="hidden lg:flex flex-col items-end absolute top-0 right-0 pointer-events-none select-none text-right">
+          <span className="font-mono text-[10px] tracking-[0.26em] text-[#71717A] uppercase">
+            CONTROLLED CHAOS · VOL. 03
+          </span>
+          <span className="font-mono text-[10px] tracking-[0.2em] text-[#EA1E4D] font-semibold mt-1">
+            28°38&apos;N · 77°13&apos;E // STUDIO COVER
+          </span>
+        </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
         {/* RIWA Studio Identification Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 sm:gap-3 mb-4 md:mb-6 font-mono text-[11px] sm:text-xs uppercase tracking-[0.24em] text-[#767571] select-none"
+          className="flex items-center gap-2 sm:gap-3 mb-4 md:mb-6 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#52525B] select-none"
         >
-          <span className="inline-block w-2 h-2 bg-[#FD7D3C] shrink-0" />
-          <span className="text-[#171719] font-bold">
+          <span className="inline-block w-2 h-2 rounded-full bg-[#EA1E4D] shrink-0" />
+          <span className="text-[#111116] font-bold">
             RIWA CREATIVES · INDEPENDENT CREATIVE &amp; GROWTH STUDIO
           </span>
         </motion.div>
 
-        {/* Master Editorial Headline: Syne ExtraBold + Instrument Serif Italic Accent */}
-        <div className="mb-6 md:mb-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[clamp(2.5rem,8.5vw,6.5rem)] font-extrabold uppercase tracking-tight text-[#171719] leading-[0.92] select-none"
-          >
-            <div className="block">WE MAKE</div>
-            <div className="flex items-center flex-wrap gap-x-3 sm:gap-x-4 gap-y-1">
-              <span className="font-serif italic font-normal tracking-normal text-[#FD7D3C] text-[1.16em] lowercase select-none">
+        {/* Expressive Editorial Headline: Syne + Instrument Serif Italic + Expanding Visual Capsule */}
+        <div className="mb-5 md:mb-7">
+          <h1 className="font-display text-[clamp(2.25rem,8vw,5.75rem)] font-black uppercase tracking-tighter text-[#111116] leading-[0.92] select-none">
+            <div className="flex items-center flex-wrap gap-x-2.5 sm:gap-x-3.5 gap-y-1">
+              <SplitHeading as="span" delay={0.05} trigger="mount">
+                WE MAKE
+              </SplitHeading>
+              <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
                 unreasonable
               </span>
-              <span className="text-[#171719]">BRANDS</span>
+              <ExpandingVisualPill
+                mediaSrc="/work/solanas-poster.jpg"
+                alt="Solanas Dim Sum Silk Dynamics"
+                targetWidth="6.5rem"
+                delay={0.25}
+              />
             </div>
-            <div className="block mt-0.5">
-              HAPPEN<span className="text-[#FD7D3C]">.</span>
+            <div className="block mt-1">
+              <SplitHeading as="span" delay={0.2} trigger="mount" accentChar=".">
+                BRANDS HAPPEN.
+              </SplitHeading>
             </div>
-          </motion.h1>
+          </h1>
         </div>
 
-        {/* Supporting Editorial Rationale & High-Conviction CTAs */}
+        {/* Editorial Subcopy & Action Pills */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-10 mb-8 md:mb-14 pb-8 border-b border-[#171719]/15"
+          transition={{ delay: 0.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-10 mb-8 md:mb-14"
         >
-          {/* Editorial Description */}
-          <p className="max-w-xl font-sans text-sm sm:text-base md:text-lg text-[#605F5B] leading-relaxed">
-            An independent creative &amp; growth studio turning ambitious ideas into brands, experiences and meaningful momentum<span className="text-[#FD7D3C] font-bold">.</span> From strategy and visual craft to digital execution and live activations.
+          <p className="max-w-xl font-sans text-sm sm:text-base md:text-lg text-[#52525B] leading-relaxed">
+            We turn ambitious ideas into distinctive identities, disruptive campaigns, digital experiences, and live brand moments<span className="text-[#EA1E4D] font-bold">.</span> Strategy, creative craft, and execution brought together under one roof<span className="text-[#EA1E4D] font-bold">.</span>
           </p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0">
+          {/* Mobile Streamlined Action */}
+          <div className="md:hidden flex items-center gap-3 font-mono text-xs uppercase tracking-wider">
             <button
               type="button"
-              onClick={handleScrollToWork}
-              className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-[#171719]/25 hover:border-[#171719] bg-white/70 hover:bg-white text-[#171719] font-semibold transition-all cursor-pointer shadow-sm hover:shadow"
+              onClick={() => {
+                const el = document.getElementById('work');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else navigate('/work');
+              }}
+              className="flex-1 min-h-[46px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#111116]/20 bg-[#F5F4F0] text-[#111116] font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
             >
-              <span>Explore Our Work</span>
+              <span>Selected Projects</span>
+              <ArrowDownRight size={14} className="text-[#EA1E4D]" />
+            </button>
+          </div>
+
+          {/* Desktop Action Pills */}
+          <div className="hidden md:flex items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0">
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById('work');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else navigate('/work');
+              }}
+              data-cursor-text="EXPLORE"
+              className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-[#111116]/20 hover:border-[#111116] bg-[#FFFFFF] text-[#111116] transition-all cursor-pointer font-semibold"
+            >
+              <span>Selected Projects</span>
               <ArrowDownRight
                 size={14}
-                className="text-[#767571] group-hover:text-[#171719] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
+                className="text-[#52525B] group-hover:text-[#111116] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
               />
             </button>
 
             <button
               type="button"
               onClick={() => navigate('/contact')}
-              className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#FD7D3C] text-[#171719] font-bold hover:brightness-105 active:scale-95 transition-all cursor-pointer shadow-md shadow-[#FD7D3C]/20"
+              data-cursor-text="COMMISSION"
+              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#EA1E4D] text-white font-bold hover:brightness-110 shadow-lg shadow-[#EA1E4D]/25 transition-all cursor-pointer"
             >
-              <span>Start a Project</span>
-              <ArrowUpRight size={15} />
+              <Sparkles size={13} />
+              <span>Commission a Project ✳</span>
             </button>
           </div>
         </motion.div>
 
-        {/* Cinematic Showreel Showcase */}
+        {/* Preserved Interactive Showreel Viewport */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8"
+          transition={{ delay: 0.45, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-8 md:mb-12"
         >
           <ShowreelViewport />
         </motion.div>
 
-        {/* Restrained Editorial Scroll Indicator & Studio Metric Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#171719]/10 font-mono text-[11px] sm:text-xs text-[#767571] uppercase tracking-[0.2em] select-none">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FD7D3C] animate-pulse" />
-            <span className="font-semibold text-[#171719]">ACCEPTING CLIENTS</span>
-            <span>· Q1/Q2 SPRINTS</span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-6">
-            <span>[ 01 BRAND STRATEGY ]</span>
-            <span>[ 02 CREATIVE CAMPAIGNS ]</span>
-            <span>[ 03 DIGITAL ]</span>
-            <span>[ 04 EXPERIENCES ]</span>
-          </div>
-
-          <div
-            onClick={handleScrollToWork}
-            className="flex items-center gap-1 hover:text-[#171719] cursor-pointer transition-colors"
-          >
-            <span>[ SCROLL TO EXPLORE ↓ ]</span>
-          </div>
-        </div>
+        {/* Hero Metadata Strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.65, duration: 0.7 }}
+        >
+          <HeroMeta />
+        </motion.div>
       </div>
     </section>
   );

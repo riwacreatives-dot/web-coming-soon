@@ -27,8 +27,8 @@ export const FinalCTASection: React.FC = () => {
             </span>
           </h2>
 
-          <p className="font-sans text-base sm:text-lg md:text-xl text-white/90 font-medium leading-relaxed max-w-2xl">
-            Tell us what you&apos;re building, what you&apos;re imagining, or what needs to change. Let&apos;s turn it into something people cannot ignore.
+          <p className="font-sans text-base sm:text-lg md:text-xl text-white/95 font-medium leading-relaxed max-w-2xl">
+            A brand to build. A campaign to launch. An experience to create. Tell us what you&apos;re imagining.
           </p>
 
           <div className="pt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
@@ -37,7 +37,7 @@ export const FinalCTASection: React.FC = () => {
               onClick={() => navigate('/contact')}
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#111116] text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-white hover:text-[#111116] transition-all cursor-pointer shadow-xl"
             >
-              <span>START A CONVERSATION</span>
+              <span>START A PROJECT</span>
               <ArrowUpRight size={16} />
             </button>
 

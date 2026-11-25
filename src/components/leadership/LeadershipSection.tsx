@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { LEADERSHIP_DATA } from '../../data/leadershipData';
-import { FounderCard } from './FounderCard';
 import { RegionalHubModal } from '../footer/RegionalHubModal';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
@@ -13,117 +11,114 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
   const isMobile = useIsMobile();
   const [isCareersOpen, setIsCareersOpen] = useState(false);
 
-  const [leadFounder, ...squadLeads] = LEADERSHIP_DATA;
-
   return (
     <div className="w-full bg-[#111116] text-white border-b border-white/10 transition-colors">
       <section
         id="leadership"
         className={`relative w-full ${
           standalone
-            ? 'pt-24 sm:pt-32 md:pt-36 pb-16 sm:pb-28 md:py-36'
+            ? 'pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-28 md:py-36'
             : 'py-16 sm:py-24 md:py-36'
         } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
       >
         {/* Header Eyebrow & Title */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
-          <div className="max-w-2xl">
-            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-white/60 font-semibold block mb-3 select-none">
-              {standalone ? 'STUDIO LEADERSHIP · CREATIVE DIRECTION' : '09 / LEADERSHIP'}
-            </span>
-            <h2 className="font-display text-[clamp(2.25rem,6.8vw,4.5rem)] font-black uppercase tracking-tight text-white leading-[1.0]">
-              <span>DIFFERENT MINDS.</span><br />
-              <span>ONE</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
-                creative
-              </span>{' '}
-              <span>DIRECTION</span><span className="text-[#EA1E4D]">.</span>
-            </h2>
-            <p className="mt-4 max-w-xl font-sans text-sm sm:text-base text-white/70 leading-relaxed">
-              Behind every project is a senior squad of thinkers, designers, engineers, and producers who stay close to the craft.
-            </p>
-          </div>
+        <div className="max-w-2xl mb-12 sm:mb-16">
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-white/60 font-semibold block mb-3 select-none">
+            {standalone ? 'STUDIO LEADERSHIP · CREATIVE DIRECTION' : '09 / LEADERSHIP'}
+          </span>
+          <h2 className="font-display text-[clamp(2.25rem,6.8vw,4.5rem)] font-black uppercase tracking-tight text-white leading-[1.0]">
+            <span>DIFFERENT MINDS.</span><br />
+            <span>ONE</span>{' '}
+            <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
+              creative
+            </span>{' '}
+            <span>DIRECTION</span><span className="text-[#EA1E4D]">.</span>
+          </h2>
+          <p className="mt-4 max-w-xl font-sans text-sm sm:text-base text-white/70 leading-relaxed">
+            Founded and led hands-on with an expanding collective of designers, strategists, developers, and event producers.
+          </p>
         </div>
 
-        {/* Asymmetric Editorial Leadership Spread (Founder Spotlight + Practice Roster) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-          {/* Left 7 Cols: Lead Founder Editorial Profile */}
-          <div className="lg:col-span-7 flex">
-            {leadFounder && (
-              <div className="w-full flex flex-col justify-between p-6 sm:p-10 border border-white/15 bg-[#17171D] relative overflow-hidden">
-                <div>
-                  <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-white/50 pb-4 mb-6 border-b border-white/10">
-                    <span className="text-[#EA1E4D] font-bold">// 01 · FOUNDER &amp; CREATIVE DIRECTOR</span>
-                    <span>PRINCIPAL LEAD</span>
-                  </div>
+        {/* Confirmed Leadership Focus (Zero Placeholder Team Identities) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+          {/* Left: Portrait Asset Slot Frame */}
+          <div className="lg:col-span-5 bg-[#0B0B0F] border border-white/15 p-6 flex flex-col justify-between min-h-[340px]">
+            <div className="flex items-center justify-between font-mono text-[10px] text-white/50 uppercase tracking-widest pb-3 border-b border-white/10">
+              <span>PRINCIPAL PROFILE // 01</span>
+              <span className="text-[#EA1E4D] font-bold">FOUNDER</span>
+            </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-start mb-6">
-                    {/* Art-Directed Monogram Portrait Frame */}
-                    <div className="sm:col-span-5 aspect-[4/5] bg-[#0B0B0F] border border-white/15 p-4 flex flex-col justify-between relative">
-                      <span className="font-mono text-[10px] text-[#FD7D3C] uppercase tracking-widest">
-                        STUDIO PORTRAIT
-                      </span>
-                      <div className="my-auto flex flex-col items-center justify-center text-center py-4">
-                        <span className="font-display font-black text-5xl text-white tracking-tighter leading-none">
-                          RK<span className="text-[#EA1E4D]">.</span>
-                        </span>
-                        <span className="font-mono text-[10px] text-white/45 uppercase tracking-wider mt-3">
-                          [ PHOTOGRAPHY PENDING ]
-                        </span>
-                      </div>
-                      <div className="font-mono text-[10px] text-white/60 border-t border-white/10 pt-2 flex justify-between">
-                        <span>RANJAN KUMAR</span>
-                        <span className="text-[#EA1E4D]">DELHI NCR</span>
-                      </div>
-                    </div>
+            <div className="my-auto py-10 flex flex-col items-center justify-center text-center">
+              <div className="w-24 h-24 rounded-full border border-white/20 bg-[#17171D] flex items-center justify-center mb-4">
+                <span className="font-display text-3xl font-black text-white">
+                  RK<span className="text-[#EA1E4D]">.</span>
+                </span>
+              </div>
+              <span className="font-mono text-[11px] text-white/45 uppercase tracking-widest">
+                [ FOUNDER PORTRAIT PENDING UPLOAD ]
+              </span>
+            </div>
 
-                    <div className="sm:col-span-7 space-y-4">
-                      <h3 className="font-display text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
-                        {leadFounder.name}
-                      </h3>
-                      <span className="font-mono text-xs text-[#EA1E4D] font-bold uppercase tracking-wider block">
-                        {leadFounder.role}
-                      </span>
-                      <p className="font-sans text-sm sm:text-base text-white/75 leading-relaxed">
-                        &ldquo;{leadFounder.bio}&rdquo;
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 pt-2">
-                        {leadFounder.specialties.map((spec) => (
-                          <span
-                            key={spec}
-                            className="px-2.5 py-1 border border-white/15 bg-white/5 font-mono text-[11px] text-white/80"
-                          >
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/70">
+              <span>RANJAN KUMAR</span>
+              <span className="text-[#EA1E4D]">NEW DELHI · INDIA</span>
+            </div>
+          </div>
 
-                <div className="pt-5 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/60">
-                  <span>{leadFounder.trackRecord}</span>
-                  <a
-                    href="#final-cta"
-                    className="inline-flex items-center gap-1 text-white font-bold hover:text-[#EA1E4D] transition-colors"
-                  >
-                    <span>WORK DIRECTLY</span>
-                    <ArrowUpRight size={13} />
-                  </a>
+          {/* Right: Confirmed Biography & Studio Collective Structure */}
+          <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-10 border border-white/15 bg-[#17171D]">
+            <div className="space-y-5">
+              <div>
+                <span className="font-mono text-xs text-[#EA1E4D] font-bold uppercase tracking-widest block mb-1.5">
+                  Founder &amp; Creative Director
+                </span>
+                <h3 className="font-display text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
+                  Ranjan Kumar
+                </h3>
+              </div>
+
+              <p className="font-sans text-sm sm:text-base text-white/80 leading-relaxed">
+                Founded Riwa Creatives around curiosity, collaboration, and the ambition to build work that refuses to blend in. Leading creative direction, brand strategy, commercial production, and digital experiences directly with founders and organizing teams.
+              </p>
+
+              <div className="pt-4 border-t border-white/10">
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 font-bold block mb-3">
+                  Core Direction Areas
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    'Brand Strategy & Stewardship',
+                    'Commercial Art Direction',
+                    'Digital Experiences',
+                    'Live Event Production',
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 border border-white/15 bg-white/5 font-mono text-xs text-white/85"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
-            )}
-          </div>
+            </div>
 
-          {/* Right 5 Cols: Supporting Discipline Leads Stack */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
-            {squadLeads.map((founder, idx) => (
-              <FounderCard key={founder.name} founder={founder} index={idx + 1} />
-            ))}
+            <div className="pt-8 mt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+              <span className="text-white/50">
+                Collaborator profiles will be published as confirmed team assets are added.
+              </span>
+              <a
+                href="mailto:riwacreatives@gmail.com"
+                className="inline-flex items-center gap-1.5 text-[#EA1E4D] font-bold hover:underline"
+              >
+                <span>Direct Founder Desk</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Active Founder's Office Hiring Call featuring Real Hiring Poster Thumbnail */}
+        {/* Hiring Banner Featuring Genuine Poster Asset */}
         <div className="border border-[#EA1E4D]/40 bg-[#17171D] p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-start sm:items-center gap-5">
             <img
@@ -133,11 +128,9 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
               className="hidden sm:block w-16 h-20 object-cover border border-white/20 shrink-0"
             />
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-xs uppercase tracking-widest text-[#FD7D3C] font-bold flex items-center gap-1.5">
-                  <Sparkles size={13} /> Active Hiring Call · Senior Creative Squad
-                </span>
-              </div>
+              <span className="font-mono text-xs uppercase tracking-widest text-[#FD7D3C] font-bold flex items-center gap-1.5 mb-1">
+                <Sparkles size={13} /> Open Studio Role · Collaborations Welcome
+              </span>
               <h4 className="font-display text-xl font-bold uppercase text-white">
                 We&apos;re Hiring: Founder&apos;s Office Role
               </h4>

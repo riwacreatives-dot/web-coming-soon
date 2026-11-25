@@ -1,17 +1,27 @@
 // Project & Case Study types
 export interface ProjectItem {
   id: string;
+  archiveCode: string;
   client: string;
+  industry: string;
+  isConcept?: boolean;
   title: string;
   category: string;
   headline: string;
   description: string;
   heroImage: string;
+  galleryImages?: string[];
   badge: string;
   metric: string;
   year: string;
   accentColor: string;
   deliverables: string[];
+  brief: string;
+  challenge: string;
+  insight: string;
+  role: string;
+  execution: string;
+  verifiedOutcome?: string;
 }
 
 // Service & Discipline types
@@ -27,6 +37,9 @@ export interface ServiceItem {
   flagshipKPI: string;
   kpiLabel: string;
   deliverables: string[];
+  problemsAddressed: string[];
+  collaborationModel: string;
+  relatedProjectIds: string[];
   previewImage?: string;
 }
 
@@ -61,4 +74,3 @@ export interface IntakeSubmissionPayload {
   projectVision: string;
   submittedAt: string;
 }
-

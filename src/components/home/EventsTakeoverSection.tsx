@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Check, Ticket } from 'lucide-react';
 
@@ -18,20 +18,22 @@ const EVENT_SERVICES = [
   'On-ground event coordination',
 ];
 
-const EXPERIENCE_SUITES = [
+const EXPERIENCE_BLUEPRINTS = [
   {
     code: 'EXP—01',
-    type: 'CONCEPT / TURNKEY ARCHITECTURE',
+    slug: 'hack-uttar-pradesh',
+    type: 'CONCEPT BLUEPRINT / TURNKEY ARCHITECTURE',
     title: 'HACK UTTAR PRADESH',
     subtitle: 'Hackathon Branding · Stage LED Graphics · Registration Portal',
-    spec: '1,200+ Builders Scale Blueprint',
+    spec: 'Builder Experience Framework',
   },
   {
     code: 'EXP—02',
-    type: 'CONCEPT / CONFERENCE SUITE',
+    slug: 'horizon-mun',
+    type: 'CONCEPT BLUEPRINT / CONFERENCE SUITE',
     title: 'HORIZON MUN',
     subtitle: 'Diplomatic Visual Identity · Delegate Acquisition · Stage Direction',
-    spec: '450+ Delegates Format Blueprint',
+    spec: 'Assembly Identity Framework',
   },
 ];
 
@@ -52,7 +54,7 @@ export const EventsTakeoverSection: React.FC = () => {
       <div className="w-full bg-[#111116] text-white py-2.5 border-b-2 border-dashed border-[#FD7D3C] overflow-hidden select-none">
         <motion.div
           animate={{ x: ['0%', '-50%'] }}
-          transition={{ repeat: Infinity, ease: 'linear', duration: 20 }}
+          transition={{ repeat: Infinity, ease: 'linear', duration: 22 }}
           className="flex items-center whitespace-nowrap font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] font-bold"
         >
           {[0, 1, 2, 3].map((i) => (
@@ -60,7 +62,7 @@ export const EventsTakeoverSection: React.FC = () => {
               <span className="text-[#FD7D3C]">ADMIT ONE ★</span>
               <span>RIWA / EXPERIENCES / 005</span>
               <span className="text-[#FD7D3C]">✳</span>
-              <span>HACKATHONS · MUNS · COLLEGE FESTIVALS · BRAND ACTIVATIONS</span>
+              <span>HACKATHONS · MUNS · COLLEGE FESTIVALS · CORPORATE CONFERENCES</span>
               <span className="text-[#FD7D3C]">✳</span>
             </span>
           ))}
@@ -74,15 +76,18 @@ export const EventsTakeoverSection: React.FC = () => {
         {/* Eyebrow Metadata Header */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-10 sm:mb-14 border-b-2 border-[#111116] font-mono text-xs sm:text-sm uppercase tracking-[0.22em] font-bold">
           <div className="flex items-center gap-2.5">
-            <span className="px-2.5 py-1 bg-[#111116] text-white">08 / LIVE EXPERIENCES</span>
+            <span className="px-2.5 py-1 bg-[#111116] text-white">08 / EVENTS &amp; EXPERIENCES</span>
             <span>RIWA / EXPERIENCES / 005</span>
           </div>
-          <span className="text-white bg-[#111116] px-3 py-1">
-            [ THE ORANGE TAKEOVER ]
-          </span>
+          <Link
+            to="/services/events-experiences"
+            className="text-white bg-[#111116] px-3 py-1 hover:bg-white hover:text-[#111116] transition-colors"
+          >
+            FULL EVENTS SERVICE SCOPE ↗
+          </Link>
         </div>
 
-        {/* Asymmetric Poster-Inspired Headline & Visual Passes Split */}
+        {/* Asymmetric Poster-Inspired Headline & Ticket-Stub Blueprint Stack */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start mb-14 sm:mb-20">
           {/* Left: Monumental Black & White Headline */}
           <div className="lg:col-span-7 space-y-6">
@@ -101,8 +106,8 @@ export const EventsTakeoverSection: React.FC = () => {
               From the first announcement to the final applause, we help organizations conceptualize, promote and execute experiences that bring people together.
             </p>
 
-            {/* Primary CTA: Links directly with Event Type selected */}
-            <div className="pt-2">
+            {/* Primary CTA */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={() => navigate('/contact?type=event')}
@@ -114,12 +119,13 @@ export const EventsTakeoverSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Ticket-Stub & Event Pass Blueprint Graphic Stack */}
+          {/* Right: Ticket-Stub Conceptual Blueprint Cards */}
           <div className="lg:col-span-5 space-y-5">
-            {EXPERIENCE_SUITES.map((suite, idx) => (
-              <div
+            {EXPERIENCE_BLUEPRINTS.map((suite, idx) => (
+              <Link
                 key={suite.code}
-                className={`relative bg-[#FFFFFF] text-[#111116] border-2 border-[#111116] p-5 sm:p-6 shadow-[8px_8px_0px_#111116] ${
+                to={`/work/${suite.slug}`}
+                className={`block relative bg-[#FFFFFF] text-[#111116] border-2 border-[#111116] p-5 sm:p-6 shadow-[8px_8px_0px_#111116] hover:translate-y-[-2px] transition-transform ${
                   idx === 1 ? 'sm:ml-6' : ''
                 }`}
               >
@@ -141,30 +147,30 @@ export const EventsTakeoverSection: React.FC = () => {
 
                 <div className="flex items-center justify-between pt-3 border-t border-[#111116]/15 font-mono text-[11px] font-bold">
                   <span className="px-2 py-0.5 bg-[#FD7D3C]/25 text-[#111116]">{suite.spec}</span>
-                  <span className="text-[#52525B] uppercase">ILLUSTRATIVE CASE SUITE</span>
+                  <span className="text-[#EA1E4D] uppercase">VIEW BLUEPRINT ↗</span>
                 </div>
-              </div>
+              </Link>
             ))}
 
             <p className="font-mono text-[11px] text-[#111116]/85 font-medium leading-relaxed px-1">
-              * Note: Showcase passes above illustrate Riwa&apos;s turnkey hackathon &amp; MUN production architecture. Dedicated live event photography gallery in active curation.
+              * Note: Illustrative event frameworks showing our end-to-end production architecture. Completed live event photography will be published here as assets are added.
             </p>
           </div>
         </div>
 
-        {/* Full 12-Capability Events Matrix */}
+        {/* Complete 12-Capability Events Matrix */}
         <div className="bg-[#111116] text-white p-6 sm:p-10 md:p-12 border-2 border-[#111116] shadow-[10px_10px_0px_rgba(255,255,255,0.3)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 mb-8 border-b border-white/15 font-mono">
             <div>
               <span className="text-[#FD7D3C] text-xs uppercase tracking-[0.22em] font-bold block mb-1">
-                ✦ COMPLETE TURNKEY SCOPE
+                ✦ COMPLETE EVENTS SCOPE
               </span>
               <h3 className="font-display text-xl sm:text-2xl font-black uppercase tracking-tight">
                 END-TO-END EXPERIENCE CAPABILITIES
               </h3>
             </div>
             <span className="font-mono text-xs text-white/50 uppercase">
-              [ 12 SPECIALIZED DELIVERABLES ]
+              [ 12 DELIVERABLES ]
             </span>
           </div>
 

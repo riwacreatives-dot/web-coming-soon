@@ -5,7 +5,6 @@ import { SelectedWorks } from '../components/work/SelectedWorks';
 import { ServicesSection } from '../components/services/ServicesSection';
 import { DifferenceSection } from '../components/home/DifferenceSection';
 import { ProcessSection } from '../components/home/ProcessSection';
-import { ControlRoomSection } from '../components/home/ControlRoomSection';
 import { WhoWeWorkWithSection } from '../components/home/WhoWeWorkWithSection';
 import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
 import { EventsTakeoverSection } from '../components/home/EventsTakeoverSection';
@@ -19,64 +18,61 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const HomePage: React.FC = () => {
   useDocumentMeta({
-    title: 'Riwa Creatives — Controlled Chaos | Independent Creative & Growth Studio',
+    title: 'Riwa Creatives — Independent Creative & Growth Studio',
     description:
-      'Riwa Creatives is an independent creative and growth studio uniting brand identity, commercial advertising, digital experiences, growth, and live events.',
+      'Riwa Creatives is an independent creative and growth studio bringing together brand identity, commercial advertising, digital growth, technology, and live experiences.',
     ogTitle: 'Riwa Creatives — Making Unreasonable Brands Happen',
     ogDescription:
-      'We turn ambitious ideas into distinctive identities, disruptive campaigns, digital experiences, and live brand moments.',
+      'We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences.',
   });
 
   return (
     <>
       <main className="w-full">
-        {/* SECTION 01 — HERO (White #FFFFFF) */}
+        {/* 01. HERO (White #FFFFFF) */}
         <HeroSection />
 
-        {/* TRANSITION BAND — DISCIPLINE TICKER (Charcoal #111116) */}
+        {/* TRANSITION STRIP */}
         <BrandTicker />
 
-        {/* SECTION 02 — SELECTED WORK CAMPAIGN WALL (Concrete Grey #E7E7E9) */}
+        {/* 02. SELECTED WORK / THE CREATIVE ARCHIVE (Concrete Grey #E7E7E9) */}
         <SelectedWorks />
 
-        {/* SECTION 03 — CAPABILITIES (Charcoal #111116) */}
+        {/* 03. CAPABILITIES (Charcoal #111116) */}
         <ServicesSection />
 
-        {/* SECTION 04 — THE RIWA DIFFERENCE: TYPOGRAPHIC INTERRUPTION (Riwa Orange #FD7D3C) */}
+        {/* 04. THE RIWA DIFFERENCE (Warm White #F5F4F0) */}
         <DifferenceSection />
 
-        {/* SECTION 05 — OUR PROCESS TIMELINE (White #FFFFFF) */}
+        {/* 05. OUR PROCESS (Pure White #FFFFFF) */}
         <ProcessSection />
 
-        {/* FEATURE — THE RIWA CONTROL ROOM (Charcoal #111116 Interactive Console) */}
-        <ControlRoomSection />
-
-        {/* SECTION 06 — WHO WE WORK WITH (Warm White #F5F4F0) */}
+        {/* 06. WHO WE WORK WITH (Concrete Grey #E7E7E9) */}
         <WhoWeWorkWithSection />
 
-        {/* SECTION 07 — ABOUT RIWA MAGAZINE SPREAD (Concrete Grey #E7E7E9) */}
+        {/* 07. ABOUT RIWA (Warm White #F5F4F0) */}
         <AboutRiwaSection />
 
-        {/* SECTION 08 — EVENTS / THE ORANGE TAKEOVER (Official Riwa Orange #FD7D3C) */}
+        {/* 08. EVENTS & EXPERIENCES — THE SIGNATURE ORANGE TAKEOVER (#FD7D3C) */}
         <EventsTakeoverSection />
 
-        {/* SECTION 09 — LEADERSHIP & SQUADS (Charcoal #111116) */}
+        {/* 09. LEADERSHIP (Charcoal #111116) */}
         <LeadershipSection />
 
-        {/* SECTION 10 — RIWA MANIFESTO (Deep Black #07080B) */}
+        {/* 10. MANIFESTO (Deep Black #07080B) */}
         <ManifestoSection />
 
-        {/* SECTION 11 — DOCUMENTED PROOF & OUTCOMES (White #FFFFFF) */}
+        {/* 11. TESTIMONIALS & VERIFIED PROOF (White #FFFFFF) */}
         <TestimonialsSection />
 
-        {/* SECTION 12 — FAQ (Concrete Grey #E7E7E9) */}
+        {/* 12. FAQ (Concrete Grey #E7E7E9) */}
         <FAQSection />
 
-        {/* SECTION 13 — FINAL CALL TO ACTION (Riwa Red #EA1E4D) */}
+        {/* 13. FINAL CTA (Riwa Red #EA1E4D) */}
         <FinalCTASection />
       </main>
 
-      {/* EDITORIAL FOOTER (Charcoal #111116) */}
+      {/* 14. FOOTER (Charcoal #111116) */}
       <EditorialFooter />
     </>
   );

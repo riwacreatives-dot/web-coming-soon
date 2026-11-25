@@ -1,37 +1,28 @@
 import React from 'react';
 import { SelectedWorks } from '../components/work/SelectedWorks';
-import { ScrollVelocityMarquee } from '../components/common/ScrollVelocityMarquee';
+import { FinalCTASection } from '../components/home/FinalCTASection';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const WorkPage: React.FC = () => {
   useDocumentMeta({
-    title: 'Selected Creative Work & Campaigns — Riwa Creatives',
+    title: 'The Creative Archive — Riwa Creatives',
     description:
-      'Explore selected branding, advertising, campaign and digital experience projects by Riwa Creatives.',
-    ogTitle: 'Selected Creative Work & Campaigns — Riwa Creatives',
+      "A curated collection of things we've imagined, designed, built and brought to life at Riwa Creatives.",
+    ogTitle: 'The Creative Archive — Riwa Creatives',
     ogDescription:
-      'Explore selected branding, advertising, campaign and digital experience projects by Riwa Creatives.',
-    ogImage: 'https://riwacreatives.vercel.app/work/solanas-chilli-chicken.jpg',
+      'Explore selected branding, commercial advertising, digital experience, and conceptual work by Riwa Creatives.',
+    ogImage: 'https://riwacreatives.in/work/solanas-chilli-chicken.jpg',
   });
 
   return (
     <>
       <main className="w-full">
+        {/* 01 Opening Statement, 02 Featured Story, 03 Supporting Stories, 04 Further Work */}
         <SelectedWorks standalone />
 
-        {/* Marquee Banner */}
-        <ScrollVelocityMarquee
-          items={[
-            'SOLANAS RETRO POP-ART',
-            'DIKHEGA TOH BIKEGA',
-            'COMMERCIAL POSTER DIRECTION',
-            'WORK THAT STOPS THE SCROLL',
-            '86,000+ ORGANIC SHARES',
-            'THINKS LIKE A FOUNDER',
-          ]}
-          baseVelocity={1.4}
-        />
+        {/* 05 Final Project CTA */}
+        <FinalCTASection />
       </main>
 
       <EditorialFooter />

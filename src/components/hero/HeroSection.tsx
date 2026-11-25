@@ -13,40 +13,30 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full bg-[#FFFFFF] text-[#111116] pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors overflow-hidden"
+      className="relative w-full bg-[#FFFFFF] text-[#111116] pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors"
     >
-      {/* Subtle Swiss Architectural Coordinate Annotation */}
-      <div className="max-w-7xl mx-auto relative">
-        <div className="hidden lg:flex flex-col items-end absolute top-0 right-0 pointer-events-none select-none text-right">
-          <span className="font-mono text-[10px] tracking-[0.26em] text-[#71717A] uppercase">
-            CONTROLLED CHAOS · VOL. 03
-          </span>
-          <span className="font-mono text-[10px] tracking-[0.2em] text-[#EA1E4D] font-semibold mt-1">
-            28°38&apos;N · 77°13&apos;E // STUDIO COVER
-          </span>
-        </div>
-
-        {/* RIWA Studio Identification Eyebrow */}
+      <div className="max-w-7xl mx-auto">
+        {/* RIWA Minimalist Eyebrow Index */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 sm:gap-3 mb-4 md:mb-6 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#52525B] select-none"
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-2 sm:gap-3 mb-3 md:mb-5 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-[#52525B] select-none"
         >
-          <span className="inline-block w-2 h-2 rounded-full bg-[#EA1E4D] shrink-0" />
-          <span className="text-[#111116] font-bold">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EA1E4D] shrink-0" />
+          <span className="text-[#111116] font-semibold">
             RIWA CREATIVES · INDEPENDENT CREATIVE &amp; GROWTH STUDIO
           </span>
         </motion.div>
 
-        {/* Expressive Editorial Headline: Syne + Instrument Serif Italic + Expanding Visual Capsule */}
-        <div className="mb-5 md:mb-7">
-          <h1 className="font-display text-[clamp(2.25rem,8vw,5.75rem)] font-black uppercase tracking-tighter text-[#111116] leading-[0.92] select-none">
-            <div className="flex items-center flex-wrap gap-x-2.5 sm:gap-x-3.5 gap-y-1">
+        {/* Bespoke Editorial Headline with Instrument Serif Italic Accent & Expanding Visual Capsule */}
+        <div className="mb-3.5 md:mb-6">
+          <h1 className="font-display text-[clamp(2.15rem,8.2vw,5.5rem)] md:text-[clamp(2.4rem,7.2vw,5.5rem)] font-black uppercase tracking-tighter text-[#111116] leading-[0.92] md:leading-[0.93] select-none">
+            <div className="flex items-center flex-wrap gap-x-2 sm:gap-x-3 gap-y-1 sm:gap-y-2">
               <SplitHeading as="span" delay={0.05} trigger="mount">
                 WE MAKE
               </SplitHeading>
-              <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
+              <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.12em] lowercase select-none">
                 unreasonable
               </span>
               <ExpandingVisualPill
@@ -56,56 +46,54 @@ export const HeroSection: React.FC = () => {
                 delay={0.25}
               />
             </div>
-            <div className="block mt-1">
-              <SplitHeading as="span" delay={0.2} trigger="mount" accentChar=".">
+            <div className="block mt-0.5 md:mt-1">
+              <SplitHeading as="span" delay={0.22} trigger="mount" accentChar=".">
                 BRANDS HAPPEN.
               </SplitHeading>
             </div>
           </h1>
         </div>
 
-        {/* Editorial Subcopy & Action Pills */}
+        {/* Human Editorial Copywriting & Action Pills */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-10 mb-8 md:mb-14"
+          transition={{ delay: 0.4, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-6 md:mb-14"
         >
-          <p className="max-w-xl font-sans text-sm sm:text-base md:text-lg text-[#52525B] leading-relaxed">
-            We turn ambitious ideas into distinctive identities, disruptive campaigns, digital experiences, and live brand moments<span className="text-[#EA1E4D] font-bold">.</span> Strategy, creative craft, and execution brought together under one roof<span className="text-[#EA1E4D] font-bold">.</span>
+          {/* Mobile Condensed Editorial Pitch (< 768px) */}
+          <p className="md:hidden font-sans text-[13px] text-[#52525B] leading-relaxed">
+            We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences. Strategy, creative thinking and technology brought together.
           </p>
 
-          {/* Mobile Streamlined Action */}
-          <div className="md:hidden flex items-center gap-3 font-mono text-xs uppercase tracking-wider">
+          {/* Desktop / Laptop Full Editorial Statement (>= 768px) */}
+          <p className="hidden md:block max-w-xl font-sans text-sm sm:text-base text-[#52525B] leading-relaxed">
+            We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences<span className="text-[#EA1E4D] font-bold">.</span> From the first spark to the final execution, we bring strategy, creative thinking and technology together to make brands impossible to overlook<span className="text-[#EA1E4D] font-bold">.</span>
+          </p>
+
+          {/* Mobile Streamlined Single Hero CTA */}
+          <div className="md:hidden flex items-center justify-between gap-3 font-mono text-xs uppercase tracking-wider">
             <button
               type="button"
-              onClick={() => {
-                const el = document.getElementById('work');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else navigate('/work');
-              }}
-              className="flex-1 min-h-[46px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#111116]/20 bg-[#F5F4F0] text-[#111116] font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
+              onClick={() => navigate('/work')}
+              className="flex-1 min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#111116]/20 bg-[#F5F4F0] text-[#111116] font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
             >
-              <span>Selected Projects</span>
+              <span>Selected Work</span>
               <ArrowDownRight size={14} className="text-[#EA1E4D]" />
             </button>
           </div>
 
-          {/* Desktop Action Pills */}
-          <div className="hidden md:flex items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0">
+          {/* Desktop Dual Action Pills (>= 768px) */}
+          <div className="hidden md:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 font-mono text-xs sm:text-sm uppercase tracking-wider shrink-0 w-full sm:w-auto">
             <button
               type="button"
-              onClick={() => {
-                const el = document.getElementById('work');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else navigate('/work');
-              }}
-              data-cursor-text="EXPLORE"
-              className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-[#111116]/20 hover:border-[#111116] bg-[#FFFFFF] text-[#111116] transition-all cursor-pointer font-semibold"
+              onClick={() => navigate('/work')}
+              data-cursor-text="ARCHIVE"
+              className="group flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-[#111116]/20 hover:border-[#111116] transition-all text-[#111116] bg-[#FFFFFF] cursor-pointer hover:shadow-sm font-semibold"
             >
-              <span>Selected Projects</span>
+              <span>Selected Work</span>
               <ArrowDownRight
-                size={14}
+                size={13}
                 className="text-[#52525B] group-hover:text-[#111116] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
               />
             </button>
@@ -114,7 +102,7 @@ export const HeroSection: React.FC = () => {
               type="button"
               onClick={() => navigate('/contact')}
               data-cursor-text="COMMISSION"
-              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#EA1E4D] text-white font-bold hover:brightness-110 shadow-lg shadow-[#EA1E4D]/25 transition-all cursor-pointer"
+              className="flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-[#EA1E4D] text-white font-bold hover:brightness-110 shadow-lg shadow-[#EA1E4D]/25 transition-all cursor-pointer"
             >
               <Sparkles size={13} />
               <span>Commission a Project ✳</span>
@@ -122,21 +110,21 @@ export const HeroSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Preserved Interactive Showreel Viewport */}
+        {/* Embedded Cinematic Showreel Container */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.55, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className="mb-8 md:mb-12"
         >
           <ShowreelViewport />
         </motion.div>
 
-        {/* Hero Metadata Strip */}
+        {/* Hero Metadata Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.65, duration: 0.7 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
         >
           <HeroMeta />
         </motion.div>

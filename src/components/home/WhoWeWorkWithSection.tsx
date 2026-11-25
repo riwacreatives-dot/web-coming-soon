@@ -12,40 +12,39 @@ const AUDIENCES: Audience[] = [
   {
     id: 'startups',
     number: '01',
-    title: 'STARTUPS & FOUNDERS',
-    description: 'For founders turning an early conviction into a brand, a product, or a category-defining company.',
+    title: 'STARTUPS & FOUNDERS.',
+    description: 'For founders turning an early conviction into a distinctive brand, a product, or a growing company.',
   },
   {
     id: 'growing-biz',
     number: '02',
-    title: 'GROWING BUSINESSES',
+    title: 'GROWING BUSINESSES.',
     description:
-      'For established businesses ready to sharpen their identity, elevate their commercial creative, and win new audiences.',
+      'For established businesses ready to sharpen their identity, elevate commercial creative, and win new audiences.',
   },
   {
     id: 'brands',
     number: '03',
-    title: 'BRANDS & ORGANIZATIONS',
+    title: 'BRANDS & ORGANIZATIONS.',
     description:
-      'For teams seeking sharper creative direction, memorable campaigns, and cohesive communication across touchpoints.',
+      'For teams looking for fresh creative thinking, compelling campaigns, and meaningful communication across channels.',
   },
   {
     id: 'events',
     number: '04',
-    title: 'EVENTS & COMMUNITIES',
+    title: 'EVENTS & COMMUNITIES.',
     description:
-      'For organizers designing live experiences, college festivals, hackathons, and conferences that bring people together.',
+      'For organizers conceptualizing hackathons, conferences, college festivals, and live experiences that bring people together.',
   },
 ];
 
 export const WhoWeWorkWithSection: React.FC = () => {
   return (
-    <div className="w-full bg-[#F5F4F0] text-[#111116] border-b border-[#111116]/15 transition-colors">
+    <div className="w-full bg-[#E7E7E9] text-[#111116] border-b border-[#111116]/15 transition-colors">
       <section
         id="audiences"
         className="relative w-full py-16 sm:py-24 md:py-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
-        {/* Minimal Editorial Eyebrow & Headline */}
         <div className="mb-12 sm:mb-16 max-w-3xl">
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] font-semibold block mb-3 select-none">
             06 / WHO WE WORK WITH
@@ -60,8 +59,8 @@ export const WhoWeWorkWithSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Clean 4-Column Typographic Grid (Hairline Dividers, Zero Heavy Cards) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[#111116]/15">
+        {/* Restrained Typographic Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[#111116]/20">
           {AUDIENCES.map((a, idx) => (
             <motion.div
               key={a.id}
@@ -69,7 +68,7 @@ export const WhoWeWorkWithSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: idx * 0.06 }}
-              className="p-6 sm:p-8 border-r border-b border-[#111116]/15 flex flex-col justify-between bg-[#F5F4F0] hover:bg-white transition-colors duration-300"
+              className="p-6 sm:p-8 border-r border-b border-[#111116]/20 flex flex-col justify-between bg-[#E7E7E9] hover:bg-white transition-colors duration-300"
             >
               <div>
                 <span className="font-mono text-xs font-bold text-[#EA1E4D] tracking-widest block mb-6">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import { ServiceItem } from '../../types';
@@ -126,18 +126,25 @@ export const ServiceRow: React.FC<ServiceRowProps> = ({
                   ))}
                 </ul>
 
-                <div className="pt-3 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={() => navigate(isEvents ? '/contact?type=event' : '/contact')}
-                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold hover:brightness-110 transition-all cursor-pointer uppercase tracking-wider ${
+                <div className="pt-3 flex flex-wrap items-center gap-3">
+                  <Link
+                    to={`/services/${service.id}`}
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold hover:brightness-110 transition-all uppercase tracking-wider ${
                       isEvents
                         ? 'bg-[#FD7D3C] text-[#111116]'
                         : 'bg-[#EA1E4D] text-white'
                     }`}
                   >
-                    <span>{service.ctaText || 'START A PROJECT ↗'}</span>
+                    <span>Explore Service Page</span>
                     <ArrowUpRight size={14} />
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={() => navigate(isEvents ? '/contact?type=event' : '/contact')}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/25 text-white hover:border-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+                  >
+                    <span>Start Brief ↗</span>
                   </button>
                 </div>
               </div>

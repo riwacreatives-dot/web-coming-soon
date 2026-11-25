@@ -2,7 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-export const ManifestoSection: React.FC = () => {
+interface ManifestoSectionProps {
+  eyebrow?: string;
+}
+
+export const ManifestoSection: React.FC<ManifestoSectionProps> = ({
+  eyebrow = '10 / THE RIWA MANIFESTO',
+}) => {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -19,7 +25,7 @@ export const ManifestoSection: React.FC = () => {
           className="space-y-10 sm:space-y-14"
         >
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.28em] text-[#EA1E4D] font-bold block">
-            10 / THE RIWA MANIFESTO
+            {eyebrow}
           </span>
 
           <h2 className="font-display text-[clamp(2.8rem,8.5vw,6.8rem)] font-black uppercase tracking-tighter text-white leading-[0.92]">

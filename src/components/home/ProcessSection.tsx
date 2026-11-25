@@ -63,20 +63,32 @@ const STAGES: ProcessStage[] = [
   },
 ];
 
-export const ProcessSection: React.FC = () => {
+interface ProcessSectionProps {
+  embedded?: boolean;
+}
+
+export const ProcessSection: React.FC<ProcessSectionProps> = ({ embedded = false }) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const current = STAGES[activeIdx];
 
   return (
-    <div className="w-full bg-[#FFFFFF] dark:bg-[#14141A] text-[#111116] dark:text-white border-b border-[#111116]/15 dark:border-white/10 transition-colors">
+    <div
+      className={
+        embedded
+          ? 'w-full border-t border-[#111116]/15 dark:border-white/10 transition-colors'
+          : 'w-full bg-[#FFFFFF] dark:bg-[#14141A] text-[#111116] dark:text-white border-b border-[#111116]/15 dark:border-white/10 transition-colors'
+      }
+    >
       <section
         id="process"
-        className="relative w-full py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
+        className={`relative w-full ${
+          embedded ? 'py-16 sm:py-24' : 'py-16 sm:py-24 md:py-32'
+        } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
       >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="max-w-3xl">
             <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-semibold block mb-3 select-none">
-              05 / OUR PROCESS
+              {embedded ? '04B // DELIVERY WORKFLOW' : '05 / OUR PROCESS'}
             </span>
             <h2 className="font-display text-[clamp(2.25rem,6.8vw,4.5rem)] font-black uppercase tracking-tight text-[#111116] dark:text-white leading-[0.98]">
               <span>FROM FIRST THOUGHT</span><br />

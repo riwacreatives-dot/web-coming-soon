@@ -1,82 +1,119 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { SparkElement } from '../common/SparkElement';
+
+interface WorkbenchItem {
+  code: string;
+  targetChapterId: string;
+  title: string;
+  tag: string;
+  subline: string;
+}
+
+const MOBILE_WORKBENCH_ITEMS: WorkbenchItem[] = [
+  {
+    code: 'BRAND / 01',
+    targetChapterId: 'chapter-point-of-view',
+    title: 'Brand Identity System',
+    tag: 'JUMP TO CH.02 ↓',
+    subline: 'Guidelines · Construction · Voice',
+  },
+  {
+    code: 'CAMPAIGN / 02',
+    targetChapterId: 'chapter-attention',
+    title: 'Solanas Key Visual',
+    tag: 'JUMP TO CH.03 ↓',
+    subline: '+420% Weekend Orders · 6.2% CTR',
+  },
+  {
+    code: 'DIGITAL / 03',
+    targetChapterId: 'chapter-world',
+    title: 'Interactive Web & UX',
+    tag: 'JUMP TO CH.04 ↓',
+    subline: 'Custom Code · Growth Architecture',
+  },
+  {
+    code: 'LIVE / 04',
+    targetChapterId: 'chapter-real-world',
+    title: 'Riwa Live Pass EXP—005',
+    tag: 'JUMP TO CH.05 ↓',
+    subline: 'Events · Hackathons · Summits',
+  },
+];
 
 export const HeroSection: React.FC = () => {
   const navigate = useNavigate();
-  const prefersReducedMotion = useReducedMotion();
+  const reduced = useReducedMotion();
 
-  const handleScrollDown = () => {
-    const workEl = document.getElementById('work');
-    if (workEl) {
-      workEl.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-    } else {
-      window.scrollBy({ top: window.innerHeight * 0.85, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  const scrollToTarget = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
     }
   };
 
   return (
     <section
-      id="hero"
-      className="relative w-full bg-[#F7F6F2] dark:bg-[#0B0B0F] text-[#111116] dark:text-white pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-10 sm:pb-14 px-4 sm:px-8 md:px-12 overflow-hidden transition-colors"
+      id="chapter-spark"
+      className="relative w-full bg-[#F7F6F2] dark:bg-[#0B0B0F] text-[#111116] dark:text-white pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-10 sm:pb-14 px-4 sm:px-8 md:px-12 overflow-hidden transition-colors"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Main 2-Column Composition: ~44% Left Editorial / ~56% Right Creative Worktable */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* ========================================================== */}
-          {/* LEFT COLUMN (~44% -> lg:col-span-5): Editorial Positioning   */}
-          {/* ========================================================== */}
-          <div className="lg:col-span-5 space-y-6 sm:space-y-7 relative z-20">
-            {/* Eyebrow */}
+        {/* Main 2-Column Editorial Studio Composition */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+
+          {/* LEFT COLUMN: Editorial Thesis & Primary Actions */}
+          <div className="lg:col-span-5 space-y-5 sm:space-y-7 relative z-20">
+            {/* Eyebrow featuring THE SPARK Origin Point */}
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+              initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
-              className="flex items-start gap-2.5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#52525B] dark:text-white/65 select-none"
+              className="flex items-start gap-3 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#52525B] dark:text-white/65 select-none"
             >
-              <span className="inline-block w-2 h-2 rounded-full bg-[#EA1E4D] shrink-0 mt-1" />
+              <SparkElement chapter={0} size={18} className="mt-0.5" />
               <div className="leading-snug">
                 <span className="text-[#111116] dark:text-white font-bold block">RIWA CREATIVES</span>
-                <span>INDEPENDENT CREATIVE &amp; GROWTH STUDIO</span>
+                <span>01 // STUDIO WORKBENCH · INDEPENDENT STUDIO</span>
               </div>
             </motion.div>
 
-            {/* Headline: Syne Display + Instrument Serif Italic */}
+            {/* Primary Headline */}
             <motion.h1
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              initial={reduced ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-[clamp(2.5rem,5.2vw,4.35rem)] font-black uppercase tracking-tighter text-[#111116] dark:text-white leading-[0.94] select-none"
+              transition={{ duration: 0.55, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-[clamp(2.45rem,5.4vw,4.55rem)] font-black uppercase tracking-tighter text-[#111116] dark:text-white leading-[0.93] select-none"
             >
               <span className="block">IDEAS, MADE</span>
-              <span className="block font-serif italic font-normal tracking-tight text-[#EA1E4D] text-[1.14em] uppercase mt-0.5">
+              <span className="block font-serif italic font-normal tracking-tight text-[#EA1E4D] text-[1.12em] uppercase mt-0.5">
                 UNREASONABLE.
               </span>
             </motion.h1>
 
-            {/* Supporting Copy */}
+            {/* Supporting Positioning */}
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+              initial={reduced ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.16 }}
+              transition={{ duration: 0.55, delay: 0.12 }}
               className="space-y-2.5 max-w-md font-sans text-sm sm:text-base text-[#52525B] dark:text-white/75 leading-relaxed"
             >
-              <p className="font-medium text-[#111116] dark:text-white/95">
+              <p className="font-semibold text-[#111116] dark:text-white/95">
                 We build brands, campaigns and experiences that move people.
               </p>
               <p>
-                We bring creative thinking, strategy and execution together to turn ambitious ideas into something people remember.
+                Seven connected chapters showing how one spark becomes brand conviction, commercial attention, digital craft, and live rooms.
               </p>
             </motion.div>
 
-            {/* Distinct Editorial CTAs */}
+            {/* Primary & Secondary CTAs */}
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+              initial={reduced ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.24 }}
-              className="flex flex-wrap items-center gap-5 sm:gap-7 pt-2 font-mono text-xs uppercase tracking-[0.16em]"
+              transition={{ duration: 0.55, delay: 0.18 }}
+              className="flex flex-wrap items-center gap-4 sm:gap-7 pt-1 font-mono text-xs uppercase tracking-[0.16em]"
             >
               <button
                 type="button"
@@ -90,7 +127,7 @@ export const HeroSection: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => navigate('/contact')}
+                onClick={() => scrollToTarget('chapter-next-idea')}
                 data-cursor-text="COMMISSION"
                 className="group inline-flex items-center gap-2 pb-1.5 border-b border-[#111116] dark:border-white text-[#111116] dark:text-white font-bold hover:text-[#EA1E4D] hover:border-[#EA1E4D] transition-colors cursor-pointer"
               >
@@ -98,369 +135,271 @@ export const HeroSection: React.FC = () => {
                 <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
             </motion.div>
+
+            {/* Production Spec Swatch Strip (Workbench grounding detail) */}
+            <div className="hidden sm:flex items-center gap-4 pt-3 border-t border-[#111116]/15 dark:border-white/15 font-mono text-[10px] text-[#52525B] dark:text-white/50 uppercase tracking-widest">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 bg-[#EA1E4D] inline-block" /> #EA1E4D
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 bg-[#FD7D3C] inline-block" /> #FD7D3C
+              </span>
+              <span>WORKTABLE SPEC · CLICK ARTEFACT TO JUMP</span>
+            </div>
           </div>
 
-          {/* ========================================================== */}
-          {/* RIGHT COLUMN (~56% -> lg:col-span-7): CREATIVE WORKTABLE   */}
-          {/* ========================================================== */}
+          {/* RIGHT COLUMN: Grounded Creative Studio Workbench */}
           <div className="lg:col-span-7 relative">
-            {/* DESKTOP INTERACTIVE WORKTABLE COLLAGE (>= 1024px) */}
-            <div className="hidden lg:block relative w-full h-[540px] xl:h-[580px] select-none">
-              {/* --- ARTIFACT 01: BRAND IDENTITY SYSTEM (Hardcover Monograph) --- */}
+
+            {/* DESKTOP WORKBENCH COLLAGE (>= 1024px) — Grounded objects, zero idle bobbing */}
+            <div className="hidden lg:block relative w-full h-[565px] xl:h-[600px] select-none border border-[#111116]/10 dark:border-white/10 bg-[#EFECE6]/55 dark:bg-[#121218]">
+              {/* Cutting Mat & Registration Markings */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-[0.06] dark:opacity-[0.09]"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(#111116 1px, transparent 1px), linear-gradient(90deg, #111116 1px, transparent 1px)',
+                  backgroundSize: '44px 44px',
+                }}
+                aria-hidden="true"
+              />
+              <span className="absolute top-3 left-4 font-mono text-[9px] text-[#52525B] dark:text-white/40 uppercase tracking-[0.22em]">
+                STUDIO TABLE // 01:1 SCALE
+              </span>
+              <span className="absolute bottom-3 left-4 font-mono text-[9px] text-[#52525B] dark:text-white/40 uppercase tracking-[0.22em]">
+                CROPS · PRESS PROOFS · INTERFACES · PASSES
+              </span>
+
+              {/* Registration Corner Crosshairs */}
+              <div className="absolute top-3 right-4 font-mono text-[11px] text-[#EA1E4D]/60 font-bold" aria-hidden="true">+</div>
+              <div className="absolute bottom-3 right-4 font-mono text-[11px] text-[#EA1E4D]/60 font-bold" aria-hidden="true">+</div>
+
+              {/* --- ARTEFACT 01: BRAND IDENTITY SYSTEM MONOGRAPH -> Jumps to Ch02 --- */}
               <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 26, rotate: -6 }}
-                animate={{ opacity: 1, y: 0, rotate: -6 }}
-                whileHover={prefersReducedMotion ? undefined : { rotate: -3, y: -6, transition: { duration: 0.25 } }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute top-[52px] left-[28px] xl:left-[44px] w-[275px] xl:w-[300px] z-10"
+                initial={reduced ? false : { opacity: 0, y: 18, rotate: -5.5 }}
+                animate={{ opacity: 1, y: 0, rotate: -5.5 }}
+                whileHover={reduced ? undefined : { rotate: -2.5, y: -6, zIndex: 40, transition: { duration: 0.22 } }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-[54px] left-[32px] xl:left-[48px] w-[260px] xl:w-[285px] z-10"
               >
-                {/* Thin L-Shaped Callout Connector -> BRAND / 01 */}
-                <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.45, duration: 0.4 }}
-                  className="absolute -top-11 -left-14 flex items-start gap-2 pointer-events-none"
-                >
-                  <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#52525B] dark:text-white/60 uppercase whitespace-nowrap">
-                    BRAND / 01
-                  </span>
-                  <div className="w-10 h-6 border-t border-r border-[#111116]/40 dark:border-white/40 mt-1.5" />
-                </motion.div>
+                <div className="mb-1.5 flex items-center justify-between font-mono text-[10px] font-bold tracking-[0.18em] text-[#52525B] dark:text-white/60 uppercase">
+                  <span>BRAND / 01</span>
+                  <span className="text-[#EA1E4D]">CH.02</span>
+                </div>
 
-                <Link
-                  to="/services/brand-identity"
-                  data-cursor-text="BRAND"
-                  className="block w-full aspect-[4/4.8] bg-[#111116] text-white border border-white/10 shadow-[0_24px_48px_rgba(17,17,22,0.28)] dark:shadow-[0_24px_48px_rgba(0,0,0,0.65)] relative overflow-hidden group"
+                <button
+                  type="button"
+                  onClick={() => scrollToTarget('chapter-point-of-view')}
+                  data-cursor-text="CH.02 BRAND"
+                  aria-label="Inspect Brand Identity System in Chapter 02"
+                  className="block w-full text-left aspect-[4/4.7] bg-[#111116] text-white border border-white/15 shadow-[12px_18px_36px_rgba(17,17,22,0.28)] dark:shadow-[12px_18px_40px_rgba(0,0,0,0.7)] relative overflow-hidden group cursor-pointer"
                 >
-                  {/* Realistic Book Spine Highlight */}
-                  <div className="absolute inset-y-0 left-0 w-3.5 bg-gradient-to-r from-white/15 via-white/5 to-transparent border-r border-black/40" />
-
-                  {/* Dramatic Red Sweeping Monogram Curve */}
-                  <svg
-                    viewBox="0 0 240 300"
-                    aria-hidden="true"
-                    className="absolute inset-0 w-full h-full pointer-events-none"
-                  >
+                  {/* Tactile Book Spine */}
+                  <div className="absolute inset-y-0 left-0 w-3.5 bg-gradient-to-r from-white/15 via-white/5 to-transparent border-r border-black/50" />
+                  <svg viewBox="0 0 240 300" aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none">
                     <path
                       d="M 190 10 C 120 75, 110 155, 235 195 L 240 295 L 95 295 C 105 225, 165 180, 120 150 C 90 130, 145 75, 215 10 Z"
                       fill="#EA1E4D"
                     />
                   </svg>
-
-                  {/* Monograph Inner Typographic Layout */}
-                  <div className="relative z-10 h-full p-6 pl-7 flex flex-col justify-between">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src="/brand/riwa-logo-official.png"
-                        alt="Riwa Logo"
-                        className="h-7 w-auto object-contain"
-                      />
-                      <span className="font-mono text-[9px] tracking-[0.22em] text-white/70 uppercase">
-                        CREATIVES
-                      </span>
+                  <div className="relative z-10 h-full p-5 pl-7 flex flex-col justify-between">
+                    <div className="flex items-center justify-between">
+                      <img src="/brand/riwa-logo-official.png" alt="Riwa" className="h-7 w-auto object-contain" loading="eager" />
+                      <span className="font-mono text-[9px] tracking-[0.2em] text-white/60 uppercase">SPEC 01</span>
                     </div>
-
                     <div className="space-y-1">
                       <span className="font-mono text-[9px] text-[#EA1E4D] font-bold tracking-widest uppercase block">
-                        ISSUE 01 // GUIDELINES
+                        GUIDELINES // POSITION
                       </span>
-                      <p className="font-mono text-xs tracking-[0.14em] uppercase text-white/90 font-semibold leading-tight">
+                      <p className="font-mono text-xs tracking-[0.14em] uppercase text-white/95 font-semibold leading-tight">
                         BRAND<br />IDENTITY<br />SYSTEM
                       </p>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-
-              {/* --- ARTIFACT 02: COMMERCIAL CAMPAIGN POSTER --- */}
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 24, rotate: 6 }}
-                animate={{ opacity: 1, y: 0, rotate: 6 }}
-                whileHover={prefersReducedMotion ? undefined : { rotate: 3, y: -6, transition: { duration: 0.25 } }}
-                transition={{ duration: 0.65, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute top-[40px] right-[18px] xl:right-[28px] w-[240px] xl:w-[262px] z-[8]"
-              >
-                {/* Thin L-Shaped Callout Connector -> CAMPAIGN / 02 */}
-                <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.4 }}
-                  className="absolute -top-10 -right-4 flex items-start gap-2 pointer-events-none"
-                >
-                  <div className="w-10 h-6 border-t border-l border-[#111116]/40 dark:border-white/40 mt-1.5" />
-                  <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#52525B] dark:text-white/60 uppercase whitespace-nowrap">
-                    CAMPAIGN / 02
-                  </span>
-                </motion.div>
-
-                <Link
-                  to="/work/solanas-campaign"
-                  data-cursor-text="CAMPAIGN"
-                  className="block w-full bg-[#FFFFFF] p-2 pb-4 border border-[#111116]/15 shadow-[0_22px_44px_rgba(17,17,22,0.18)] dark:shadow-[0_22px_44px_rgba(0,0,0,0.55)]"
-                >
-                  <div className="aspect-[4/4.6] w-full overflow-hidden bg-[#111116]">
-                    <img
-                      src="/work/solanas-chilli-chicken.jpg"
-                      alt="Solanas Commercial Campaign Poster"
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                  <div className="pt-2.5 px-1 flex items-center justify-between font-mono text-[9px] text-[#52525B] uppercase tracking-wider">
-                    <span className="font-bold text-[#111116]">SOLANAS · KEY VISUAL</span>
-                    <span className="text-[#EA1E4D] font-bold">2026</span>
-                  </div>
-                </Link>
-              </motion.div>
-
-              {/* --- ARTIFACT 03: DIGITAL EXPERIENCE (Tablet UI) --- */}
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 28, rotate: -3 }}
-                animate={{ opacity: 1, y: 0, rotate: -3 }}
-                whileHover={prefersReducedMotion ? undefined : { rotate: -1, y: -5, transition: { duration: 0.25 } }}
-                transition={{ duration: 0.65, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute bottom-[42px] left-[92px] xl:left-[120px] w-[335px] xl:w-[365px] z-20"
-              >
-                {/* Thin L-Shaped Callout Connector -> DIGITAL / 03 */}
-                <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.55, duration: 0.4 }}
-                  className="absolute -bottom-9 left-0 flex items-end gap-2 pointer-events-none"
-                >
-                  <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#52525B] dark:text-white/60 uppercase whitespace-nowrap">
-                    DIGITAL / 03
-                  </span>
-                  <div className="w-12 h-5 border-b border-r border-[#111116]/40 dark:border-white/40 mb-1.5" />
-                </motion.div>
-
-                <Link
-                  to="/services/technology-experiences"
-                  data-cursor-text="DIGITAL"
-                  className="block rounded-[18px] bg-[#16161B] p-2.5 border border-white/15 shadow-[0_28px_56px_rgba(17,17,22,0.34)] dark:shadow-[0_28px_56px_rgba(0,0,0,0.7)]"
-                >
-                  <div className="relative aspect-[16/10.5] rounded-[11px] overflow-hidden bg-[#0D0E12] text-white p-5 flex flex-col justify-between border border-white/10">
-                    {/* Right Half Digital Background Wireframe & Artwork Tint */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-y-0 right-0 w-1/2 opacity-30 pointer-events-none overflow-hidden"
-                    >
-                      <img
-                        src="/work/solanas-green-dimsum.png"
-                        alt=""
-                        className="h-full w-full object-cover filter grayscale contrast-125"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#0D0E12] via-[#0D0E12]/50 to-transparent" />
-                      <div className="absolute top-6 right-5 w-16 h-16 border border-[#EA1E4D]/70" />
-                    </div>
-
-                    {/* Screen Top Bar */}
-                    <div className="relative z-10 flex items-center justify-between">
-                      <img
-                        src="/brand/riwa-logo-official.png"
-                        alt="Riwa Digital"
-                        className="h-5 w-auto object-contain"
-                      />
-                      <div className="space-y-1">
-                        <span className="block w-4 h-[1.5px] bg-white/70" />
-                        <span className="block w-4 h-[1.5px] bg-white/70" />
-                      </div>
-                    </div>
-
-                    {/* Screen Headline */}
-                    <div className="relative z-10 space-y-2.5 max-w-[78%]">
-                      <p className="font-display text-base xl:text-lg font-black uppercase leading-[1.05] tracking-tight">
-                        A DIGITAL<br />
-                        EXPERIENCE<br />
-                        THAT CONNECTS<span className="text-[#EA1E4D]">.</span>
-                      </p>
-                      <span className="inline-flex items-center justify-center w-7 h-5 bg-[#EA1E4D] text-white font-mono text-[10px] font-bold">
-                        →
+                      <span className="inline-block font-mono text-[9px] text-white/50 group-hover:text-white transition-colors pt-1">
+                        EXPLORE CHAPTER 02 ↓
                       </span>
                     </div>
                   </div>
-                </Link>
+                </button>
               </motion.div>
 
-              {/* --- ARTIFACT 04: LIVE EVENTS & ACTIVATIONS (Orange Event Pass + Lanyard) --- */}
+              {/* --- ARTEFACT 02: PRINTED SOLANAS CAMPAIGN PROOF -> Jumps to Ch03 --- */}
               <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 24, rotate: 9 }}
-                animate={
-                  prefersReducedMotion
-                    ? { opacity: 1, y: 0, rotate: 9 }
-                    : {
-                        opacity: 1,
-                        y: [0, -5, 0],
-                        rotate: 9,
-                      }
-                }
-                whileHover={prefersReducedMotion ? undefined : { rotate: 5, scale: 1.02, transition: { duration: 0.25 } }}
-                transition={{
-                  opacity: { duration: 0.65, delay: 0.3 },
-                  rotate: { duration: 0.65, delay: 0.3 },
-                  y: prefersReducedMotion
-                    ? { duration: 0.65, delay: 0.3 }
-                    : { repeat: Infinity, repeatType: 'mirror', duration: 4.2, ease: 'easeInOut', delay: 1 },
-                }}
-                className="absolute bottom-[36px] right-[18px] xl:right-[24px] w-[142px] xl:w-[154px] z-30"
+                initial={reduced ? false : { opacity: 0, y: 18, rotate: 5 }}
+                animate={{ opacity: 1, y: 0, rotate: 5 }}
+                whileHover={reduced ? undefined : { rotate: 2, y: -6, zIndex: 40, transition: { duration: 0.22 } }}
+                transition={{ duration: 0.55, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-[42px] right-[26px] xl:right-[36px] w-[236px] xl:w-[258px] z-[12]"
               >
-                {/* Subtle Fabric Lanyard Strap Top Graphic */}
-                <svg
-                  viewBox="0 0 120 120"
-                  aria-hidden="true"
-                  className="absolute -top-24 -right-12 w-32 h-32 pointer-events-none overflow-visible"
+                {/* Grounded Studio Masking Tape Detail */}
+                <div className="mx-auto -mb-2 w-14 h-4 bg-[#E6DFD1] dark:bg-white/25 opacity-85 border border-black/10 relative z-20 -rotate-2" aria-hidden="true" />
+
+                <button
+                  type="button"
+                  onClick={() => scrollToTarget('chapter-attention')}
+                  data-cursor-text="CH.03 CAMPAIGN"
+                  aria-label="Inspect Solanas Commercial Campaign in Chapter 03"
+                  className="block w-full text-left bg-[#FFFFFF] p-2.5 pb-3.5 border border-[#111116]/20 shadow-[10px_18px_36px_rgba(17,17,22,0.2)] dark:shadow-[10px_18px_40px_rgba(0,0,0,0.65)] group cursor-pointer"
                 >
-                  <path
-                    d="M 55 112 C 62 70, 92 24, 130 -18"
-                    stroke="#1C1C22"
-                    strokeWidth="12"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                  {/* Metallic Clip */}
-                  <rect x="46" y="102" width="16" height="14" rx="2" fill="#9CA3AF" stroke="#111116" strokeWidth="1.5" />
-                </svg>
+                  <div className="flex items-center justify-between font-mono text-[9px] font-bold text-[#52525B] uppercase tracking-wider pb-1.5">
+                    <span>CAMPAIGN / 02</span>
+                    <span className="text-[#EA1E4D]">DROP 01</span>
+                  </div>
+                  <div className="aspect-[4/4.4] w-full overflow-hidden bg-[#111116]">
+                    <img
+                      src="/work/solanas-chilli-chicken.jpg"
+                      alt="Solanas Commercial Poster Print Proof"
+                      className="h-full w-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                      loading="eager"
+                    />
+                  </div>
+                  <div className="pt-2.5 px-0.5 flex items-center justify-between font-mono text-[9px] text-[#52525B] uppercase tracking-wider">
+                    <span className="font-bold text-[#111116]">SOLANAS · PRINT PROOF</span>
+                    <span className="text-[#EA1E4D] font-bold">CH.03 ↓</span>
+                  </div>
+                </button>
+              </motion.div>
 
-                {/* Thin L-Shaped Callout Connector -> LIVE / 04 */}
-                <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.4 }}
-                  className="absolute -bottom-9 right-0 flex items-end gap-2 pointer-events-none"
+              {/* --- ARTEFACT 03: REAL WEBSITE / UI INTERFACE TABLET -> Jumps to Ch04 --- */}
+              <motion.div
+                initial={reduced ? false : { opacity: 0, y: 20, rotate: -2 }}
+                animate={{ opacity: 1, y: 0, rotate: -2 }}
+                whileHover={reduced ? undefined : { rotate: 0, y: -6, zIndex: 40, transition: { duration: 0.22 } }}
+                transition={{ duration: 0.55, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute bottom-[48px] left-[76px] xl:left-[98px] w-[334px] xl:w-[366px] z-20"
+              >
+                <button
+                  type="button"
+                  onClick={() => scrollToTarget('chapter-world')}
+                  data-cursor-text="CH.04 DIGITAL"
+                  aria-label="Inspect Digital Experiences in Chapter 04"
+                  className="block w-full text-left rounded-[16px] bg-[#16161B] p-2.5 border border-white/15 shadow-[14px_22px_48px_rgba(17,17,22,0.34)] dark:shadow-[14px_22px_48px_rgba(0,0,0,0.75)] group cursor-pointer"
                 >
-                  <div className="w-8 h-5 border-b border-l border-[#111116]/40 dark:border-white/40 mb-1.5" />
-                  <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-[#52525B] dark:text-white/60 uppercase whitespace-nowrap">
-                    LIVE / 04
-                  </span>
-                </motion.div>
-
-                <Link
-                  to="/services/events-experiences"
-                  data-cursor-text="LIVE"
-                  className="block rounded-[10px] bg-[#FD7D3C] text-[#111116] p-4 pt-6 border border-[#111116]/25 shadow-[0_22px_40px_rgba(17,17,22,0.28)] relative overflow-hidden"
-                >
-                  {/* Pass Slot Hole */}
-                  <div className="mx-auto w-7 h-2 rounded-full bg-[#111116]/25 mb-4" />
-
-                  <div className="space-y-4">
-                    <p className="font-display text-xl xl:text-2xl font-black uppercase leading-[0.94] tracking-tight">
-                      RIWA<br />LIVE<br />PASS
-                    </p>
-
-                    <div className="font-mono text-[9px] uppercase tracking-widest font-bold leading-snug text-[#111116]/85">
-                      <span>EVENTS &amp;</span><br />
-                      <span>ACTIVATIONS</span>
+                  <div className="relative aspect-[16/10] rounded-[10px] overflow-hidden bg-[#0D0E12] text-white p-4 sm:p-5 flex flex-col justify-between border border-white/10">
+                    {/* Actual Campaign Backdrop Inside Browser Preview */}
+                    <div aria-hidden="true" className="absolute inset-y-0 right-0 w-[52%] opacity-45 pointer-events-none overflow-hidden">
+                      <img src="/work/solanas-poster.jpg" alt="" className="h-full w-full object-cover object-center contrast-110" loading="eager" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#0D0E12] via-[#0D0E12]/65 to-transparent" />
+                      <div className="absolute top-4 right-4 w-14 h-14 border border-[#EA1E4D]/75" />
                     </div>
 
-                    {/* Graphic Black Tear Corner Motif */}
-                    <div className="pt-2 flex justify-end">
-                      <svg viewBox="0 0 40 40" className="w-9 h-9 text-[#111116]" fill="currentColor">
-                        <polygon points="40,0 40,40 8,40 26,20" />
-                      </svg>
+                    <div className="relative z-10 flex items-center justify-between font-mono text-[9px] text-white/60">
+                      <span className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        riwacreatives.in // build
+                      </span>
+                      <span className="text-[#EA1E4D] font-bold">DIGITAL / 03</span>
+                    </div>
+
+                    <div className="relative z-10 space-y-2 max-w-[74%]">
+                      <p className="font-display text-base xl:text-lg font-black uppercase leading-[1.04] tracking-tight">
+                        EXPERIENCE THAT CONNECTS<span className="text-[#EA1E4D]">.</span>
+                      </p>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#EA1E4D] text-white font-mono text-[9px] font-bold uppercase tracking-wider group-hover:bg-white group-hover:text-[#111116] transition-colors">
+                        TEST SANDBOX CH.04 ↓
+                      </span>
                     </div>
                   </div>
-                </Link>
+                </button>
+              </motion.div>
+
+              {/* --- ARTEFACT 04: GROUNDED LIVE EVENTS PASS -> Jumps to Ch05 --- */}
+              <motion.div
+                initial={reduced ? false : { opacity: 0, y: 20, rotate: 8 }}
+                animate={{ opacity: 1, y: 0, rotate: 8 }}
+                whileHover={reduced ? undefined : { rotate: 4, y: -6, zIndex: 40, transition: { duration: 0.22 } }}
+                transition={{ duration: 0.55, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute bottom-[40px] right-[26px] xl:right-[34px] w-[144px] xl:w-[158px] z-30"
+              >
+                {/* Grounded Lanyard Strap + Hardware Clip */}
+                <svg viewBox="0 0 120 110" aria-hidden="true" className="absolute -top-20 -right-10 w-28 h-28 pointer-events-none overflow-visible">
+                  <path d="M 55 104 C 60 66, 86 24, 118 -14" stroke="#18181D" strokeWidth="10" fill="none" strokeLinecap="round" />
+                  <rect x="47" y="94" width="16" height="13" rx="2" fill="#A1A1AA" stroke="#111116" strokeWidth="1.5" />
+                </svg>
+
+                <button
+                  type="button"
+                  onClick={() => scrollToTarget('chapter-real-world')}
+                  data-cursor-text="CH.05 LIVE"
+                  aria-label="Inspect Events and Activations in Chapter 05"
+                  className="block w-full text-left rounded-[10px] bg-[#FD7D3C] text-[#111116] p-4 pt-5 border border-[#111116]/30 shadow-[10px_18px_34px_rgba(17,17,22,0.28)] relative overflow-hidden group cursor-pointer"
+                >
+                  <div className="mx-auto w-7 h-1.5 rounded-full bg-[#111116]/30 mb-3" />
+                  <span className="font-mono text-[8px] font-bold uppercase tracking-widest block mb-2 text-[#111116]/70">
+                    LIVE / 04 · EXP—005
+                  </span>
+                  <p className="font-display text-xl xl:text-2xl font-black uppercase leading-[0.94] tracking-tight mb-3">
+                    RIWA<br />LIVE<br />PASS
+                  </p>
+                  <div className="pt-2 border-t border-[#111116]/25 flex items-center justify-between font-mono text-[8px] uppercase font-bold text-[#111116]/85">
+                    <span>EVENTS</span>
+                    <span className="group-hover:translate-y-0.5 transition-transform">CH.05 ↓</span>
+                  </div>
+                </button>
               </motion.div>
             </div>
 
-            {/* ========================================================== */}
-            {/* MOBILE & TABLET RECOMPOSED COLLAGE (< 1024px)              */}
-            {/* ========================================================== */}
-            <div className="lg:hidden grid grid-cols-2 gap-4 sm:gap-6 pt-2">
-              {/* Mobile Artifact 01: Brand */}
-              <Link
-                to="/services/brand-identity"
-                className="flex flex-col gap-2"
-              >
-                <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[#52525B] dark:text-white/60 uppercase">
-                  BRAND / 01
-                </span>
-                <div className="aspect-[4/4.6] bg-[#111116] text-white p-4 flex flex-col justify-between relative overflow-hidden border border-white/10 shadow-lg">
-                  <svg viewBox="0 0 200 250" aria-hidden="true" className="absolute inset-0 w-full h-full">
-                    <path d="M 160 10 C 100 65, 90 135, 195 165 L 200 250 L 80 250 C 90 185, 135 150, 100 125 Z" fill="#EA1E4D" />
-                  </svg>
-                  <img
-                    src="/brand/riwa-logo-official.png"
-                    alt="Riwa Brand"
-                    className="relative z-10 h-6 w-fit object-contain"
-                  />
-                  <span className="relative z-10 font-mono text-[10px] font-bold tracking-wider uppercase leading-tight">
-                    BRAND IDENTITY<br />SYSTEM
-                  </span>
-                </div>
-              </Link>
+            {/* MOBILE WORKBENCH (< 1024px): Horizontal Tactile Swipe Deck */}
+            <div className="lg:hidden space-y-2.5 pt-1">
+              <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-[#52525B] dark:text-white/55">
+                <span>STUDIO WORKBENCH SPEC</span>
+                <span className="text-[#EA1E4D] font-bold">SWIPE ARCHIVE →</span>
+              </div>
 
-              {/* Mobile Artifact 02: Campaign */}
-              <Link
-                to="/work/solanas-campaign"
-                className="flex flex-col gap-2 pt-4"
-              >
-                <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[#52525B] dark:text-white/60 uppercase">
-                  CAMPAIGN / 02
-                </span>
-                <div className="aspect-[4/4.6] bg-white p-1.5 border border-[#111116]/15 shadow-lg">
-                  <img
-                    src="/work/solanas-chilli-chicken.jpg"
-                    alt="Solanas Commercial Poster"
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-              </Link>
+              <div className="mobile-snap-track flex gap-3.5 overflow-x-auto no-scrollbar pb-3 -mx-4 px-4">
+                {MOBILE_WORKBENCH_ITEMS.map((item, idx) => (
+                  <button
+                    key={item.code}
+                    type="button"
+                    onClick={() => scrollToTarget(item.targetChapterId)}
+                    className="snap-start shrink-0 w-[76vw] max-w-[275px] text-left border border-[#111116]/15 dark:border-white/15 bg-white dark:bg-[#14141A] p-3.5 shadow-md flex flex-col justify-between cursor-pointer active:scale-[0.98] transition-transform"
+                  >
+                    <div className="flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-wider pb-2 mb-2.5 border-b border-[#111116]/10 dark:border-white/10">
+                      <span className="text-[#EA1E4D]">{item.code}</span>
+                      <span className="text-[#52525B] dark:text-white/55">{item.tag}</span>
+                    </div>
 
-              {/* Mobile Artifact 03: Digital */}
-              <Link
-                to="/services/technology-experiences"
-                className="flex flex-col gap-2"
-              >
-                <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[#52525B] dark:text-white/60 uppercase">
-                  DIGITAL / 03
-                </span>
-                <div className="aspect-[4/4.2] rounded-xl bg-[#16161B] p-2 border border-white/15 shadow-lg">
-                  <div className="h-full w-full rounded-lg bg-[#0D0E12] text-white p-3.5 flex flex-col justify-between border border-white/10">
-                    <img
-                      src="/brand/riwa-logo-official.png"
-                      alt="Riwa Digital"
-                      className="h-5 w-fit object-contain"
-                    />
-                    <div className="space-y-2">
-                      <p className="font-display text-xs sm:text-sm font-black uppercase leading-tight">
-                        DIGITAL EXPERIENCE<span className="text-[#EA1E4D]">.</span>
+                    <div className="aspect-[16/10] w-full overflow-hidden mb-3 bg-[#111116] relative">
+                      {idx === 0 && (
+                        <div className="w-full h-full p-4 flex flex-col justify-between bg-[#111116] text-white">
+                          <img src="/brand/riwa-logo-official.png" alt="Riwa" className="h-7 w-fit object-contain" />
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#EA1E4D]">IDENTITY SYSTEM 01</span>
+                        </div>
+                      )}
+                      {idx === 1 && (
+                        <img src="/work/solanas-chilli-chicken.jpg" alt="Solanas Key Visual" className="w-full h-full object-cover" />
+                      )}
+                      {idx === 2 && (
+                        <div className="w-full h-full p-4 flex flex-col justify-between bg-[#0D0E12] text-white relative">
+                          <img src="/work/solanas-poster.jpg" alt="Digital Interface" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                          <span className="relative z-10 font-mono text-[9px] text-emerald-400">● riwacreatives.in</span>
+                          <span className="relative z-10 font-display text-sm font-black uppercase">INTERACTIVE WEB &amp; UX</span>
+                        </div>
+                      )}
+                      {idx === 3 && (
+                        <div className="w-full h-full p-4 flex flex-col justify-between bg-[#FD7D3C] text-[#111116]">
+                          <span className="font-mono text-[9px] font-bold uppercase">PASS // EXP—005</span>
+                          <span className="font-display text-xl font-black uppercase leading-none">RIWA LIVE PASS</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div>
+                      <p className="font-display text-base font-black uppercase tracking-tight text-[#111116] dark:text-white leading-snug">
+                        {item.title}
                       </p>
-                      <span className="inline-flex items-center justify-center w-6 h-4 bg-[#EA1E4D] text-white font-mono text-[9px] font-bold">
-                        →
+                      <span className="font-mono text-[10px] text-[#52525B] dark:text-white/55 block mt-0.5">
+                        {item.subline}
                       </span>
                     </div>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Mobile Artifact 04: Live Pass */}
-              <Link
-                to="/services/events-experiences"
-                className="flex flex-col gap-2 -mt-2"
-              >
-                <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[#52525B] dark:text-white/60 uppercase">
-                  LIVE / 04
-                </span>
-                <div className="aspect-[4/4.2] rounded-lg bg-[#FD7D3C] text-[#111116] p-4 border border-[#111116]/25 shadow-lg flex flex-col justify-between relative overflow-hidden">
-                  <div className="mx-auto w-6 h-1.5 rounded-full bg-[#111116]/25" />
-                  <div>
-                    <p className="font-display text-lg sm:text-xl font-black uppercase leading-[0.95]">
-                      RIWA<br />LIVE PASS
-                    </p>
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider mt-1.5 block text-[#111116]/80">
-                      EVENTS &amp; ACTIVATIONS
-                    </span>
-                  </div>
-                </div>
-              </Link>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ========================================================== */}
-        {/* BOTTOM VISUAL STRIP: Disciplines + Scroll Indicator        */}
-        {/* ========================================================== */}
-        <div className="mt-12 sm:mt-16 pt-5 border-t border-[#111116]/15 dark:border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#52525B] dark:text-white/60 select-none">
+        {/* Bottom Visual Datum Strip */}
+        <div className="mt-10 sm:mt-14 pt-5 border-t border-[#111116]/15 dark:border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#52525B] dark:text-white/60 select-none">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[#111116] dark:text-white/85 font-semibold">
             <span>STRATEGY</span>
             <span className="text-[#EA1E4D]">—</span>
@@ -475,10 +414,10 @@ export const HeroSection: React.FC = () => {
 
           <button
             type="button"
-            onClick={handleScrollDown}
+            onClick={() => scrollToTarget('chapter-point-of-view')}
             className="inline-flex items-center gap-2 sm:pl-6 sm:border-l border-[#111116]/20 dark:border-white/20 text-[#111116] dark:text-white hover:text-[#EA1E4D] font-bold transition-colors cursor-pointer self-start sm:self-auto"
           >
-            <span>SCROLL TO EXPLORE</span>
+            <span>ENTER CHAPTER 02</span>
             <ArrowDown size={13} className="text-[#EA1E4D]" />
           </button>
         </div>

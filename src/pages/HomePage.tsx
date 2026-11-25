@@ -1,22 +1,21 @@
 import React from 'react';
 import { HeroSection } from '../components/hero/HeroSection';
 import { BrandTicker } from '../components/home/BrandTicker';
-import { SelectedWorks } from '../components/work/SelectedWorks';
-import { ServicesSection } from '../components/services/ServicesSection';
-import { DifferenceSection } from '../components/home/DifferenceSection';
-import { ProcessSection } from '../components/home/ProcessSection';
-import { WhoWeWorkWithSection } from '../components/home/WhoWeWorkWithSection';
-import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
-import { EventsTakeoverSection } from '../components/home/EventsTakeoverSection';
-import { LeadershipSection } from '../components/leadership/LeadershipSection';
+import { ThePointOfView } from '../components/chapters/ThePointOfView';
+import { TheAttention } from '../components/chapters/TheAttention';
+import { TheWorld } from '../components/chapters/TheWorld';
+import { TheRealWorld } from '../components/chapters/TheRealWorld';
+import { ThePeople } from '../components/chapters/ThePeople';
 import { ManifestoSection } from '../components/home/ManifestoSection';
-import { TestimonialsSection } from '../components/home/TestimonialsSection';
-import { FAQSection } from '../components/home/FAQSection';
-import { FinalCTASection } from '../components/home/FinalCTASection';
+import { TheNextIdea } from '../components/chapters/TheNextIdea';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
+import { ChapterIndicator } from '../components/common/ChapterIndicator';
+import { useChapterScroll } from '../hooks/useChapterScroll';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const HomePage: React.FC = () => {
+  const activeChapter = useChapterScroll();
+
   useDocumentMeta({
     title: 'Riwa Creatives — Independent Creative & Growth Studio',
     description:
@@ -28,51 +27,38 @@ export const HomePage: React.FC = () => {
 
   return (
     <>
+      {/* Fixed Left Chapter Datum + Continuous Spark State (xl+ desktop gutter, never obstructs content) */}
+      <ChapterIndicator activeChapter={activeChapter} />
+
       <main className="w-full">
-        {/* 01. HERO (White #FFFFFF) */}
+        {/* ══ CH01 — THE SPARK (Studio Workbench Hero) ══ */}
         <HeroSection />
 
-        {/* TRANSITION STRIP */}
+        {/* Discipline Ticker Transition Strip */}
         <BrandTicker />
 
-        {/* 02. SELECTED WORK / THE CREATIVE ARCHIVE (Concrete Grey #E7E7E9) */}
-        <SelectedWorks />
+        {/* ══ CH02 — THE POINT OF VIEW (Brand & Identity + System Specimen) ══ */}
+        <ThePointOfView />
 
-        {/* 03. CAPABILITIES (Charcoal #111116) */}
-        <ServicesSection />
+        {/* ══ CH03 — THE ATTENTION (Commercial Creative & 4-Stage Solanas Case Spread) ══ */}
+        <TheAttention />
 
-        {/* 04. THE RIWA DIFFERENCE (Warm White #F5F4F0) */}
-        <DifferenceSection />
+        {/* ══ CH04 — THE WORLD (Digital & Growth + Interactive UI Sandbox + Embedded Process) ══ */}
+        <TheWorld />
 
-        {/* 05. OUR PROCESS (Pure White #FFFFFF) */}
-        <ProcessSection />
+        {/* ══ CH05 — THE REAL WORLD (Full #FD7D3C Orange Events Stage Takeover) ══ */}
+        <TheRealWorld />
 
-        {/* 06. WHO WE WORK WITH (Concrete Grey #E7E7E9) */}
-        <WhoWeWorkWithSection />
+        {/* ══ CH06 — THE PEOPLE (Personal Founder Story, Genuine Assets & Verified Proof) ══ */}
+        <ThePeople />
 
-        {/* 07. ABOUT RIWA (Warm White #F5F4F0) */}
-        <AboutRiwaSection />
+        {/* Narrative Beat bridging Studio Reality into Your Next Idea */}
+        <ManifestoSection eyebrow="STUDIO CREDO // THE RIWA WAY" />
 
-        {/* 08. EVENTS & EXPERIENCES — THE SIGNATURE ORANGE TAKEOVER (#FD7D3C) */}
-        <EventsTakeoverSection />
-
-        {/* 09. LEADERSHIP (Charcoal #111116) */}
-        <LeadershipSection />
-
-        {/* 10. MANIFESTO (Deep Black #07080B) */}
-        <ManifestoSection />
-
-        {/* 11. TESTIMONIALS & VERIFIED PROOF (White #FFFFFF) */}
-        <TestimonialsSection />
-
-        {/* 12. FAQ (Concrete Grey #E7E7E9) */}
-        <FAQSection />
-
-        {/* 13. FINAL CTA (Riwa Red #EA1E4D) */}
-        <FinalCTASection />
+        {/* ══ CH07 — THE NEXT IDEA (Enquiry Selectors, Direct Brief & Editorial FAQ) ══ */}
+        <TheNextIdea />
       </main>
 
-      {/* 14. FOOTER (Charcoal #111116) */}
       <EditorialFooter />
     </>
   );

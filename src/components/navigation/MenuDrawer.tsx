@@ -107,7 +107,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
               <img
                 src="/brand/riwa-logo-official.png"
                 alt="Riwa Creatives Official Logo"
-                className="h-11 w-auto object-contain shrink-0"
+                className="h-14 w-auto object-contain shrink-0"
               />
               <span className="font-display font-extrabold text-sm sm:text-lg tracking-tight uppercase whitespace-nowrap">
                 RIWA <span className="text-brand-red">CREATIVES</span>

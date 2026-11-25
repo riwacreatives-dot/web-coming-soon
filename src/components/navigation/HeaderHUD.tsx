@@ -25,18 +25,18 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
     <>
       {/* Desktop / Laptop HUD Navigation (>= 768px — 100% Preserved) */}
       <header className="hidden md:flex fixed top-3 sm:top-6 inset-x-0 z-50 items-center justify-center px-3 sm:px-4 pointer-events-none transition-all duration-300">
-        <nav className="pointer-events-auto inline-flex items-center gap-2.5 sm:gap-4.5 px-2.5 sm:px-4.5 py-1.5 sm:py-2 rounded-2xl bg-surface/90 backdrop-blur-xl border border-line-border shadow-[0_12px_40px_rgba(0,0,0,0.35)] text-text-primary transition-all max-w-[calc(100vw-1.5rem)]">
+        <nav className="pointer-events-auto inline-flex items-center gap-3 sm:gap-5 px-4 sm:px-5 py-2 rounded-2xl bg-surface/90 backdrop-blur-xl border border-line-border shadow-[0_12px_40px_rgba(0,0,0,0.35)] text-text-primary transition-all max-w-[calc(100vw-1.5rem)]">
           {/* Left: Official Riwa Logo */}
           <Link
             to="/"
             data-cursor-text="HOME"
             title="RIWA Creatives Home"
-            className="group flex items-center gap-2 cursor-pointer select-none shrink-0"
+            className="group flex items-center gap-2 cursor-pointer select-none shrink-0 -my-1"
           >
             <img
               src="/brand/riwa-logo-official.png"
               alt="Riwa Creatives Logo"
-              className="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform"
+              className="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
             />
           </Link>
 
@@ -145,12 +145,12 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
           <Link
             to="/"
             aria-label="RIWA Creatives Home"
-            className="flex items-center gap-2 min-h-[42px] pr-2 select-none touch-manipulation"
+            className="flex items-center gap-2 min-h-[44px] pr-2 select-none touch-manipulation"
           >
             <img
               src="/brand/riwa-logo-official.png"
               alt="Riwa Creatives Logo"
-              className="h-9 w-auto object-contain"
+              className="h-11 w-auto object-contain"
             />
           </Link>
 

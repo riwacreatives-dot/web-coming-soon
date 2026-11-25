@@ -109,7 +109,7 @@ export const EditorialFooter: React.FC = () => {
               <img
                 src="/brand/riwa-logo-official.png"
                 alt="Riwa Creatives Official Logo"
-                className="h-16 sm:h-20 w-auto object-contain"
+                className="h-24 sm:h-28 w-auto object-contain"
               />
               <span className="font-display text-xl sm:text-2xl font-black uppercase text-white tracking-tight">
                 RIWA CREATIVES®

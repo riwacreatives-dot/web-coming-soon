@@ -1,19 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export const ManifestoSection: React.FC = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <div className="w-full bg-[#07080B] text-white border-y border-white/10 relative overflow-hidden select-none transition-colors">
+    <div className="w-full bg-[#111116] text-white border-y border-white/10 relative overflow-hidden select-none transition-colors">
       <section
         id="manifesto"
-        className="relative z-10 min-h-[75vh] sm:min-h-[85vh] flex flex-col justify-center py-24 sm:py-36 px-4 sm:px-8 md:px-12 max-w-6xl mx-auto"
+        className="relative z-10 min-h-[70vh] sm:min-h-[82vh] flex flex-col justify-center py-24 sm:py-36 px-4 sm:px-8 md:px-12 max-w-6xl mx-auto"
       >
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-8 sm:space-y-12"
+          className="space-y-10 sm:space-y-14"
         >
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.28em] text-[#EA1E4D] font-bold block">
             10 / THE RIWA MANIFESTO
@@ -28,22 +31,16 @@ export const ManifestoSection: React.FC = () => {
             <span className="text-[#EA1E4D]">.</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-6 border-t border-white/15 font-sans text-base sm:text-lg text-white/75 leading-relaxed">
-            <div className="md:col-span-6 space-y-2 text-white font-medium">
-              <p>We believe in questions that challenge.</p>
-              <p>Ideas that disrupt.</p>
-              <p>Design that communicates.</p>
-              <p>Work that means something.</p>
+          <div className="pt-8 border-t border-white/15 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="space-y-2 font-display text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-tight text-white/90">
+              <p>WE BELIEVE IN IDEAS THAT MOVE.</p>
+              <p>DESIGN THAT SPEAKS.</p>
+              <p>EXECUTION THAT MATTERS.</p>
             </div>
 
-            <div className="md:col-span-6 space-y-4">
-              <p>
-                We believe that brands deserve more than templates. That creativity deserves discipline. That execution matters as much as imagination.
-              </p>
-              <p className="font-display font-black text-xl sm:text-2xl uppercase tracking-wider text-white pt-2">
-                THAT&apos;S THE RIWA WAY<span className="text-[#EA1E4D]">.</span>
-              </p>
-            </div>
+            <p className="font-display font-black text-2xl sm:text-3xl uppercase tracking-wider text-white shrink-0">
+              THAT&apos;S THE RIWA WAY<span className="text-[#EA1E4D]">.</span>
+            </p>
           </div>
         </motion.div>
       </section>

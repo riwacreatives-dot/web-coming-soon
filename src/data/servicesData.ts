@@ -33,7 +33,8 @@ export const CAPABILITIES_DATA: ServiceItem[] = [
     ],
     collaborationModel:
       'We begin with strategic discovery alongside founders, craft a tailored visual system, and optionally stay retained for ongoing brand stewardship across campaigns and launches.',
-    relatedProjectIds: ['solanas-silk', 'solanas-steamer'],
+    relatedProjectIds: ['solanas-campaign'],
+    previewImage: '/work/solanas-poster.jpg',
   },
   {
     id: 'commercial-advertising',
@@ -65,7 +66,8 @@ export const CAPABILITIES_DATA: ServiceItem[] = [
     ],
     collaborationModel:
       'Rapid campaign sprints: concept territories, shoot/art direction, asset production, and delivery sized cleanly across Meta, outdoor print, and storefront placements.',
-    relatedProjectIds: ['solanas-baddies', 'solanas-sushi'],
+    relatedProjectIds: ['solanas-campaign'],
+    previewImage: '/work/solanas-chilli-chicken.jpg',
   },
   {
     id: 'digital-growth',
@@ -97,7 +99,8 @@ export const CAPABILITIES_DATA: ServiceItem[] = [
     ],
     collaborationModel:
       'Structured monthly or sprint-based growth partnerships uniting content strategy, creative testing, and transparent reporting.',
-    relatedProjectIds: ['solanas-baddies', 'solanas-sushi'],
+    relatedProjectIds: ['solanas-campaign'],
+    previewImage: '/work/solanas-sushi.png',
   },
   {
     id: 'technology-experiences',
@@ -129,6 +132,7 @@ export const CAPABILITIES_DATA: ServiceItem[] = [
     collaborationModel:
       'Tight UI/UX prototyping followed by clean frontend engineering, device responsiveness testing, and launch deployment.',
     relatedProjectIds: ['dtc-accelerator-concept', 'hack-uttar-pradesh'],
+    previewImage: '/work/solanas-green-dimsum.png',
   },
   {
     id: 'events-experiences',

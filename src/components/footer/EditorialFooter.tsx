@@ -10,20 +10,13 @@ const logoContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
   },
 };
 
 const letterVariants: Variants = {
   hidden: { opacity: 0, y: 35 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const dotVariants: Variants = {
@@ -60,92 +53,78 @@ export const EditorialFooter: React.FC = () => {
 
   return (
     <div className="w-full bg-[#111116] text-white border-t border-white/10">
-      <footer className="relative w-full pt-12 md:pt-16 pb-32 md:pb-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto">
-        {/* Hub Quick Links Bar */}
-        <div className="py-4 md:py-8 border-b border-white/10 flex flex-col md:flex-row md:flex-wrap md:items-center justify-between gap-2 md:gap-6 font-mono text-xs sm:text-sm">
-          <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-0 md:gap-8 w-full md:w-auto">
-            <button
-              type="button"
-              onClick={() => setActiveModal('brand-dalal')}
-              className="group w-full md:w-auto min-h-[48px] md:min-h-0 flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 border-b border-white/10 md:border-none text-white hover:text-[#FD7D3C] font-bold cursor-pointer transition-colors touch-manipulation"
-            >
-              <span>Brand Dalal Division</span>
-              <ArrowUpRight size={15} className="text-[#FD7D3C]" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('careers')}
-              className="group w-full md:w-auto min-h-[48px] md:min-h-0 flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 border-b border-white/10 md:border-none text-white hover:text-[#EA1E4D] font-bold cursor-pointer transition-colors touch-manipulation"
-            >
-              <span>Careers: Founder&apos;s Office</span>
-              <ArrowUpRight size={15} className="text-[#EA1E4D]" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('portal')}
-              className="group w-full md:w-auto min-h-[48px] md:min-h-0 flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 border-b border-white/10 md:border-none text-white hover:text-emerald-400 font-bold cursor-pointer transition-colors touch-manipulation"
-            >
-              <span>Client Portal Demo</span>
-              <ArrowUpRight size={15} className="text-emerald-400" />
-            </button>
+      <footer className="relative w-full pt-12 md:pt-16 pb-28 md:pb-24 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto">
+        {/* Studio Brand Bar */}
+        <div className="pb-8 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <img
+              src="/brand/riwa-logo-official.png"
+              alt="Riwa Creatives Official Logo"
+              className="h-16 sm:h-20 w-auto object-contain"
+            />
+            <div>
+              <span className="font-display text-lg sm:text-xl font-black uppercase text-white tracking-tight block">
+                RIWA CREATIVES®
+              </span>
+              <span className="font-mono text-xs text-white/60 block">
+                MAKING UNREASONABLE BRANDS HAPPEN<span className="text-[#EA1E4D]">.</span>
+              </span>
+            </div>
           </div>
 
           <button
             type="button"
             onClick={scrollToTop}
-            className="w-full md:w-auto min-h-[44px] md:min-h-0 text-white/50 hover:text-white uppercase tracking-wider text-xs sm:text-sm font-bold cursor-pointer touch-manipulation text-center md:text-right pt-2 md:pt-0"
+            className="self-start sm:self-auto font-mono text-xs sm:text-sm text-white/60 hover:text-white uppercase tracking-wider font-bold cursor-pointer"
           >
             [ Back To Top ↑ ]
           </button>
         </div>
 
-        {/* Editorial Directory Grid */}
-        <div className="py-10 md:py-14 border-b border-white/10 grid grid-cols-1 md:grid-cols-12 gap-8 font-mono text-xs sm:text-sm">
-          {/* Official Brand Logo + Signature */}
-          <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-4">
-              <img
-                src="/brand/riwa-logo-official.png"
-                alt="Riwa Creatives Official Logo"
-                className="h-24 sm:h-28 w-auto object-contain"
-              />
-              <span className="font-display text-xl sm:text-2xl font-black uppercase text-white tracking-tight">
-                RIWA CREATIVES®
-              </span>
-            </div>
-            <p className="text-white font-bold">
-              MAKING UNREASONABLE BRANDS HAPPEN<span className="text-[#EA1E4D] font-black">.</span>
-            </p>
-            <p className="font-sans text-white/60 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Independent Creative &amp; Growth Studio uniting brand identity, commercial advertising, technology, and live event experiences.
-            </p>
-          </div>
-
-          {/* Explore Links */}
-          <div className="md:col-span-3 space-y-3">
+        {/* 4 Information Groups: STUDIO · CAPABILITIES · CONNECT · INFORMATION */}
+        <div className="py-10 md:py-14 border-b border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-8 font-mono text-xs sm:text-sm">
+          {/* Group 01: STUDIO */}
+          <div className="space-y-3">
             <span className="text-white/45 uppercase tracking-widest text-[11px] font-bold block">
-              Explore
+              STUDIO
             </span>
             <ul className="space-y-2 text-white">
               <li><Link to="/" className="hover:text-[#EA1E4D] transition-colors">Home</Link></li>
-              <li><Link to="/work" className="hover:text-[#EA1E4D] transition-colors">Work</Link></li>
-              <li><Link to="/services" className="hover:text-[#EA1E4D] transition-colors">Services</Link></li>
-              <li><Link to="/about" className="hover:text-[#EA1E4D] transition-colors">About</Link></li>
+              <li><Link to="/about" className="hover:text-[#EA1E4D] transition-colors">About Riwa</Link></li>
               <li><Link to="/leadership" className="hover:text-[#EA1E4D] transition-colors">Leadership</Link></li>
+              <li><a href="/#process" className="hover:text-[#EA1E4D] transition-colors">Our Process</a></li>
             </ul>
           </div>
 
-          {/* Connect Links (Preserved Real Coordinates) */}
-          <div className="md:col-span-4 space-y-3">
+          {/* Group 02: CAPABILITIES */}
+          <div className="space-y-3">
             <span className="text-white/45 uppercase tracking-widest text-[11px] font-bold block">
-              Connect
+              CAPABILITIES
+            </span>
+            <ul className="space-y-2 text-white">
+              <li><Link to="/services/brand-identity" className="hover:text-[#EA1E4D] transition-colors">Brand &amp; Identity</Link></li>
+              <li><Link to="/services/commercial-advertising" className="hover:text-[#EA1E4D] transition-colors">Commercial Creative</Link></li>
+              <li><Link to="/services/digital-growth" className="hover:text-[#EA1E4D] transition-colors">Digital &amp; Growth</Link></li>
+              <li><Link to="/services/technology-experiences" className="hover:text-[#EA1E4D] transition-colors">Technology &amp; Web</Link></li>
+              <li><Link to="/services/events-experiences" className="hover:text-[#FD7D3C] transition-colors">Events &amp; Activations</Link></li>
+            </ul>
+          </div>
+
+          {/* Group 03: CONNECT */}
+          <div className="space-y-3">
+            <span className="text-white/45 uppercase tracking-widest text-[11px] font-bold block">
+              CONNECT
             </span>
             <ul className="space-y-2 text-white">
               <li>
-                <a href="mailto:riwacreatives@gmail.com" className="hover:text-[#EA1E4D] transition-colors">
-                  Email · riwacreatives@gmail.com
+                <Link to="/contact" className="text-[#EA1E4D] font-bold hover:underline inline-flex items-center gap-1">
+                  <span>Start a Project</span>
+                  <ArrowUpRight size={13} />
+                </Link>
+              </li>
+              <li>
+                <a href="mailto:riwacreatives@gmail.com" className="hover:text-[#EA1E4D] transition-colors break-all">
+                  riwacreatives@gmail.com
                 </a>
               </li>
               <li>
@@ -158,28 +137,43 @@ export const EditorialFooter: React.FC = () => {
                   WhatsApp · +91 70150 48144
                 </a>
               </li>
+            </ul>
+          </div>
+
+          {/* Group 04: INFORMATION */}
+          <div className="space-y-3">
+            <span className="text-white/45 uppercase tracking-widest text-[11px] font-bold block">
+              INFORMATION
+            </span>
+            <ul className="space-y-2 text-white">
+              <li><Link to="/work" className="hover:text-[#EA1E4D] transition-colors">The Creative Archive</Link></li>
+              <li><a href="/#faq" className="hover:text-[#EA1E4D] transition-colors">Studio FAQs</a></li>
               <li>
-                <Link to="/contact?type=event" className="hover:text-[#FD7D3C] transition-colors">
-                  Events · Commission an Experience
-                </Link>
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('careers')}
+                  className="hover:text-[#EA1E4D] transition-colors text-left cursor-pointer"
+                >
+                  Careers · Founder&apos;s Office
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('brand-dalal')}
+                  className="hover:text-[#FD7D3C] transition-colors text-left cursor-pointer"
+                >
+                  Brand Dalal Division
+                </button>
               </li>
             </ul>
-
-            <div className="pt-3">
-              <span className="text-xs uppercase text-white/50 block mb-1 font-bold">
-                Have a bold brief?
-              </span>
-              <Link to="/contact" className="inline-flex items-center gap-1.5 text-[#EA1E4D] font-bold hover:underline">
-                <span>START A PROJECT ■</span>
-              </Link>
-            </div>
           </div>
         </div>
 
         {/* Monumental "RIWA." Wordmark */}
         <div
           ref={logoSectionRef}
-          className="group relative py-12 sm:py-24 select-none overflow-visible flex items-end justify-center"
+          className="group relative py-12 sm:py-20 select-none overflow-visible flex items-end justify-center"
         >
           <motion.h2
             data-no-spotlight="true"

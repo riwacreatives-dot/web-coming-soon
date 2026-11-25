@@ -2,50 +2,48 @@ export interface FAQItem {
   id: string;
   question: string;
   answer: string;
-  category?: string;
+  category:
+    | 'Working with Riwa'
+    | 'Services'
+    | 'Pricing & Scope'
+    | 'Ongoing Brand Management'
+    | 'Events & Experiences';
 }
 
 export const FAQ_DATA: FAQItem[] = [
   {
     id: 'faq-01',
-    question: 'What services does Riwa Creatives offer?',
+    category: 'Working with Riwa',
+    question: 'How does working with Riwa begin, and who do we collaborate with?',
     answer:
-      'Riwa Creatives operates across five connected disciplines: Brand & Identity (including ongoing brand stewardship), Commercial Creative & Advertising, Digital & Growth, Technology & Digital Experiences, and Events, Experiences & Activations.',
-    category: 'Services',
+      'Every project begins with a direct conversation with founder Ranjan Kumar—never passed down to layers of account managers. Tell us what you are building via our Commission page or email riwacreatives@gmail.com to align on objectives and timeline.',
   },
   {
     id: 'faq-02',
-    question: 'Can Riwa manage events, hackathons, MUNs, or festivals end-to-end?',
+    category: 'Services',
+    question: 'What core creative and growth disciplines does Riwa handle?',
     answer:
-      'Yes. We conceptualize, brand, promote, and coordinate live experiences including hackathons, Model UN conferences, college festivals, and corporate summits—handling identity design, sponsorship decks, participant acquisition, ticketing sites, and on-ground coordination.',
-    category: 'Events',
+      'Riwa operates across five connected practices: Brand & Identity, Commercial Creative & Advertising, Digital & Growth, Technology & Digital Experiences, and Events, Experiences & Activations.',
   },
   {
     id: 'faq-03',
-    question: 'How does pricing work for a project or engagement?',
+    category: 'Pricing & Scope',
+    question: 'How is pricing structured, and can we commission a single project?',
     answer:
-      'Every engagement is scoped based on objectives, deliverables, timeline, and complexity. After an initial brief review, we share a clear, structured proposal before any commitment.',
-    category: 'Pricing',
+      'Yes—you can commission a focused standalone identity, campaign, website, or event without a long-term lock-in. Every proposal is custom-scoped based on deliverables, complexity, and sprint duration.',
   },
   {
     id: 'faq-04',
-    question: 'Can I hire Riwa for a single project or ongoing collaboration?',
+    category: 'Ongoing Brand Management',
+    question: 'Does Riwa support ongoing brand management and creative stewardship?',
     answer:
-      'Both. You can commission us for a single brand identity, campaign, website, or event—or partner with us on ongoing brand stewardship and multi-sprint growth.',
-    category: 'Collaboration',
+      'Yes. Beyond launching a visual system, we provide ongoing brand stewardship and monthly creative retainers to ensure every campaign, deck, storefront update, and visual drop stays consistent and sharp as you scale.',
   },
   {
     id: 'faq-05',
-    question: 'How does a project begin with Riwa?',
+    category: 'Events & Experiences',
+    question: 'Can Riwa handle hackathons, MUNs, festivals, and conferences end-to-end?',
     answer:
-      'Share what you are building through the Commission page or email riwacreatives@gmail.com. We review your brief directly at the founder desk and schedule a kickoff conversation to align on direction and scope.',
-    category: 'Initiation',
-  },
-  {
-    id: 'faq-06',
-    question: 'Are we open to creative collaborations or partnerships?',
-    answer:
-      'Yes. We regularly collaborate with ambitious founders, organizing committees, specialized creators, and technology partners on work that shares our standard of craft.',
-    category: 'Collaboration',
+      'Yes. We handle everything from concept and visual identity to sponsor decks, participant acquisition, digital ticketing/registration portals, and on-ground event coordination.',
   },
 ];

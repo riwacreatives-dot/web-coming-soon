@@ -13,7 +13,7 @@ const AUDIENCES: Audience[] = [
     id: 'startups',
     number: '01',
     title: 'STARTUPS & FOUNDERS.',
-    description: 'For founders turning an early conviction into a distinctive brand, a product, or a growing company.',
+    description: 'For founders turning an early conviction into a distinctive brand, flagship launch, or growing company.',
   },
   {
     id: 'growing-biz',
@@ -23,18 +23,18 @@ const AUDIENCES: Audience[] = [
       'For established businesses ready to sharpen their identity, elevate commercial creative, and win new audiences.',
   },
   {
-    id: 'brands',
+    id: 'established-brands',
     number: '03',
-    title: 'BRANDS & ORGANIZATIONS.',
+    title: 'ESTABLISHED BRANDS.',
     description:
-      'For teams looking for fresh creative thinking, compelling campaigns, and meaningful communication across channels.',
+      'For marketing and brand teams seeking fresh creative direction, ongoing brand stewardship, and campaigns with teeth.',
   },
   {
-    id: 'events',
+    id: 'event-organizers',
     number: '04',
-    title: 'EVENTS & COMMUNITIES.',
+    title: 'EVENT ORGANIZERS.',
     description:
-      'For organizers conceptualizing hackathons, conferences, college festivals, and live experiences that bring people together.',
+      'For teams building hackathons, Model UN assemblies, college festivals, and live summits that unite people.',
   },
 ];
 
@@ -59,26 +59,24 @@ export const WhoWeWorkWithSection: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[#111116]/20 dark:border-white/15">
+        {/* Pure Typographic Editorial Rows (Zero Repetitive Boxed Cards) */}
+        <div className="border-t-2 border-[#111116]/25 dark:border-white/20 divide-y divide-[#111116]/20 dark:divide-white/15">
           {AUDIENCES.map((a, idx) => (
             <motion.div
               key={a.id}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: idx * 0.06 }}
-              className="p-6 sm:p-8 border-r border-b border-[#111116]/20 dark:border-white/15 flex flex-col justify-between bg-[#E7E7E9] dark:bg-[#0B0B0F] hover:bg-white dark:hover:bg-[#17171D] transition-colors duration-300"
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="py-7 sm:py-9 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline hover:px-2 transition-all"
             >
-              <div>
-                <span className="font-mono text-xs font-bold text-[#EA1E4D] tracking-widest block mb-6">
-                  // {a.number}
-                </span>
-                <h3 className="font-display text-lg sm:text-xl font-black uppercase tracking-tight text-[#111116] dark:text-white mb-3 leading-snug">
-                  {a.title}
-                </h3>
-              </div>
-
-              <p className="font-sans text-xs sm:text-sm text-[#52525B] dark:text-white/70 leading-relaxed mt-4">
+              <span className="md:col-span-2 font-mono text-xs sm:text-sm font-bold text-[#EA1E4D] tracking-widest">
+                // {a.number}
+              </span>
+              <h3 className="md:col-span-4 font-display text-xl sm:text-2xl font-black uppercase tracking-tight text-[#111116] dark:text-white">
+                {a.title}
+              </h3>
+              <p className="md:col-span-6 font-sans text-sm sm:text-base text-[#52525B] dark:text-white/75 leading-relaxed">
                 {a.description}
               </p>
             </motion.div>

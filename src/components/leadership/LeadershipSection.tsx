@@ -21,7 +21,6 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
             : 'py-16 sm:py-24 md:py-36'
         } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
       >
-        {/* Header Eyebrow & Title */}
         <div className="max-w-2xl mb-12 sm:mb-16">
           <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-white/60 font-semibold block mb-3 select-none">
             {standalone ? 'STUDIO LEADERSHIP · CREATIVE DIRECTION' : '09 / LEADERSHIP'}
@@ -35,62 +34,63 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
             <span>DIRECTION</span><span className="text-[#EA1E4D]">.</span>
           </h2>
           <p className="mt-4 max-w-xl font-sans text-sm sm:text-base text-white/70 leading-relaxed">
-            Founded and led hands-on with an expanding collective of designers, strategists, developers, and event producers.
+            Founder-led creative direction working closely with confirmed design, engineering, and event collaborators.
           </p>
         </div>
 
-        {/* Confirmed Leadership Focus (Zero Placeholder Team Identities) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-          {/* Left: Portrait Asset Slot Frame */}
-          <div className="lg:col-span-5 bg-[#0B0B0F] border border-white/15 p-6 flex flex-col justify-between min-h-[340px]">
+        {/* Editorial Portrait Gallery Frame (Zero Fake Team Profiles) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
+          <div className="lg:col-span-5 bg-[#0B0B0F] border border-white/15 p-6 flex flex-col justify-between min-h-[360px]">
             <div className="flex items-center justify-between font-mono text-[10px] text-white/50 uppercase tracking-widest pb-3 border-b border-white/10">
-              <span>PRINCIPAL PROFILE // 01</span>
+              <span>PORTRAIT PLATE // 01</span>
               <span className="text-[#EA1E4D] font-bold">FOUNDER</span>
             </div>
 
-            <div className="my-auto py-10 flex flex-col items-center justify-center text-center">
-              <div className="w-24 h-24 rounded-full border border-white/20 bg-[#17171D] flex items-center justify-center mb-4">
-                <span className="font-display text-3xl font-black text-white">
+            <div className="my-auto py-12 flex flex-col items-center justify-center text-center">
+              <div className="w-28 h-28 rounded-full border border-white/20 bg-[#17171D] flex items-center justify-center mb-4">
+                <span className="font-display text-4xl font-black text-white">
                   RK<span className="text-[#EA1E4D]">.</span>
                 </span>
               </div>
-              <span className="font-mono text-[11px] text-white/45 uppercase tracking-widest">
-                [ FOUNDER PORTRAIT PENDING UPLOAD ]
+              <span className="font-mono text-[11px] text-white/55 uppercase tracking-widest">
+                [ REAL PORTRAIT PENDING UPLOAD ]
               </span>
             </div>
 
             <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs text-white/70">
               <span>RANJAN KUMAR</span>
-              <span className="text-[#EA1E4D]">NEW DELHI · INDIA</span>
+              <span className="text-[#EA1E4D]">FOUNDER &amp; CD</span>
             </div>
           </div>
 
-          {/* Right: Confirmed Biography & Studio Collective Structure */}
           <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-10 border border-white/15 bg-[#17171D]">
             <div className="space-y-5">
               <div>
                 <span className="font-mono text-xs text-[#EA1E4D] font-bold uppercase tracking-widest block mb-1.5">
-                  Founder &amp; Creative Director
+                  Confirmed Studio Principal
                 </span>
                 <h3 className="font-display text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
                   Ranjan Kumar
                 </h3>
+                <span className="font-mono text-xs text-white/60 block mt-1">
+                  Founder &amp; Creative Director
+                </span>
               </div>
 
               <p className="font-sans text-sm sm:text-base text-white/80 leading-relaxed">
-                Founded Riwa Creatives around curiosity, collaboration, and the ambition to build work that refuses to blend in. Leading creative direction, brand strategy, commercial production, and digital experiences directly with founders and organizing teams.
+                Founded Riwa Creatives around curiosity, collaboration, and the ambition to build brands and campaigns that stand apart. Works directly with founders and event organizers across brand identity, commercial art direction, growth, and live experiences.
               </p>
 
               <div className="pt-4 border-t border-white/10">
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 font-bold block mb-3">
-                  Core Direction Areas
+                  Lead Responsibilities
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {[
+                    'Creative Direction',
                     'Brand Strategy & Stewardship',
-                    'Commercial Art Direction',
-                    'Digital Experiences',
-                    'Live Event Production',
+                    'Commercial Advertising',
+                    'Experience Architecture',
                   ].map((item) => (
                     <span
                       key={item}
@@ -105,7 +105,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
 
             <div className="pt-8 mt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
               <span className="text-white/50">
-                Collaborator profiles will be published as confirmed team assets are added.
+                Additional confirmed portraits &amp; collaborator profiles will be added upon photo delivery.
               </span>
               <a
                 href="mailto:riwacreatives@gmail.com"
@@ -118,7 +118,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
           </div>
         </div>
 
-        {/* Hiring Banner Featuring Genuine Poster Asset */}
+        {/* Genuine Studio Hiring Call with Official Poster Visual */}
         <div className="border border-[#EA1E4D]/40 bg-[#17171D] p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-start sm:items-center gap-5">
             <img
@@ -129,7 +129,7 @@ export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ standalone
             />
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#FD7D3C] font-bold flex items-center gap-1.5 mb-1">
-                <Sparkles size={13} /> Open Studio Role · Collaborations Welcome
+                <Sparkles size={13} /> Open Role · Join The Collective
               </span>
               <h4 className="font-display text-xl font-bold uppercase text-white">
                 We&apos;re Hiring: Founder&apos;s Office Role

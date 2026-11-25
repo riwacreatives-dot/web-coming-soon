@@ -194,7 +194,7 @@ export const HeroSection: React.FC = () => {
                 </motion.div>
 
                 <Link
-                  to="/work/solanas-baddies"
+                  to="/work/solanas-campaign"
                   data-cursor-text="CAMPAIGN"
                   className="block w-full bg-[#FFFFFF] p-2 pb-4 border border-[#111116]/15 shadow-[0_22px_44px_rgba(17,17,22,0.18)] dark:shadow-[0_22px_44px_rgba(0,0,0,0.55)]"
                 >
@@ -391,7 +391,7 @@ export const HeroSection: React.FC = () => {
 
               {/* Mobile Artifact 02: Campaign */}
               <Link
-                to="/work/solanas-baddies"
+                to="/work/solanas-campaign"
                 className="flex flex-col gap-2 pt-4"
               >
                 <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-[#52525B] dark:text-white/60 uppercase">

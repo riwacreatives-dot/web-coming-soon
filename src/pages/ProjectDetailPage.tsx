@@ -9,7 +9,8 @@ export const ProjectDetailPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
 
-  const projectIndex = PROJECTS_DATA.findIndex((p) => p.id === projectId);
+  const resolvedId = projectId === 'solanas-baddies' ? 'solanas-campaign' : projectId;
+  const projectIndex = PROJECTS_DATA.findIndex((p) => p.id === resolvedId);
   const project = projectIndex >= 0 ? PROJECTS_DATA[projectIndex] : null;
 
   useDocumentMeta({

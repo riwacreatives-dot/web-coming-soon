@@ -39,10 +39,15 @@ export const FAQSection: React.FC = () => {
                   onClick={() => toggle(item.id)}
                   className="w-full py-6 sm:py-7 flex items-center justify-between gap-4 text-left group cursor-pointer touch-manipulation"
                 >
-                  <div className="flex items-center gap-4 sm:gap-6">
-                    <span className="font-mono text-xs sm:text-sm text-[#EA1E4D] font-bold">
-                      0{idx + 1}
-                    </span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 min-w-0">
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="font-mono text-xs sm:text-sm text-[#EA1E4D] font-bold">
+                        0{idx + 1}
+                      </span>
+                      <span className="px-2 py-0.5 bg-[#111116]/10 dark:bg-white/10 font-mono text-[10px] uppercase tracking-wider text-[#52525B] dark:text-white/70">
+                        {item.category}
+                      </span>
+                    </div>
                     <span className="font-display text-base sm:text-xl font-bold uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
                       {item.question}
                     </span>
@@ -66,7 +71,7 @@ export const FAQSection: React.FC = () => {
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="pb-7 pl-8 sm:pl-12 max-w-3xl">
+                      <div className="pb-7 pl-0 sm:pl-12 max-w-3xl">
                         <p className="font-sans text-sm sm:text-base text-[#3F3F46] dark:text-white/75 leading-relaxed">
                           {item.answer}
                         </p>

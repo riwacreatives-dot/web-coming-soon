@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 export type ChapterIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export const CHAPTER_IDS = [
-  'chapter-spark',
+  'hero',
   'chapter-point-of-view',
   'chapter-attention',
   'chapter-world',

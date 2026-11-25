@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Geometric Crow Emblem -->
+  <polygon points="50,8 88,32 78,78 50,94 22,78 12,32" stroke="currentColor" stroke-width="3" fill="none" opacity="0.3"/>
+  <!-- Crow Head & Beak Profile -->
+  <path d="M 32 36 L 50 20 L 72 32 L 84 46 L 56 46 L 46 62 L 36 60 L 44 48 Z" fill="currentColor"/>
+  <!-- Sharp Beak -->
+  <polygon points="72,32 94,42 66,45" fill="#FF2A55"/>
+  <!-- Predatory Eye Dot -->
+  <circle cx="58" cy="34" r="3" fill="#FF2A55"/>
+  <circle cx="58" cy="34" r="1.2" fill="#FFFFFF"/>
+</svg>
+

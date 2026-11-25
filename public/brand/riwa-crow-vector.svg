@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" fill="none">
+  <!-- Minimalist Vector Crow Silhouette -->
+  <g id="riwa-crow-body" opacity="0.95">
+    <!-- Wing Silhouette -->
+    <path d="M 40 140 C 70 80, 130 50, 210 60 C 230 62, 260 75, 280 95 C 240 110, 180 130, 130 145 C 90 155, 60 150, 40 140 Z" fill="currentColor"/>
+    <!-- Head & Throat -->
+    <path d="M 210 60 C 220 40, 240 30, 265 32 C 278 40, 285 55, 280 75 C 265 80, 245 75, 230 70 Z" fill="currentColor"/>
+    <!-- Beak -->
+    <path d="M 265 32 L 295 44 L 275 52 Z" fill="#FF2A55"/>
+    <!-- Eye -->
+    <circle cx="260" cy="42" r="3" fill="#FF2A55"/>
+    <!-- Feather Shards -->
+    <path d="M 50 145 L 20 165 L 60 152 Z" fill="currentColor" opacity="0.8"/>
+    <path d="M 80 150 L 45 180 L 92 155 Z" fill="currentColor" opacity="0.6"/>
+  </g>
+</svg>
+

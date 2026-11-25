@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root[data-theme="dark"],
+:root:not([data-theme="light"]) {
+  --bg-canvas: #050608;
+  --bg-surface: #0d0f14;
+  --text-primary: #ffffff;
+  --text-secondary: #8e95a5;
+  --text-mono: #b0b6c4;
+  --border-line: rgba(255, 255, 255, 0.12);
+  --border-line-strong: rgba(255, 255, 255, 0.25);
+  --accent-red: #ff2a55;
+  --accent-amber: #f5b31b;
+  --spotlight-base: #ffffff;
+  --spotlight-accent: #ff2a55;
+}
+
+:root[data-theme="light"] {
+  --bg-canvas: #f9f9fb;
+  --bg-surface: #ffffff;
+  --text-primary: #0a0b0e;
+  --text-secondary: #4b5262;
+  --text-mono: #2d3139;
+  --border-line: rgba(0, 0, 0, 0.12);
+  --border-line-strong: rgba(0, 0, 0, 0.25);
+  --accent-red: #e11d48;
+  --accent-amber: #d97706;
+  --spotlight-base: #0a0b0e;
+  --spotlight-accent: #e11d48;
+}
+
+/* ==========================================================================
+   Light Mode Box Shadows & Contrast Elevation (Addresses Item 2 & 3)
+   ========================================================================== */
+
+:root[data-theme="light"] [class*="rounded-2xl"].border,
+:root[data-theme="light"] [class*="rounded-xl"].border,
+:root[data-theme="light"] [class*="rounded-3xl"].border,
+:root[data-theme="light"] form.border {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 24px -4px rgba(0, 0, 0, 0.07),
+    0 20px 48px -8px rgba(0, 0, 0, 0.05) !important;
+}
+
+:root[data-theme="light"] [class*="rounded-2xl"].border:hover,
+:root[data-theme="light"] [class*="rounded-xl"].border:hover {
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    0 12px 32px -4px rgba(0, 0, 0, 0.09),
+    0 24px 54px -8px rgba(0, 0, 0, 0.07) !important;
+}
+
+:root[data-theme="light"] button.rounded-full.border:not(.bg-brand-red),
+:root[data-theme="light"] .rounded-full.border:not(.bg-brand-red) {
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+:root[data-theme="light"] button.rounded-full.border:not(.bg-brand-red):hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+html {
+  scroll-behavior: auto !important;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Optimize touch interactions & remove grey mobile tap highlight box */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+input,
+textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent iOS Safari unwanted auto-zoom on form input focus */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Completely hide native OS mouse cursor while on the webpage */
+@media (pointer: fine) {
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  border-color: var(--border-line);
+}
+
+/* Accessible focus ring */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-red);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-line-strong);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
+}
+
+/* Kinetic typography utilities */
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ==========================================================================
+   Interactive Circular Mouse Hover Text Spotlight
+   ========================================================================== */
+
+/* Always enforce vibrant red on genuine brand-red text */
+.text-brand-red {
+  color: var(--accent-red) !important;
+  -webkit-text-fill-color: var(--accent-red) !important;
+}
+
+/* Guard: Prevent any background-clip text transparency anomalies */
+[data-no-spotlight],
+[data-no-spotlight] *,
+footer h2,
+footer h2 * {
+  -webkit-text-fill-color: currentColor !important;
+  color: inherit !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+}
+
+/* ==========================================================================
+   Mobile-Only Touch Ergonomics, Scroll Snap & Optical Focus (< 768px)
+   ========================================================================== */
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-snap-track {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  /* Oversized tactile range slider thumb with comfortable hit ergonomics */
+  input[type="range"].riwa-mobile-slider {
+    height: 32px;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="range"].riwa-mobile-slider::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--border-line-strong);
+  }
+
+  input[type="range"].riwa-mobile-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 26px;
+    height: 26px;
+    margin-top: -10px;
+    border-radius: 9999px;
+    background: var(--accent-red);
+    border: 3px solid var(--bg-canvas);
+    box-shadow: 0 4px 16px rgba(255, 42, 85, 0.45);
+    transition: transform 0.15s ease;
+  }
+
+  input[type="range"].riwa-mobile-slider:active::-webkit-slider-thumb {
+    transform: scale(1.15);
+  }
+
+  input[type="range"].riwa-mobile-slider::-moz-range-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--border-line-strong);
+  }
+
+  input[type="range"].riwa-mobile-slider::-moz-range-thumb {
+    width: 26px;
+    height: 26px;
+    border-radius: 9999px;
+    background: var(--accent-red);
+    border: 3px solid var(--bg-canvas);
+    box-shadow: 0 4px 16px rgba(255, 42, 85, 0.45);
+  }
+}
+
+/* Scroll-triggered optical crimson luminance on touch-primary devices only */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-scroll-focus {
+    transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :root[data-theme="dark"] .mobile-scroll-focus[data-inview="true"],
+  :root:not([data-theme="light"]) .mobile-scroll-focus[data-inview="true"] {
+    filter: drop-shadow(0 0 14px rgba(255, 42, 85, 0.45));
+  }
+
+  :root[data-theme="light"] .mobile-scroll-focus[data-inview="true"] {
+    filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.3));
+  }
+}
+

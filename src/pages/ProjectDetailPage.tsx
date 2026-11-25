@@ -43,13 +43,13 @@ export const ProjectDetailPage: React.FC = () => {
 
   return (
     <>
-      <main className="w-full bg-[#FFFFFF] text-[#111116] pt-28 sm:pt-36">
+      <main className="w-full bg-[#FFFFFF] dark:bg-[#0B0B0F] text-[#111116] dark:text-white pt-28 sm:pt-36 transition-colors">
         {/* Case-Study Introduction */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 pb-12 sm:pb-16 border-b border-[#111116]/15">
+        <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 pb-12 sm:pb-16 border-b border-[#111116]/15 dark:border-white/15">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <Link
               to="/work"
-              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#52525B] hover:text-[#111116] font-bold transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#52525B] dark:text-white/60 hover:text-[#111116] dark:hover:text-white font-bold transition-colors"
             >
               <ArrowLeft size={14} />
               <span>Back to Creative Archive</span>
@@ -58,7 +58,7 @@ export const ProjectDetailPage: React.FC = () => {
             <div className="flex items-center gap-2 font-mono text-xs">
               <span className="text-[#EA1E4D] font-bold">{project.archiveCode}</span>
               {project.isConcept && (
-                <span className="px-2.5 py-0.5 bg-[#111116] text-white text-[10px] font-bold uppercase tracking-widest">
+                <span className="px-2.5 py-0.5 bg-[#111116] dark:bg-white text-white dark:text-[#111116] text-[10px] font-bold uppercase tracking-widest">
                   Self-Initiated / Concept Work
                 </span>
               )}
@@ -71,22 +71,22 @@ export const ProjectDetailPage: React.FC = () => {
                 {project.title}
                 <span className="text-[#EA1E4D]">.</span>
               </h1>
-              <p className="font-sans text-base sm:text-xl text-[#52525B] leading-relaxed max-w-2xl">
+              <p className="font-sans text-base sm:text-xl text-[#52525B] dark:text-white/70 leading-relaxed max-w-2xl">
                 {project.headline} — {project.description}
               </p>
             </div>
 
-            <div className="lg:col-span-4 lg:text-right font-mono text-xs space-y-2 border-t lg:border-t-0 pt-6 lg:pt-0 border-[#111116]/15">
+            <div className="lg:col-span-4 lg:text-right font-mono text-xs space-y-2 border-t lg:border-t-0 pt-6 lg:pt-0 border-[#111116]/15 dark:border-white/15">
               <div>
-                <span className="text-[#71717A] block text-[10px] uppercase tracking-widest">Client / Classification</span>
-                <span className="font-bold text-[#111116]">{project.client}</span>
+                <span className="text-[#71717A] dark:text-white/50 block text-[10px] uppercase tracking-widest">Client / Classification</span>
+                <span className="font-bold text-[#111116] dark:text-white">{project.client}</span>
               </div>
               <div>
-                <span className="text-[#71717A] block text-[10px] uppercase tracking-widest">Industry / Domain</span>
-                <span className="font-bold text-[#111116]">{project.industry}</span>
+                <span className="text-[#71717A] dark:text-white/50 block text-[10px] uppercase tracking-widest">Industry / Domain</span>
+                <span className="font-bold text-[#111116] dark:text-white">{project.industry}</span>
               </div>
               <div>
-                <span className="text-[#71717A] block text-[10px] uppercase tracking-widest">Discipline &amp; Year</span>
+                <span className="text-[#71717A] dark:text-white/50 block text-[10px] uppercase tracking-widest">Discipline &amp; Year</span>
                 <span className="font-bold text-[#EA1E4D]">{project.category} · {project.year}</span>
               </div>
             </div>
@@ -95,7 +95,7 @@ export const ProjectDetailPage: React.FC = () => {
 
         {/* Full-Width Hero Showcase Image */}
         <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-10 sm:py-14">
-          <div className="aspect-[16/10] sm:aspect-[21/10] w-full overflow-hidden bg-[#111116] border border-[#111116]/15">
+          <div className="aspect-[16/10] sm:aspect-[21/10] w-full overflow-hidden bg-[#111116] border border-[#111116]/15 dark:border-white/15">
             <img
               src={project.heroImage}
               alt={project.title}
@@ -105,7 +105,7 @@ export const ProjectDetailPage: React.FC = () => {
         </section>
 
         {/* Case-Study Narrative Architecture */}
-        <section className="w-full bg-[#F5F4F0] border-y border-[#111116]/15 py-16 sm:py-24">
+        <section className="w-full bg-[#F5F4F0] dark:bg-[#14141A] border-y border-[#111116]/15 dark:border-white/15 py-16 sm:py-24 transition-colors">
           <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Narrative Columns */}
             <div className="lg:col-span-8 space-y-10">
@@ -116,11 +116,11 @@ export const ProjectDetailPage: React.FC = () => {
                 { num: '04', heading: "RIWA'S ROLE", body: project.role },
                 { num: '05', heading: 'EXECUTION', body: project.execution },
               ].map((block) => (
-                <div key={block.num} className="border-t border-[#111116]/20 pt-5">
+                <div key={block.num} className="border-t border-[#111116]/20 dark:border-white/15 pt-5">
                   <span className="font-mono text-xs font-bold text-[#EA1E4D] uppercase tracking-widest block mb-2">
                     // {block.num} · {block.heading}
                   </span>
-                  <p className="font-sans text-base sm:text-lg text-[#111116] leading-relaxed">
+                  <p className="font-sans text-base sm:text-lg text-[#111116] dark:text-white/90 leading-relaxed">
                     {block.body}
                   </p>
                 </div>
@@ -143,11 +143,11 @@ export const ProjectDetailPage: React.FC = () => {
 
             {/* Sidebar Deliverables & Inquiry */}
             <div className="lg:col-span-4 space-y-8">
-              <div className="p-6 sm:p-8 bg-white border border-[#111116]/15 space-y-5">
+              <div className="p-6 sm:p-8 bg-white dark:bg-[#1B1B22] border border-[#111116]/15 dark:border-white/15 space-y-5">
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#EA1E4D] font-bold block">
                   ✦ Scope &amp; Deliverables
                 </span>
-                <ul className="space-y-3 font-mono text-xs text-[#111116]">
+                <ul className="space-y-3 font-mono text-xs text-[#111116] dark:text-white/85">
                   {project.deliverables.map((d) => (
                     <li key={d} className="flex items-start gap-2.5">
                       <CheckCircle2 size={14} className="text-[#EA1E4D] shrink-0 mt-0.5" />
@@ -156,7 +156,7 @@ export const ProjectDetailPage: React.FC = () => {
                   ))}
                 </ul>
 
-                <div className="pt-5 border-t border-[#111116]/15">
+                <div className="pt-5 border-t border-[#111116]/15 dark:border-white/15">
                   <button
                     type="button"
                     onClick={() => navigate('/contact')}
@@ -173,15 +173,15 @@ export const ProjectDetailPage: React.FC = () => {
 
         {/* Visual Gallery (Genuine Available Assets) */}
         {project.galleryImages && project.galleryImages.length > 1 && (
-          <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-16 sm:py-24 border-b border-[#111116]/15">
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] font-bold block mb-6">
+          <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-16 sm:py-24 border-b border-[#111116]/15 dark:border-white/15">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-bold block mb-6">
               // VISUAL GALLERY
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {project.galleryImages.map((imgSrc, i) => (
                 <div
                   key={`${imgSrc}-${i}`}
-                  className="aspect-[16/10] overflow-hidden border border-[#111116]/15 bg-[#111116]"
+                  className="aspect-[16/10] overflow-hidden border border-[#111116]/15 dark:border-white/15 bg-[#111116]"
                 >
                   <img
                     src={imgSrc}
@@ -198,7 +198,7 @@ export const ProjectDetailPage: React.FC = () => {
         {/* Related Work */}
         <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-16 sm:py-24">
           <div className="flex items-center justify-between mb-8">
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] font-bold">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-bold">
               // RELATED ARCHIVE ENTRIES
             </span>
             <Link
@@ -214,7 +214,7 @@ export const ProjectDetailPage: React.FC = () => {
               <Link
                 key={rel.id}
                 to={`/work/${rel.id}`}
-                className="group border border-[#111116]/15 bg-[#F5F4F0] hover:bg-white transition-colors p-5 sm:p-6 block"
+                className="group border border-[#111116]/15 dark:border-white/15 bg-[#F5F4F0] dark:bg-[#14141A] hover:bg-white dark:hover:bg-[#1B1B22] transition-colors p-5 sm:p-6 block"
               >
                 <div className="aspect-[16/10] w-full overflow-hidden bg-[#111116] mb-4">
                   <img
@@ -227,7 +227,7 @@ export const ProjectDetailPage: React.FC = () => {
                 <span className="font-mono text-[11px] font-bold text-[#EA1E4D] block mb-1">
                   {rel.archiveCode}
                 </span>
-                <h3 className="font-display text-xl font-black uppercase tracking-tight text-[#111116] group-hover:text-[#EA1E4D] transition-colors">
+                <h3 className="font-display text-xl font-black uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
                   {rel.title}
                 </h3>
               </Link>

@@ -9,15 +9,14 @@ interface SelectedWorksProps {
 }
 
 export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false }) => {
-  // Curated Creative Archive Structure — No Conventional Filter Tabs
-  const featuredProject = PROJECTS_DATA[0]; // RC—001
-  const supportingPrimary = PROJECTS_DATA[1]; // RC—002
-  const supportingSecondary = PROJECTS_DATA[2]; // RC—003
-  const supportingTertiary = PROJECTS_DATA[3]; // RC—004
-  const conceptAndFurther = PROJECTS_DATA.slice(4); // RC—005..007
+  const featuredProject = PROJECTS_DATA[0];
+  const supportingPrimary = PROJECTS_DATA[1];
+  const supportingSecondary = PROJECTS_DATA[2];
+  const supportingTertiary = PROJECTS_DATA[3];
+  const conceptAndFurther = PROJECTS_DATA.slice(4);
 
   return (
-    <div className="w-full bg-[#E7E7E9] text-[#111116] border-y border-[#111116]/15 transition-colors">
+    <div className="w-full bg-[#E7E7E9] dark:bg-[#14141A] text-[#111116] dark:text-white border-y border-[#111116]/15 dark:border-white/10 transition-colors">
       <section
         id="work"
         className={`relative w-full ${
@@ -27,12 +26,12 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
         } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
       >
         {/* Opening Editorial Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 pb-8 border-b border-[#111116]/20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 pb-8 border-b border-[#111116]/20 dark:border-white/15">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] block mb-3 font-semibold select-none">
+            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 block mb-3 font-semibold select-none">
               {standalone ? '01 / OPENING STATEMENT — THE CREATIVE ARCHIVE' : '02 / THE CREATIVE ARCHIVE'}
             </span>
-            <h2 className="font-display text-[clamp(2.35rem,7vw,4.75rem)] font-black uppercase tracking-tight text-[#111116] leading-[0.96]">
+            <h2 className="font-display text-[clamp(2.35rem,7vw,4.75rem)] font-black uppercase tracking-tight text-[#111116] dark:text-white leading-[0.96]">
               {standalone ? (
                 <>
                   <span>A COLLECTION OF</span><br />
@@ -54,7 +53,7 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
             </h2>
           </div>
 
-          <p className="font-sans text-sm sm:text-base text-[#52525B] leading-relaxed max-w-md">
+          <p className="font-sans text-sm sm:text-base text-[#52525B] dark:text-white/70 leading-relaxed max-w-md">
             A selection of things we&apos;ve imagined, designed, built and brought to life. Client productions and self-initiated concept explorations presented side by side, clearly distinguished.
           </p>
         </div>
@@ -62,23 +61,22 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
         {/* A. ONE FEATURED STORY */}
         {featuredProject && (
           <div className="mb-16 sm:mb-24">
-            <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] mb-5">
-              <span className="font-bold text-[#111116]">✦ FEATURED STORY</span>
+            <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 mb-5">
+              <span className="font-bold text-[#111116] dark:text-white">✦ FEATURED STORY</span>
               <span>ARCHIVE LEAD</span>
             </div>
             <ProjectCard project={featuredProject} index={0} variant="featured" />
           </div>
         )}
 
-        {/* B. SUPPORTING STORIES — Asymmetric Proportions & Varied Aspect Ratios */}
-        <div className="mb-16 sm:mb-24 pt-10 border-t border-[#111116]/20">
-          <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] mb-8">
-            <span className="font-bold text-[#111116]">✦ SUPPORTING STORIES</span>
+        {/* B. SUPPORTING STORIES */}
+        <div className="mb-16 sm:mb-24 pt-10 border-t border-[#111116]/20 dark:border-white/15">
+          <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 mb-8">
+            <span className="font-bold text-[#111116] dark:text-white">✦ SUPPORTING STORIES</span>
             <span>MIXED EDITORIAL FORMATS</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Wide Left Showcase + Stacked Horizontal Entry */}
             <div className="lg:col-span-7 space-y-12 sm:space-y-16">
               {supportingPrimary && (
                 <ProjectCard project={supportingPrimary} index={1} variant="wide" />
@@ -88,7 +86,6 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
               )}
             </div>
 
-            {/* Tall Right Poster Frame */}
             <div className="lg:col-span-5 lg:pt-14">
               {supportingSecondary && (
                 <ProjectCard project={supportingSecondary} index={2} variant="tall" />
@@ -99,13 +96,13 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
 
         {/* C. FURTHER WORK & CONCEPT EXPLORATIONS */}
         {conceptAndFurther.length > 0 && (
-          <div className="pt-10 border-t border-[#111116]/20">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] mb-6">
-              <span className="font-bold text-[#111116]">✦ FURTHER WORK &amp; CONCEPT ARCHITECTURE</span>
+          <div className="pt-10 border-t border-[#111116]/20 dark:border-white/15">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 mb-6">
+              <span className="font-bold text-[#111116] dark:text-white">✦ FURTHER WORK &amp; CONCEPT ARCHITECTURE</span>
               <span>SELF-INITIATED &amp; BLUEPRINTS</span>
             </div>
 
-            <div className="border-t border-[#111116]/20">
+            <div className="border-t border-[#111116]/20 dark:border-white/15">
               {conceptAndFurther.map((project, idx) => (
                 <ProjectCard
                   key={project.id}
@@ -118,16 +115,16 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
           </div>
         )}
 
-        {/* Archive Navigation / Final CTA */}
-        <div className="mt-12 sm:mt-16 pt-8 border-t border-[#111116]/20 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono">
+        {/* Archive Footer CTA */}
+        <div className="mt-12 sm:mt-16 pt-8 border-t border-[#111116]/20 dark:border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono">
           {!standalone ? (
             <>
-              <span className="text-xs text-[#52525B] uppercase tracking-wider">
+              <span className="text-xs text-[#52525B] dark:text-white/60 uppercase tracking-wider">
                 Click any archive entry to open the full case study
               </span>
               <Link
                 to="/work"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111116] text-white hover:bg-[#EA1E4D] text-xs font-bold uppercase tracking-wider transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111116] dark:bg-white text-white dark:text-[#111116] hover:bg-[#EA1E4D] dark:hover:bg-[#EA1E4D] dark:hover:text-white text-xs font-bold uppercase tracking-wider transition-colors"
               >
                 <span>Open Full Creative Archive</span>
                 <ArrowUpRight size={14} />
@@ -135,7 +132,7 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({ standalone = false
             </>
           ) : (
             <>
-              <span className="text-xs text-[#52525B] uppercase tracking-wider">
+              <span className="text-xs text-[#52525B] dark:text-white/60 uppercase tracking-wider">
                 Ready to add your brand to the archive?
               </span>
               <Link

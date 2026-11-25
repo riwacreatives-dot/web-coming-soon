@@ -13,7 +13,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full bg-[#FFFFFF] text-[#111116] pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors"
+      className="relative w-full bg-[#FFFFFF] dark:bg-[#0B0B0F] text-[#111116] dark:text-white pt-28 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-20 px-4 sm:px-8 md:px-12 transition-colors"
     >
       <div className="max-w-7xl mx-auto">
         {/* RIWA Minimalist Eyebrow Index */}
@@ -21,17 +21,17 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-2 sm:gap-3 mb-3 md:mb-5 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-[#52525B] select-none"
+          className="flex items-center gap-2 sm:gap-3 mb-3 md:mb-5 font-mono text-[11px] sm:text-sm uppercase tracking-[0.18em] md:tracking-[0.2em] text-[#52525B] dark:text-white/60 select-none"
         >
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EA1E4D] shrink-0" />
-          <span className="text-[#111116] font-semibold">
+          <span className="text-[#111116] dark:text-white font-semibold">
             RIWA CREATIVES · INDEPENDENT CREATIVE &amp; GROWTH STUDIO
           </span>
         </motion.div>
 
         {/* Bespoke Editorial Headline with Instrument Serif Italic Accent & Expanding Visual Capsule */}
         <div className="mb-3.5 md:mb-6">
-          <h1 className="font-display text-[clamp(2.15rem,8.2vw,5.5rem)] md:text-[clamp(2.4rem,7.2vw,5.5rem)] font-black uppercase tracking-tighter text-[#111116] leading-[0.92] md:leading-[0.93] select-none">
+          <h1 className="font-display text-[clamp(2.15rem,8.2vw,5.5rem)] md:text-[clamp(2.4rem,7.2vw,5.5rem)] font-black uppercase tracking-tighter text-[#111116] dark:text-white leading-[0.92] md:leading-[0.93] select-none">
             <div className="flex items-center flex-wrap gap-x-2 sm:gap-x-3 gap-y-1 sm:gap-y-2">
               <SplitHeading as="span" delay={0.05} trigger="mount">
                 WE MAKE
@@ -62,12 +62,12 @@ export const HeroSection: React.FC = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-6 md:mb-14"
         >
           {/* Mobile Condensed Editorial Pitch (< 768px) */}
-          <p className="md:hidden font-sans text-[13px] text-[#52525B] leading-relaxed">
+          <p className="md:hidden font-sans text-[13px] text-[#52525B] dark:text-white/70 leading-relaxed">
             We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences. Strategy, creative thinking and technology brought together.
           </p>
 
           {/* Desktop / Laptop Full Editorial Statement (>= 768px) */}
-          <p className="hidden md:block max-w-xl font-sans text-sm sm:text-base text-[#52525B] leading-relaxed">
+          <p className="hidden md:block max-w-xl font-sans text-sm sm:text-base text-[#52525B] dark:text-white/70 leading-relaxed">
             We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences<span className="text-[#EA1E4D] font-bold">.</span> From the first spark to the final execution, we bring strategy, creative thinking and technology together to make brands impossible to overlook<span className="text-[#EA1E4D] font-bold">.</span>
           </p>
 
@@ -76,7 +76,7 @@ export const HeroSection: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('/work')}
-              className="flex-1 min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#111116]/20 bg-[#F5F4F0] text-[#111116] font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
+              className="flex-1 min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#111116]/20 dark:border-white/20 bg-[#F5F4F0] dark:bg-[#17171D] text-[#111116] dark:text-white font-semibold active:scale-95 transition-all touch-manipulation cursor-pointer"
             >
               <span>Selected Work</span>
               <ArrowDownRight size={14} className="text-[#EA1E4D]" />
@@ -89,12 +89,12 @@ export const HeroSection: React.FC = () => {
               type="button"
               onClick={() => navigate('/work')}
               data-cursor-text="ARCHIVE"
-              className="group flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-[#111116]/20 hover:border-[#111116] transition-all text-[#111116] bg-[#FFFFFF] cursor-pointer hover:shadow-sm font-semibold"
+              className="group flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-[#111116]/20 dark:border-white/20 hover:border-[#111116] dark:hover:border-white transition-all text-[#111116] dark:text-white bg-[#FFFFFF] dark:bg-[#17171D] cursor-pointer hover:shadow-sm font-semibold"
             >
               <span>Selected Work</span>
               <ArrowDownRight
                 size={13}
-                className="text-[#52525B] group-hover:text-[#111116] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
+                className="text-[#52525B] dark:text-white/60 group-hover:text-[#111116] dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all"
               />
             </button>
 

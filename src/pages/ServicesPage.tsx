@@ -24,9 +24,9 @@ export const ServicesPage: React.FC = () => {
         <ServicesSection standalone />
 
         {/* Dedicated Discipline Pages Directory */}
-        <section className="w-full bg-[#F5F4F0] text-[#111116] py-16 sm:py-24 px-4 sm:px-8 md:px-12 border-b border-[#111116]/15">
+        <section className="w-full bg-[#F5F4F0] dark:bg-[#0B0B0F] text-[#111116] dark:text-white py-16 sm:py-24 px-4 sm:px-8 md:px-12 border-b border-[#111116]/15 dark:border-white/10 transition-colors">
           <div className="max-w-7xl mx-auto">
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] font-bold block mb-3">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-bold block mb-3">
               // DEDICATED DISCIPLINE DOSSIERS
             </span>
             <h2 className="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight mb-10">
@@ -43,7 +43,7 @@ export const ServicesPage: React.FC = () => {
                     className={`p-6 sm:p-8 border flex flex-col justify-between transition-all group ${
                       isEvents
                         ? 'bg-[#FD7D3C] text-[#111116] border-[#111116] shadow-[6px_6px_0px_#111116]'
-                        : 'bg-white text-[#111116] border-[#111116]/15 hover:border-[#EA1E4D]'
+                        : 'bg-white dark:bg-[#14141A] text-[#111116] dark:text-white border-[#111116]/15 dark:border-white/15 hover:border-[#EA1E4D]'
                     }`}
                   >
                     <div>
@@ -59,7 +59,7 @@ export const ServicesPage: React.FC = () => {
                       </h3>
                       <p
                         className={`font-sans text-sm leading-relaxed mb-6 ${
-                          isEvents ? 'text-[#111116]/90 font-medium' : 'text-[#52525B]'
+                          isEvents ? 'text-[#111116]/90 font-medium' : 'text-[#52525B] dark:text-white/70'
                         }`}
                       >
                         {svc.shortDesc}

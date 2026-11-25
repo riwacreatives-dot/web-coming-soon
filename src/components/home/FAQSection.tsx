@@ -11,16 +11,16 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#E7E7E9] text-[#111116] border-b border-[#111116]/15 transition-colors">
+    <div className="w-full bg-[#E7E7E9] dark:bg-[#14141A] text-[#111116] dark:text-white border-b border-[#111116]/15 dark:border-white/10 transition-colors">
       <section
         id="faq"
         className="relative w-full py-16 sm:py-24 md:py-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
         <div className="mb-12 sm:mb-16 max-w-3xl">
-          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] font-semibold block mb-3 select-none">
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-semibold block mb-3 select-none">
             12 / FREQUENTLY ASKED QUESTIONS
           </span>
-          <h2 className="font-display text-[clamp(2.2rem,6.5vw,4.2rem)] font-black uppercase tracking-tight text-[#111116] leading-[1.02]">
+          <h2 className="font-display text-[clamp(2.2rem,6.5vw,4.2rem)] font-black uppercase tracking-tight text-[#111116] dark:text-white leading-[1.02]">
             <span>CLEAR ANSWERS.</span><br />
             <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
               zero
@@ -29,8 +29,7 @@ export const FAQSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Minimal Editorial Accordion */}
-        <div className="border-t border-[#111116]/20 divide-y divide-[#111116]/20">
+        <div className="border-t border-[#111116]/20 dark:border-white/15 divide-y divide-[#111116]/20 dark:divide-white/15">
           {FAQ_DATA.map((item, idx) => {
             const isOpen = openId === item.id;
             return (
@@ -44,14 +43,14 @@ export const FAQSection: React.FC = () => {
                     <span className="font-mono text-xs sm:text-sm text-[#EA1E4D] font-bold">
                       0{idx + 1}
                     </span>
-                    <span className="font-display text-base sm:text-xl font-bold uppercase tracking-tight text-[#111116] group-hover:text-[#EA1E4D] transition-colors">
+                    <span className="font-display text-base sm:text-xl font-bold uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
                       {item.question}
                     </span>
                   </div>
 
                   <div
-                    className={`w-8 h-8 rounded-full border border-[#111116]/20 flex items-center justify-center text-[#52525B] shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 border-[#EA1E4D] text-[#EA1E4D]' : 'group-hover:border-[#111116] group-hover:text-[#111116]'
+                    className={`w-8 h-8 rounded-full border border-[#111116]/20 dark:border-white/20 flex items-center justify-center text-[#52525B] dark:text-white/60 shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 border-[#EA1E4D] text-[#EA1E4D]' : 'group-hover:border-[#111116] dark:group-hover:border-white group-hover:text-[#111116] dark:group-hover:text-white'
                     }`}
                   >
                     <ChevronDown size={14} />
@@ -68,7 +67,7 @@ export const FAQSection: React.FC = () => {
                       className="overflow-hidden"
                     >
                       <div className="pb-7 pl-8 sm:pl-12 max-w-3xl">
-                        <p className="font-sans text-sm sm:text-base text-[#3F3F46] leading-relaxed">
+                        <p className="font-sans text-sm sm:text-base text-[#3F3F46] dark:text-white/75 leading-relaxed">
                           {item.answer}
                         </p>
                       </div>

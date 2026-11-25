@@ -107,7 +107,7 @@ export const ServiceDetailPage: React.FC = () => {
         </section>
 
         {/* Core Breakdown: Problems Addressed, Deliverables, & Collaboration Model */}
-        <section className="w-full bg-[#FFFFFF] text-[#111116] py-16 sm:py-24 border-b border-[#111116]/15">
+        <section className="w-full bg-[#FFFFFF] dark:bg-[#0B0B0F] text-[#111116] dark:text-white py-16 sm:py-24 border-b border-[#111116]/15 dark:border-white/15 transition-colors">
           <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left 7 Cols: Problems We Solve & Collaboration Model */}
             <div className="lg:col-span-7 space-y-12">
@@ -119,12 +119,12 @@ export const ServiceDetailPage: React.FC = () => {
                   {service.problemsAddressed.map((prob, idx) => (
                     <div
                       key={prob}
-                      className="p-5 border border-[#111116]/15 bg-[#F5F4F0] flex items-start gap-4"
+                      className="p-5 border border-[#111116]/15 dark:border-white/15 bg-[#F5F4F0] dark:bg-[#14141A] flex items-start gap-4"
                     >
                       <span className="font-mono text-xs font-bold text-[#EA1E4D] shrink-0 pt-0.5">
                         0{idx + 1}
                       </span>
-                      <p className="font-sans text-sm sm:text-base text-[#111116] leading-relaxed">
+                      <p className="font-sans text-sm sm:text-base text-[#111116] dark:text-white/90 leading-relaxed">
                         {prob}
                       </p>
                     </div>
@@ -132,11 +132,11 @@ export const ServiceDetailPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-6 sm:p-8 border-l-4 border-[#EA1E4D] bg-[#F5F4F0]">
+              <div className="p-6 sm:p-8 border-l-4 border-[#EA1E4D] bg-[#F5F4F0] dark:bg-[#14141A]">
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#EA1E4D] font-bold block mb-2">
                   // HOW COLLABORATION WORKS
                 </span>
-                <p className="font-sans text-base sm:text-lg text-[#111116] leading-relaxed">
+                <p className="font-sans text-base sm:text-lg text-[#111116] dark:text-white/90 leading-relaxed">
                   {service.collaborationModel}
                 </p>
               </div>
@@ -190,10 +190,10 @@ export const ServiceDetailPage: React.FC = () => {
 
         {/* Related Genuine Projects & Concept Suites */}
         {relatedProjects.length > 0 && (
-          <section className="w-full bg-[#E7E7E9] text-[#111116] py-16 sm:py-24 border-b border-[#111116]/15">
+          <section className="w-full bg-[#E7E7E9] dark:bg-[#14141A] text-[#111116] dark:text-white py-16 sm:py-24 border-b border-[#111116]/15 dark:border-white/15 transition-colors">
             <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
               <div className="flex items-center justify-between mb-8">
-                <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] font-bold">
+                <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-bold">
                   // RELEVANT ARCHIVE ENTRIES
                 </span>
                 <Link
@@ -209,7 +209,7 @@ export const ServiceDetailPage: React.FC = () => {
                   <Link
                     key={proj.id}
                     to={`/work/${proj.id}`}
-                    className="group bg-white border border-[#111116]/15 p-5 sm:p-6 block hover:border-[#EA1E4D] transition-colors"
+                    className="group bg-white dark:bg-[#1B1B22] border border-[#111116]/15 dark:border-white/15 p-5 sm:p-6 block hover:border-[#EA1E4D] transition-colors"
                   >
                     <div className="aspect-[16/10] w-full overflow-hidden bg-[#111116] mb-4">
                       <img
@@ -222,12 +222,12 @@ export const ServiceDetailPage: React.FC = () => {
                     <div className="flex items-center gap-2 font-mono text-[11px] font-bold text-[#EA1E4D] mb-1">
                       <span>{proj.archiveCode}</span>
                       {proj.isConcept && (
-                        <span className="px-2 py-0.5 bg-[#111116] text-white text-[10px]">
+                        <span className="px-2 py-0.5 bg-[#111116] dark:bg-white text-white dark:text-[#111116] text-[10px]">
                           CONCEPT WORK
                         </span>
                       )}
                     </div>
-                    <h3 className="font-display text-xl font-black uppercase text-[#111116] group-hover:text-[#EA1E4D] transition-colors">
+                    <h3 className="font-display text-xl font-black uppercase text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
                       {proj.title}
                     </h3>
                   </Link>
@@ -238,9 +238,9 @@ export const ServiceDetailPage: React.FC = () => {
         )}
 
         {/* Sibling Discipline Navigation */}
-        <section className="w-full bg-[#F5F4F0] text-[#111116] py-12 sm:py-16">
+        <section className="w-full bg-[#F5F4F0] dark:bg-[#0B0B0F] text-[#111116] dark:text-white py-12 sm:py-16 transition-colors">
           <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] font-bold block mb-6">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-bold block mb-6">
               // OTHER CAPABILITIES
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -248,12 +248,12 @@ export const ServiceDetailPage: React.FC = () => {
                 <Link
                   key={other.id}
                   to={`/services/${other.id}`}
-                  className="p-5 bg-white border border-[#111116]/15 hover:border-[#EA1E4D] transition-colors flex flex-col justify-between group"
+                  className="p-5 bg-white dark:bg-[#14141A] border border-[#111116]/15 dark:border-white/15 hover:border-[#EA1E4D] transition-colors flex flex-col justify-between group"
                 >
                   <span className="font-mono text-xs font-bold text-[#EA1E4D] mb-2 block">
                     {other.index} —
                   </span>
-                  <span className="font-display text-base font-black uppercase text-[#111116] group-hover:text-[#EA1E4D] transition-colors">
+                  <span className="font-display text-base font-black uppercase text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
                     {other.name}
                   </span>
                 </Link>

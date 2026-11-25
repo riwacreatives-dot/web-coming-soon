@@ -22,17 +22,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         ? 'aspect-[4/5]'
         : 'aspect-[16/10]';
 
-  // Archive compact horizontal spread for Further Work
   if (variant === 'archive-row') {
     return (
       <Link
         to={`/work/${project.id}`}
         data-cursor-text="CASE STUDY"
-        className="group block border-b border-[#111116]/20 py-7 sm:py-9 transition-colors hover:bg-white/60 px-2 sm:px-4"
+        className="group block border-b border-[#111116]/20 dark:border-white/15 py-7 sm:py-9 transition-colors hover:bg-white/60 dark:hover:bg-white/5 px-2 sm:px-4"
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 items-center">
-          {/* Small Varied-Ratio Thumbnail */}
-          <div className="md:col-span-3 aspect-[16/10] overflow-hidden bg-[#111116] border border-[#111116]/15">
+          <div className="md:col-span-3 aspect-[16/10] overflow-hidden bg-[#111116] border border-[#111116]/15 dark:border-white/15">
             <img
               src={project.heroImage}
               alt={project.title}
@@ -41,31 +39,29 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             />
           </div>
 
-          {/* Archive Metadata & Title */}
           <div className="md:col-span-7 space-y-2">
             <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-wider">
               <span className="font-bold text-[#EA1E4D]">{project.archiveCode}</span>
               {project.isConcept && (
-                <span className="px-2 py-0.5 bg-[#111116] text-white text-[10px] font-bold tracking-widest">
+                <span className="px-2 py-0.5 bg-[#111116] dark:bg-white text-white dark:text-[#111116] text-[10px] font-bold tracking-widest">
                   CONCEPT WORK
                 </span>
               )}
-              <span className="text-[#52525B]">· {project.client}</span>
+              <span className="text-[#52525B] dark:text-white/60">· {project.client}</span>
             </div>
 
-            <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#111116] group-hover:text-[#EA1E4D] transition-colors leading-tight">
+            <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors leading-tight">
               {project.title}
             </h3>
 
-            <p className="font-sans text-sm text-[#52525B] leading-relaxed line-clamp-2 max-w-2xl">
+            <p className="font-sans text-sm text-[#52525B] dark:text-white/70 leading-relaxed line-clamp-2 max-w-2xl">
               {project.description}
             </p>
           </div>
 
-          {/* Right CTA Arrow */}
           <div className="md:col-span-2 flex md:flex-col items-center md:items-end justify-between gap-2 font-mono text-xs">
-            <span className="text-[#71717A]">{project.year}</span>
-            <span className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#111116] group-hover:text-[#EA1E4D] transition-colors">
+            <span className="text-[#71717A] dark:text-white/50">{project.year}</span>
+            <span className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
               <span>Explore</span>
               <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </span>
@@ -84,24 +80,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       className="group flex flex-col"
     >
       <Link to={`/work/${project.id}`} data-cursor-text="EXPLORE" className="block">
-        {/* Top Metadata Annotation */}
-        <div className="flex items-center justify-between gap-3 pb-3 border-b border-[#111116]/20 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#52525B]">
+        <div className="flex items-center justify-between gap-3 pb-3 border-b border-[#111116]/20 dark:border-white/15 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#52525B] dark:text-white/60">
           <div className="flex items-center gap-2.5 min-w-0">
             <span className="font-bold text-[#EA1E4D] truncate">{project.archiveCode}</span>
             {project.isConcept && (
-              <span className="px-2 py-0.5 bg-[#111116] text-white text-[10px] font-bold tracking-widest shrink-0">
+              <span className="px-2 py-0.5 bg-[#111116] dark:bg-white text-white dark:text-[#111116] text-[10px] font-bold tracking-widest shrink-0">
                 CONCEPT
               </span>
             )}
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <span className="hidden sm:inline font-semibold text-[#111116]">{project.client}</span>
-            <span className="text-[#71717A]">{project.year}</span>
+            <span className="hidden sm:inline font-semibold text-[#111116] dark:text-white">{project.client}</span>
+            <span className="text-[#71717A] dark:text-white/50">{project.year}</span>
           </div>
         </div>
 
-        {/* Image Presentation */}
-        <div className={`relative mt-3.5 w-full ${aspectClass} overflow-hidden bg-[#111116] border border-[#111116]/15`}>
+        <div className={`relative mt-3.5 w-full ${aspectClass} overflow-hidden bg-[#111116] border border-[#111116]/15 dark:border-white/15`}>
           <img
             src={project.heroImage}
             alt={project.title}
@@ -115,11 +109,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        {/* Story Caption */}
         <div className="pt-4 sm:pt-5 flex flex-col gap-2">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <h3
-              className={`font-display font-black uppercase tracking-tight text-[#111116] group-hover:text-[#EA1E4D] transition-colors leading-none ${
+              className={`font-display font-black uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors leading-none ${
                 variant === 'featured' ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-2xl'
               }`}
             >
@@ -131,17 +124,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </span>
           </div>
 
-          <p className="font-sans text-sm sm:text-base text-[#52525B] leading-relaxed max-w-2xl">
+          <p className="font-sans text-sm sm:text-base text-[#52525B] dark:text-white/70 leading-relaxed max-w-2xl">
             {project.description}
           </p>
 
-          <div className="pt-1 flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[#111116] font-bold">
+          <div className="pt-1 flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[#111116] dark:text-white font-bold">
             <span className="md:hidden inline-flex items-center gap-1 text-[#EA1E4D]">
               <span>Explore Project</span>
               <ArrowUpRight size={13} />
             </span>
             {project.verifiedOutcome && (
-              <span className="text-[#52525B] text-[11px]">
+              <span className="text-[#52525B] dark:text-white/60 text-[11px]">
                 ✓ {project.metric}
               </span>
             )}

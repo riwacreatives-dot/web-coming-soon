@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
-import { WorldClocks } from './WorldClocks';
 import { Menu, X } from 'lucide-react';
 import { useIsMobile, useScrollDirection } from '../../hooks/useIsMobile';
 
@@ -110,14 +109,6 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
 
           {/* Utility Divider */}
           <div className="h-4 w-[1px] bg-line-border shrink-0" />
-
-          {/* World Clocks — lg+ only */}
-          <div className="hidden lg:block">
-            <WorldClocks />
-          </div>
-
-          {/* Clock Divider */}
-          <div className="hidden lg:block h-4 w-[1px] bg-line-border shrink-0" />
 
           {/* Quick Utilities: Theme, Menu */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">

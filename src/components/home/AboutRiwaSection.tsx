@@ -6,19 +6,19 @@ export const AboutRiwaSection: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-[#F5F4F0] text-[#111116] border-b border-[#111116]/15 transition-colors">
+    <div className="w-full bg-[#F5F4F0] dark:bg-[#14141A] text-[#111116] dark:text-white border-b border-[#111116]/15 dark:border-white/10 transition-colors">
       <section
         id="about"
         className="relative w-full py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left Column: Editorial Headline & Studio Mascot Plate */}
+          {/* Left Column */}
           <div className="lg:col-span-6 space-y-8">
             <div>
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] font-semibold block mb-3 select-none">
+              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-semibold block mb-3 select-none">
                 07 / ABOUT RIWA
               </span>
-              <h2 className="font-display text-[clamp(2.3rem,6.4vw,4.5rem)] font-black uppercase tracking-tight text-[#111116] leading-[0.98]">
+              <h2 className="font-display text-[clamp(2.3rem,6.4vw,4.5rem)] font-black uppercase tracking-tight text-[#111116] dark:text-white leading-[0.98]">
                 <span>WE&apos;RE HERE</span><br />
                 <span>TO MAKE THINGS</span><br />
                 <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
@@ -27,10 +27,10 @@ export const AboutRiwaSection: React.FC = () => {
               </h2>
             </div>
 
-            <div className="relative border border-[#111116] bg-[#111116] p-4 sm:p-6 shadow-[8px_8px_0px_#111116]">
+            <div className="relative border border-[#111116] dark:border-white/20 bg-[#111116] p-4 sm:p-6 shadow-[8px_8px_0px_#111116] dark:shadow-[8px_8px_0px_rgba(253,125,60,0.35)]">
               <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-white/60 pb-3 mb-4 border-b border-white/15">
                 <span>FIG. 01 // RIWA STUDIO IDENTITY</span>
-                <span className="text-[#FD7D3C]">CROW EMBLEM</span>
+                <span className="text-[#FD7D3C]">OFFICIAL LOGO</span>
               </div>
               <div className="aspect-[16/10] w-full overflow-hidden bg-[#111116] flex items-center justify-center p-4">
                 <img
@@ -47,9 +47,9 @@ export const AboutRiwaSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Verbatim Editorial Essay & Creed */}
-          <div className="lg:col-span-6 lg:pt-8 space-y-5 font-sans text-sm sm:text-base md:text-lg text-[#3F3F46] leading-relaxed">
-            <p className="font-display font-bold text-xl sm:text-2xl text-[#111116] leading-snug">
+          {/* Right Column */}
+          <div className="lg:col-span-6 lg:pt-8 space-y-5 font-sans text-sm sm:text-base md:text-lg text-[#3F3F46] dark:text-white/75 leading-relaxed">
+            <p className="font-display font-bold text-xl sm:text-2xl text-[#111116] dark:text-white leading-snug">
               Riwa Creatives is an independent creative and growth studio built around a simple belief: ambitious ideas deserve ambitious execution.
             </p>
 
@@ -62,11 +62,11 @@ export const AboutRiwaSection: React.FC = () => {
             </p>
 
             <p>
-              Founded by <strong className="text-[#111116]">Ranjan Kumar</strong>, Riwa is being built around curiosity, collaboration and the ambition to create work that stands apart.
+              Founded by <strong className="text-[#111116] dark:text-white">Ranjan Kumar</strong>, Riwa is being built around curiosity, collaboration and the ambition to create work that stands apart.
             </p>
 
-            <div className="p-6 sm:p-8 border-l-4 border-[#EA1E4D] bg-white my-6 space-y-1">
-              <p className="font-serif italic text-xl sm:text-2xl text-[#111116] leading-snug">
+            <div className="p-6 sm:p-8 border-l-4 border-[#EA1E4D] bg-white dark:bg-[#1D1D24] my-6 space-y-1">
+              <p className="font-serif italic text-xl sm:text-2xl text-[#111116] dark:text-white leading-snug">
                 &ldquo;We&apos;re not here to make more of the same.<br />
                 We&apos;re here to make what comes next.&rdquo;
               </p>
@@ -79,7 +79,7 @@ export const AboutRiwaSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigate('/about')}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111116] hover:bg-[#EA1E4D] text-white font-mono text-xs uppercase tracking-wider font-bold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111116] dark:bg-white text-white dark:text-[#111116] hover:bg-[#EA1E4D] dark:hover:bg-[#EA1E4D] dark:hover:text-white font-mono text-xs uppercase tracking-wider font-bold transition-colors cursor-pointer"
               >
                 <span>Explore Studio Story</span>
                 <ArrowUpRight size={14} />

@@ -37,7 +37,7 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
             <img
               src="/brand/riwa-logo-official.png"
               alt="Riwa Creatives Logo"
-              className="h-8 w-8 sm:h-9 sm:w-9 object-contain group-hover:scale-105 transition-transform"
+              className="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform"
             />
           </Link>
 
@@ -154,16 +154,13 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
           <Link
             to="/"
             aria-label="RIWA Creatives Home"
-            className="flex items-center gap-2 min-h-[40px] pr-2 select-none touch-manipulation"
+            className="flex items-center gap-2 min-h-[42px] pr-2 select-none touch-manipulation"
           >
             <img
               src="/brand/riwa-logo-official.png"
               alt="Riwa Creatives Logo"
-              className="h-8 w-8 object-contain"
+              className="h-9 w-auto object-contain"
             />
-            <span className="font-display font-black text-xs uppercase tracking-wider text-text-primary">
-              RIWA<span className="text-brand-red">.</span>
-            </span>
           </Link>
 
           {/* Right: Live Sprint Indicator + Theme Toggle + Mobile Menu Hamburger */}

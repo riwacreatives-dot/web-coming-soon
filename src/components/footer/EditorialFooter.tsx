@@ -105,13 +105,13 @@ export const EditorialFooter: React.FC = () => {
         <div className="py-10 md:py-14 border-b border-white/10 grid grid-cols-1 md:grid-cols-12 gap-8 font-mono text-xs sm:text-sm">
           {/* Official Brand Logo + Signature */}
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <img
                 src="/brand/riwa-logo-official.png"
                 alt="Riwa Creatives Official Logo"
-                className="h-12 w-auto object-contain"
+                className="h-16 sm:h-20 w-auto object-contain"
               />
-              <span className="font-display text-lg sm:text-xl font-black uppercase text-white tracking-tight">
+              <span className="font-display text-xl sm:text-2xl font-black uppercase text-white tracking-tight">
                 RIWA CREATIVES®
               </span>
             </div>

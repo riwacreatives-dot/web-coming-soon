@@ -32,10 +32,10 @@ export const AboutRiwaSection: React.FC = () => {
                 <span>FIG. 01 // RIWA STUDIO IDENTITY</span>
                 <span className="text-[#FD7D3C]">CROW EMBLEM</span>
               </div>
-              <div className="aspect-[16/10] w-full overflow-hidden bg-[#111116] flex items-center justify-center">
+              <div className="aspect-[16/10] w-full overflow-hidden bg-[#111116] flex items-center justify-center p-4">
                 <img
-                  src="/brand/riwa-crow-mascot.jpg"
-                  alt="Riwa Creatives Crow Mascot"
+                  src="/brand/riwa-logo-official.png"
+                  alt="Riwa Creatives Official Crow Logo"
                   loading="lazy"
                   className="h-full w-full object-contain"
                 />

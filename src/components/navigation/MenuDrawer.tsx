@@ -103,10 +103,12 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
         >
           {/* Drawer Top Navigation Bar */}
           <div className="flex items-center justify-between px-4 py-4 sm:px-12 sm:py-8 border-b border-white/10 max-w-7xl mx-auto w-full gap-2">
-            <div className="flex items-center gap-2 min-w-0">
-              <div className="w-7 h-7 rounded-lg bg-white text-black flex items-center justify-center font-display font-black text-sm tracking-tighter shadow-sm shrink-0">
-                <span>R</span>
-              </div>
+            <div className="flex items-center gap-2.5 min-w-0">
+              <img
+                src="/brand/riwa-logo-official.png"
+                alt="Riwa Creatives Official Logo"
+                className="h-9 w-9 object-contain shrink-0"
+              />
               <span className="font-display font-extrabold text-sm sm:text-lg tracking-tight uppercase whitespace-nowrap">
                 RIWA <span className="text-brand-red">CREATIVES</span>
               </span>

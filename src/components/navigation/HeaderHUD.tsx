@@ -27,17 +27,18 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
       {/* Desktop / Laptop HUD Navigation (>= 768px — 100% Preserved) */}
       <header className="hidden md:flex fixed top-3 sm:top-6 inset-x-0 z-50 items-center justify-center px-3 sm:px-4 pointer-events-none transition-all duration-300">
         <nav className="pointer-events-auto inline-flex items-center gap-2.5 sm:gap-4.5 px-2.5 sm:px-4.5 py-1.5 sm:py-2 rounded-2xl bg-surface/90 backdrop-blur-xl border border-line-border shadow-[0_12px_40px_rgba(0,0,0,0.35)] text-text-primary transition-all max-w-[calc(100vw-1.5rem)]">
-          {/* Left: Initial 'R' Monogram */}
+          {/* Left: Official Riwa Logo */}
           <Link
             to="/"
             data-cursor-text="HOME"
             title="RIWA Creatives Home"
-            className="group flex items-center gap-1.5 cursor-pointer select-none shrink-0"
+            className="group flex items-center gap-2 cursor-pointer select-none shrink-0"
           >
-            <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-text-primary text-canvas flex items-center justify-center font-display font-black text-sm sm:text-base tracking-tighter group-hover:bg-brand-red group-hover:text-white transition-all shadow-sm">
-              <span>R</span>
-              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-brand-red" />
-            </div>
+            <img
+              src="/brand/riwa-logo-official.png"
+              alt="Riwa Creatives Logo"
+              className="h-8 w-8 sm:h-9 sm:w-9 object-contain group-hover:scale-105 transition-transform"
+            />
           </Link>
 
           {/* Minimal Divider */}
@@ -149,16 +150,17 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
           }}
           className="pointer-events-auto flex items-center justify-between w-full px-3 py-1.5 rounded-2xl bg-surface backdrop-blur-xl border border-line-border/80 shadow-[0_8px_28px_rgba(0,0,0,0.16)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.45)]"
         >
-          {/* Left: Monogram + Studio Wordmark */}
+          {/* Left: Official Riwa Logo */}
           <Link
             to="/"
             aria-label="RIWA Creatives Home"
             className="flex items-center gap-2 min-h-[40px] pr-2 select-none touch-manipulation"
           >
-            <div className="relative w-7 h-7 rounded-lg bg-text-primary text-canvas flex items-center justify-center font-display font-black text-sm tracking-tighter shadow-sm">
-              <span>R</span>
-              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-brand-red" />
-            </div>
+            <img
+              src="/brand/riwa-logo-official.png"
+              alt="Riwa Creatives Logo"
+              className="h-8 w-8 object-contain"
+            />
             <span className="font-display font-black text-xs uppercase tracking-wider text-text-primary">
               RIWA<span className="text-brand-red">.</span>
             </span>

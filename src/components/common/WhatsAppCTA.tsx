@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // RIWA Creatives direct WhatsApp concierge link
-const WHATSAPP_NUMBER = '919871000000'; // Replace with studio concierge WhatsApp number
+const WHATSAPP_NUMBER = '917015048144';
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hi RIWA! I'm reviewing your commercial ad art & growth portfolio. Let's discuss an upcoming brand sprint."
+  "Hi RIWA! I'm reviewing your portfolio. Let's discuss an upcoming project."
 );
 
 export const WhatsAppCTA: React.FC = () => {

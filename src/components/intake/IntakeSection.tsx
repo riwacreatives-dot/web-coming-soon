@@ -399,6 +399,15 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
                 <span>Instagram · @madebyriwa</span>
                 <ArrowUpRight size={14} />
               </a>
+              <a
+                href="https://wa.me/917015048144"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between py-2 text-text-primary hover:text-emerald-500 font-bold border-t border-line-border transition-colors"
+              >
+                <span>WhatsApp · +91 70150 48144</span>
+                <ArrowUpRight size={14} />
+              </a>
             </div>
           </div>
         </div>

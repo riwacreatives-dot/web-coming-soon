@@ -107,9 +107,9 @@ export const EditorialFooter: React.FC = () => {
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/brand/riwa-logo-transparent.png"
+                src="/brand/riwa-logo-official.png"
                 alt="Riwa Creatives Official Logo"
-                className="h-10 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
               <span className="font-display text-lg sm:text-xl font-black uppercase text-white tracking-tight">
                 RIWA CREATIVES®
@@ -151,6 +151,11 @@ export const EditorialFooter: React.FC = () => {
               <li>
                 <a href="https://instagram.com/madebyriwa" target="_blank" rel="noopener noreferrer" className="hover:text-[#EA1E4D] transition-colors">
                   Instagram · @madebyriwa
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/917015048144" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">
+                  WhatsApp · +91 70150 48144
                 </a>
               </li>
               <li>

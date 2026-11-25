@@ -85,6 +85,11 @@ export const StudioCardWarpLoader: React.FC = () => {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center"
           >
+            <img
+              src="/brand/riwa-logo-official.png"
+              alt="Riwa Creatives Logo"
+              className="h-16 sm:h-20 w-auto object-contain mb-4"
+            />
             <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.25em] text-brand-red font-semibold mb-3">
               {isBetweenActive ? transitionTitle : 'INDEPENDENT CREATIVE & GROWTH STUDIO'}
             </span>

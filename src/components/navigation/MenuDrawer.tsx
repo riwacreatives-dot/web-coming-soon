@@ -91,11 +91,11 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
             opacity: 0,
           }}
           animate={{
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 150%, 0% 100%)',
             opacity: 1,
           }}
           exit={{
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+            clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
             opacity: 0,
           }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}

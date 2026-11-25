@@ -97,13 +97,13 @@ textarea {
   }
 }
 
-/* Completely hide native OS mouse cursor while on the webpage */
+/* Only hide native OS mouse cursor when custom cursor is actively mounted */
 @media (pointer: fine) {
-  html,
-  body,
-  *,
-  *::before,
-  *::after {
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active *,
+  html.custom-cursor-active *::before,
+  html.custom-cursor-active *::after {
     cursor: none !important;
   }
 }

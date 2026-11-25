@@ -12,6 +12,7 @@ import { BottomDock } from './components/navigation/BottomDock';
 import { CustomCursor } from './components/common/CustomCursor';
 import { NoiseOverlay } from './components/common/NoiseOverlay';
 import { ScrollToTop } from './components/common/ScrollToTop';
+import { WhatsAppCTA } from './components/common/WhatsAppCTA';
 
 // Code-split route components to avoid monolithic 600kB+ initial bundle
 const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })));
@@ -20,6 +21,18 @@ const VisionPage = lazy(() => import('./pages/VisionPage').then((m) => ({ defaul
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage })));
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage').then((m) => ({ default: m.LeadershipPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
+
+const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+  >
+    {children}
+  </motion.div>
+);
 
 export const AppContent: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,6 +63,9 @@ export const AppContent: React.FC = () => {
             {/* RIWA Inertial Custom Cursor */}
             <CustomCursor />
 
+            {/* Direct Studio WhatsApp Concierge */}
+            <WhatsAppCTA />
+
             {/* RIWA Fixed Difference Navigation HUD */}
             <HeaderHUD
               isMenuOpen={isMenuOpen}
@@ -64,12 +80,12 @@ export const AppContent: React.FC = () => {
                 isMenuOpen
                   ? isDesktop
                     ? {
-                        rotate: 5,
-                        x: 120,
-                        y: 140,
-                        scale: 1.03,
-                        opacity: 0.2,
-                        filter: 'blur(4px)',
+                        rotate: 8,
+                        x: 200,
+                        y: 250,
+                        scale: 1.08,
+                        opacity: 0.15,
+                        filter: 'blur(6px)',
                       }
                     : {
                         opacity: 0.25,
@@ -103,18 +119,18 @@ export const AppContent: React.FC = () => {
             >
               <Suspense fallback={<div className="min-h-screen bg-canvas" />}>
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/work" element={<WorkPage />} />
-                  <Route path="/vision" element={<VisionPage />} />
+                  <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
+                  <Route path="/work" element={<PageTransition><WorkPage /></PageTransition>} />
+                  <Route path="/vision" element={<PageTransition><VisionPage /></PageTransition>} />
                   <Route path="/protocol" element={<Navigate to="/vision" replace />} />
                   <Route path="/manifesto" element={<Navigate to="/vision" replace />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/leadership" element={<LeadershipPage />} />
+                  <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
+                  <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
                   <Route path="/about" element={<Navigate to="/leadership" replace />} />
                   <Route path="/team" element={<Navigate to="/leadership" replace />} />
-                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
                   <Route path="/brief" element={<Navigate to="/contact" replace />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
+                  <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
                 </Routes>
               </Suspense>
             </motion.div>

@@ -7,8 +7,18 @@ import { ServicesSection } from '../components/services/ServicesSection';
 import { LeadershipSection } from '../components/leadership/LeadershipSection';
 import { IntakeSection } from '../components/intake/IntakeSection';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 export const HomePage: React.FC = () => {
+  useDocumentMeta({
+    title: 'RIWA CREATIVES — We Make It Happen',
+    description:
+      'Independent commercial ad art studio & performance growth engine. Museum-grade poster design, 3D web funnels, and ruthless mathematical scaling. ₹400 Cr+ client revenue delivered.',
+    ogTitle: 'RIWA CREATIVES — We Make It Happen',
+    ogDescription:
+      'Engineered Growth. Unapologetic Design. Commercial poster design, 3D web funnels, and performance scaling.',
+  });
+
   return (
     <>
       <main className="w-full">

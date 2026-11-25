@@ -87,15 +87,58 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 600);
+
+    // Build structured email body
+    const subject = encodeURIComponent(`Growth Sprint Brief — ${formData.name}`);
+    const body = encodeURIComponent(
+      `NEW GROWTH BRIEF RECEIVED\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Brand / Website: ${formData.brandOrWebsite || 'Not provided'}\n\n` +
+      `Selected Disciplines: ${selectedDisciplines.join(', ')}\n` +
+      `Budget Tier: ${selectedBudget}\n\n` +
+      `Project Vision:\n${formData.projectVision || 'Not provided'}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Submitted via riwacreatives.vercel.app\n` +
+      `Timestamp: ${new Date().toISOString()}`
+    );
+
+    // Try Web3Forms API first (free, no backend needed)
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'YOUR_WEB3FORMS_KEY', // User needs to replace this
+          name: formData.name,
+          email: formData.email,
+          subject: `Growth Sprint Brief — ${formData.name}`,
+          message: `Disciplines: ${selectedDisciplines.join(', ')}\nBudget: ${selectedBudget}\nBrand: ${formData.brandOrWebsite}\n\nVision:\n${formData.projectVision}`,
+          from_name: 'RIWA Website',
+          to: 'riwacreatives@gmail.com',
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        return;
+      }
+    } catch {
+      // Web3Forms failed, fall through to mailto
+    }
+
+    // Fallback: open mailto with structured data
+    window.location.href = `mailto:riwacreatives@gmail.com?subject=${subject}&body=${body}`;
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
   };
 
   return (

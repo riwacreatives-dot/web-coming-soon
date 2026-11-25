@@ -34,6 +34,9 @@ export const CustomCursor: React.FC = () => {
     // Only enable on desktop pointer devices
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
+    // Signal to CSS that custom cursor is active on fine pointers
+    document.documentElement.classList.add('custom-cursor-active');
+
     let lastTarget: EventTarget | null = null;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -116,6 +119,7 @@ export const CustomCursor: React.FC = () => {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
+      document.documentElement.classList.remove('custom-cursor-active');
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);

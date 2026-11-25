@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, type Variants, type Transition } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, type Variants, type Transition } from 'framer-motion';
 import { RegionalHubModal } from './RegionalHubModal';
 import { ArrowUpRight, ShieldCheck } from 'lucide-react';
 
@@ -57,6 +57,15 @@ const letterHoverTransition: Transition = {
 
 export const EditorialFooter: React.FC = () => {
   const [activeModal, setActiveModal] = useState<'brand-dalal' | 'portal' | 'careers' | null>(null);
+  const logoSectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: logoSectionRef,
+    offset: ['start end', 'end end'],
+  });
+
+  const logoScaleY = useTransform(scrollYProgress, [0, 1], [0.72, 1]);
+  const logoLetterSpacing = useTransform(scrollYProgress, [0, 1], ['-0.06em', '-0.02em']);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -115,8 +124,11 @@ export const EditorialFooter: React.FC = () => {
           </button>
         </div>
 
-        {/* Cinematic Monumental "RIWA." Logo */}
-        <div className="group relative py-12 sm:py-24 select-none overflow-visible flex items-end justify-center">
+        {/* Cinematic Monumental "RIWA." Logo with Scroll-Scrub Stretch */}
+        <div
+          ref={logoSectionRef}
+          className="group relative py-12 sm:py-24 select-none overflow-visible flex items-end justify-center"
+        >
           {/* Ambient Glow behind the logo */}
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center -z-10">
             <div className="w-3/4 max-w-4xl h-24 sm:h-36 bg-brand-red/10 filter blur-[70px] sm:blur-[90px] rounded-full transition-opacity duration-500 opacity-60 group-hover:opacity-100" />
@@ -127,8 +139,13 @@ export const EditorialFooter: React.FC = () => {
             variants={logoContainerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="w-full font-display text-[clamp(3.5rem,14vw,12.5rem)] font-black uppercase text-text-primary leading-[0.85] tracking-tight whitespace-nowrap text-center flex items-baseline justify-center select-none"
+            viewport={{ once: true, amount: 0.2 }}
+            style={{
+              scaleY: logoScaleY,
+              letterSpacing: logoLetterSpacing,
+              transformOrigin: 'bottom center',
+            }}
+            className="w-full font-display text-[clamp(3.5rem,14vw,12.5rem)] font-black uppercase text-text-primary leading-[0.85] tracking-tight whitespace-nowrap text-center flex items-baseline justify-center select-none will-change-transform"
           >
             {LETTERS.map((char, idx) => (
               <motion.span

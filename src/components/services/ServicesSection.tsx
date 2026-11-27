@@ -1,113 +1,150 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { SERVICES_DATA } from '../../data/servicesData';
 import { ServiceRow } from './ServiceRow';
 import { ArrowUpRight } from 'lucide-react';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+
+const STUDIO_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface ServicesSectionProps {
   standalone?: boolean;
 }
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ standalone = false }) => {
-  const [activeServiceId, setActiveServiceId] = useState<string>(SERVICES_DATA[0].id);
+  const { hash } = useLocation();
+  const reduced = useReducedMotion();
+  const [activeServiceId, setActiveServiceId] = useState<string>(() => {
+    const hashId = hash.replace(/^#/, '');
+    return SERVICES_DATA.some((s) => s.id === hashId) ? hashId : SERVICES_DATA[0].id;
+  });
 
-  const activeService =
-    SERVICES_DATA.find((s) => s.id === activeServiceId) || SERVICES_DATA[0];
-  const isActiveEvents = activeService.id === 'events-experiences';
+  useEffect(() => {
+    const hashId = hash.replace(/^#/, '');
+    if (hashId && SERVICES_DATA.some((s) => s.id === hashId)) {
+      setActiveServiceId(hashId);
+    }
+  }, [hash]);
 
   return (
-    <div className="w-full bg-[#111116] text-white border-b border-white/10 transition-colors">
+    <div className="w-full bg-[#111116] dark:bg-[#F5F4F0] text-white dark:text-[#111116] border-b border-white/10 dark:border-[#111116]/15 transition-colors">
       <section
         id="services"
         className={`relative w-full ${
           standalone
-            ? 'pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-28 md:py-36'
-            : 'py-16 sm:py-24 md:py-36'
+            ? 'pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-24 md:pb-28'
+            : 'py-16 sm:py-24 md:py-28'
         } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Sticky Column: Headline + Tangible Visual Preview of Active Discipline */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
+          {/* Left Sticky Column: Editorial Positioning & Direct Enquiry CTA */}
+          <motion.div
+            initial={reduced ? false : 'hidden'}
+            animate="visible"
+            className="lg:col-span-5 lg:sticky lg:top-[var(--sticky-offset)] space-y-6"
+          >
             <div>
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-white/60 font-semibold block mb-3 select-none">
-                {standalone ? 'OUR CAPABILITIES · FIVE CORE DISCIPLINES' : '03 / CAPABILITIES'}
-              </span>
+              <motion.span
+                variants={{
+                  hidden: { opacity: 0, x: -12 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: STUDIO_EASE } },
+                }}
+                className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#FD7D3C] dark:text-[#C4123D] font-semibold block mb-3 select-none"
+              >
+                {standalone ? '01 — OUR CAPABILITIES · FIVE CORE DISCIPLINES' : '04 — WHAT WE DO'}
+              </motion.span>
 
-              <h2 className="font-display text-[clamp(2.25rem,5.8vw,4rem)] font-black uppercase tracking-tight text-white leading-[0.98]">
-                <span>BIG IDEAS.</span><br />
-                <span>BUILT FROM</span><br />
-                <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
-                  every
-                </span>{' '}
-                <span>ANGLE</span><span className="text-[#EA1E4D]">.</span>
-              </h2>
+              <h1 className="font-display text-[clamp(2.25rem,5.5vw,4rem)] font-extrabold uppercase tracking-tight text-white dark:text-[#111116] leading-[0.96]">
+                <span className="block overflow-hidden">
+                  <motion.span
+                    variants={{
+                      hidden: { y: '108%', opacity: 0 },
+                      visible: { y: '0%', opacity: 1, transition: { duration: 0.68, delay: 0.05, ease: STUDIO_EASE } },
+                    }}
+                    className="block"
+                  >
+                    BIG IDEAS.
+                  </motion.span>
+                </span>
+                <span className="block overflow-hidden">
+                  <motion.span
+                    variants={{
+                      hidden: { y: '108%', opacity: 0 },
+                      visible: { y: '0%', opacity: 1, transition: { duration: 0.72, delay: 0.12, ease: STUDIO_EASE } },
+                    }}
+                    className="block"
+                  >
+                    BUILT FROM
+                  </motion.span>
+                </span>
+                <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
+                  <motion.span
+                    variants={{
+                      hidden: { y: '108%', opacity: 0 },
+                      visible: { y: '0%', opacity: 1, transition: { duration: 0.75, delay: 0.2, ease: STUDIO_EASE } },
+                    }}
+                    className="block"
+                  >
+                    <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] dark:text-[#C4123D] text-[1.14em] lowercase select-none">
+                      every
+                    </span>{' '}
+                    <span>ANGLE</span>
+                    <span className="text-[#EA1E4D] dark:text-[#C4123D]">.</span>
+                  </motion.span>
+                </span>
+              </h1>
             </div>
 
-            {/* Dynamic Selected Discipline Visual Preview Card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeService.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                className="border border-white/15 bg-[#17171D] p-4 sm:p-5 space-y-4"
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 12 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.28, ease: STUDIO_EASE } },
+              }}
+              className="font-sans text-sm sm:text-base text-[#B4B4BE] dark:text-[#3F3F46] leading-relaxed max-w-md"
+            >
+              Five integrated disciplines spanning brand foundations, commercial advertising, digital craft, live experiences, and ongoing stewardship. Expand any discipline or open its dedicated showcase page.
+            </motion.p>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 12 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.34, ease: STUDIO_EASE } },
+              }}
+              className="pt-2 flex flex-wrap items-center gap-4"
+            >
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#FD7D3C] text-[#111116] hover:bg-white dark:hover:bg-[#111116] dark:hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.98]"
               >
-                <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-white/50 pb-2.5 border-b border-white/10">
-                  <span className={isActiveEvents ? 'text-[#FD7D3C] font-bold' : 'text-[#EA1E4D] font-bold'}>
-                    PREVIEW // {activeService.index}
-                  </span>
-                  <span>{activeService.categoryTag}</span>
-                </div>
-
-                {/* Genuine Visual Artwork or Illustrative Events Stage Preview */}
-                {activeService.previewImage ? (
-                  <div className="aspect-[16/10] w-full overflow-hidden bg-black border border-white/10">
-                    <img
-                      src={activeService.previewImage}
-                      alt={activeService.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                ) : (
-                  <div className="aspect-[16/10] w-full bg-[#FD7D3C] text-[#111116] p-5 flex flex-col justify-between relative overflow-hidden">
-                    <div className="flex justify-between font-mono text-[10px] font-bold uppercase tracking-widest">
-                      <span>RIWA / EXPERIENCES / 05</span>
-                      <span className="px-2 py-0.5 bg-[#111116] text-white">ILLUSTRATIVE</span>
-                    </div>
-                    <div>
-                      <p className="font-display text-2xl font-black uppercase leading-none tracking-tight">
-                        WE MAKE MOMENTS HAPPEN.
-                      </p>
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider block mt-2">
-                        HACKATHONS · MUNS · FESTIVALS · STAGE SYSTEMS
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-2">
-                  <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed">
-                    {activeService.shortDesc}
-                  </p>
-                  <Link
-                    to={`/services/${activeService.id}`}
-                    className={`inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider hover:underline ${
-                      isActiveEvents ? 'text-[#FD7D3C]' : 'text-[#EA1E4D]'
-                    }`}
-                  >
-                    <span>Explore Dedicated {activeService.name} Page</span>
-                    <ArrowUpRight size={13} />
-                  </Link>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                <span>Start a Project</span>
+                <ArrowUpRight
+                  size={14}
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+              <Link
+                to="/work"
+                className="group inline-flex items-center gap-2 px-5 py-3.5 rounded-full border border-white/25 dark:border-[#111116]/30 text-white dark:text-[#111116] hover:border-[#FD7D3C] hover:text-[#FD7D3C] dark:hover:border-[#C4123D] dark:hover:text-[#C4123D] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.98]"
+              >
+                <span>View Work</span>
+                <ArrowUpRight
+                  size={14}
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column: Interactive Editorial Discipline List */}
-          <div className="lg:col-span-7 border-t border-white/15">
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.16, ease: STUDIO_EASE }}
+            className="lg:col-span-7 border-t border-white/15 dark:border-[#111116]/20"
+          >
             {SERVICES_DATA.map((service) => (
               <ServiceRow
                 key={service.id}
@@ -119,7 +156,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ standalone = f
                 onMouseMove={() => {}}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

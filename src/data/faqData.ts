@@ -5,45 +5,46 @@ export interface FAQItem {
   category:
     | 'Working with Riwa'
     | 'Services'
-    | 'Pricing & Scope'
+    | 'Scope'
     | 'Ongoing Brand Management'
     | 'Events & Experiences';
 }
 
+// Draft editorial FAQ aligned with Blueprint-3 claims discipline (DEC-10 founder review)
 export const FAQ_DATA: FAQItem[] = [
   {
     id: 'faq-01',
     category: 'Working with Riwa',
-    question: 'How does working with Riwa begin, and who do we collaborate with?',
+    question: 'How does working with Riwa begin?',
     answer:
-      'Every project begins with a direct conversation with founder Ranjan Kumar—never passed down to layers of account managers. Tell us what you are building via our Commission page or email riwacreatives@gmail.com to align on objectives and timeline.',
+      'Every project begins by sharing your brief through our Contact page so we can align on objectives, deliverables, and timeline.',
   },
   {
     id: 'faq-02',
     category: 'Services',
-    question: 'What core creative and growth disciplines does Riwa handle?',
+    question: 'What core capabilities does Riwa cover?',
     answer:
-      'Riwa operates across five connected practices: Brand & Identity, Commercial Creative & Advertising, Digital & Growth, Technology & Digital Experiences, and Events, Experiences & Activations.',
+      'Riwa operates across five connected capabilities: Brand & Identity, Creative & Advertising, Digital & Technology, Events & Experiences, and Brand Management & Growth.',
   },
   {
     id: 'faq-03',
-    category: 'Pricing & Scope',
-    question: 'How is pricing structured, and can we commission a single project?',
+    category: 'Scope',
+    question: 'Can we commission a single focused project?',
     answer:
-      'Yes—you can commission a focused standalone identity, campaign, website, or event without a long-term lock-in. Every proposal is custom-scoped based on deliverables, complexity, and sprint duration.',
+      'Yes. Focused identities, campaigns, websites, or live events can be scoped as standalone engagements without long-term lock-in.',
   },
   {
     id: 'faq-04',
     category: 'Ongoing Brand Management',
-    question: 'Does Riwa support ongoing brand management and creative stewardship?',
+    question: 'Does Riwa support ongoing brand management after launch?',
     answer:
-      'Yes. Beyond launching a visual system, we provide ongoing brand stewardship and monthly creative retainers to ensure every campaign, deck, storefront update, and visual drop stays consistent and sharp as you scale.',
+      'Yes. We support ongoing brand strategy, stewardship, and growth marketing so identity and campaign materials stay coherent beyond launch day.',
   },
   {
     id: 'faq-05',
     category: 'Events & Experiences',
-    question: 'Can Riwa handle hackathons, MUNs, festivals, and conferences end-to-end?',
+    question: 'What does Events & Experiences include?',
     answer:
-      'Yes. We handle everything from concept and visual identity to sponsor decks, participant acquisition, digital ticketing/registration portals, and on-ground event coordination.',
+      'We plan, brand, and produce conferences, hackathons, and brand activations—connecting visual identity, physical collateral, and room experience.',
   },
 ];

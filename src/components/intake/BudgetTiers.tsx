@@ -16,7 +16,7 @@ export const BudgetTiers: React.FC<BudgetTiersProps> = ({ selected, onChange }) 
   return (
     <div className="space-y-3 font-mono">
       <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-text-secondary block">
-        02 / Approximate Budget Range
+        03 / Approximate Budget Range
       </label>
 
       <div className="flex flex-wrap gap-2 sm:gap-2.5">

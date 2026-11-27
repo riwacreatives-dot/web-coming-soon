@@ -1,44 +1,31 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { LOCKED_CAPABILITIES } from '../../data/studioData';
 
 const TICKER_ITEMS = [
-  'BRAND & IDENTITY',
-  'COMMERCIAL ADVERTISING',
-  'DIGITAL & GROWTH',
-  'TECHNOLOGY & EXPERIENCES',
-  'EVENTS & ACTIVATIONS',
-  'CONTROLLED CHAOS',
-  'CREATIVE WITHOUT BOUNDARIES',
+  ...LOCKED_CAPABILITIES.map((c) => c.name.toUpperCase()),
+  'INDEPENDENT CREATIVE & GROWTH STUDIO',
 ];
 
 export const BrandTicker: React.FC = () => {
   return (
     <div
-      aria-label="Riwa Disciplines Ticker"
-      className="relative w-full py-3.5 sm:py-4 border-y border-[#111116]/15 bg-[#111116] text-white overflow-hidden select-none"
+      aria-label="Riwa Disciplines"
+      className="relative w-full py-3.5 sm:py-4 border-y border-[#111116]/15 bg-[#111116] text-white overflow-x-auto no-scrollbar select-none"
     >
-      <div className="flex w-max">
-        <motion.div
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{
-            repeat: Infinity,
-            ease: 'linear',
-            duration: 24,
-          }}
-          className="flex items-center shrink-0 whitespace-nowrap"
-        >
-          {[0, 1, 2].map((rep) =>
-            TICKER_ITEMS.map((item, idx) => (
-              <span
-                key={`t-${rep}-${idx}`}
-                className="flex items-center gap-3 sm:gap-4 mx-3 sm:mx-4 font-mono text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-white"
-              >
-                <span>{item}</span>
-                <span className="text-[#EA1E4D] text-sm sm:text-base font-black">✳</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+        {TICKER_ITEMS.map((item, idx) => (
+          <span
+            key={item}
+            className="flex items-center gap-3 font-mono text-xs sm:text-[13px] font-bold tracking-[0.18em] uppercase text-white whitespace-nowrap"
+          >
+            <span>{item}</span>
+            {idx < TICKER_ITEMS.length - 1 && (
+              <span className="text-[#FD7D3C] text-sm font-extrabold" aria-hidden="true">
+                ✳
               </span>
-            ))
-          )}
-        </motion.div>
+            )}
+          </span>
+        ))}
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
 import { ManifestoSection } from '../components/home/ManifestoSection';
 import { DifferenceSection } from '../components/home/DifferenceSection';
+import { AboutRiwaSection } from '../components/home/AboutRiwaSection';
 import { ProcessSection } from '../components/home/ProcessSection';
 import { WhoWeWorkWithSection } from '../components/home/WhoWeWorkWithSection';
-import { BrandTicker } from '../components/home/BrandTicker';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
@@ -21,23 +19,20 @@ export const AboutPage: React.FC = () => {
 
   return (
     <>
-      <main className="w-full pt-16 sm:pt-20">
-        {/* About Section */}
-        <AboutRiwaSection />
+      <main className="w-full">
+        {/* 01. We Don't Believe In Ordinary (Studio Credo) */}
+        <ManifestoSection eyebrow="01 — THE RIWA WAY" standalone />
 
-        {/* The Riwa Manifesto Callout */}
-        <ManifestoSection />
-
-        {/* Brand Ticker */}
-        <BrandTicker />
-
-        {/* The Riwa Difference */}
+        {/* 02. Not Another Agency Playing It Safe */}
         <DifferenceSection />
 
-        {/* Our Process */}
+        {/* 03. About Riwa Creatives */}
+        <AboutRiwaSection />
+
+        {/* 04. Our Process */}
         <ProcessSection />
 
-        {/* Who We Work With */}
+        {/* 05. Who We Work With */}
         <WhoWeWorkWithSection />
       </main>
 

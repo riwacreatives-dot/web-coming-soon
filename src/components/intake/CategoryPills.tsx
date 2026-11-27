@@ -28,7 +28,7 @@ export const CategoryPills: React.FC<CategoryPillsProps> = ({ selected, onChange
   return (
     <div className="space-y-3 font-mono">
       <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-text-secondary block">
-        01 / Select Disciplines & Scope (Multi-select)
+        02 / Select Disciplines & Scope (Multi-select)
       </label>
 
       <div className="flex flex-wrap gap-2 sm:gap-2.5">

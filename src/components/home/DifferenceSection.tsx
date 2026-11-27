@@ -1,5 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+
+const STUDIO_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface Principle {
   number: string;
@@ -35,46 +38,104 @@ const PRINCIPLES: Principle[] = [
 ];
 
 export const DifferenceSection: React.FC = () => {
+  const reduced = useReducedMotion();
+
   return (
     <div className="w-full bg-[#FD7D3C] text-[#111116] border-y-2 border-[#111116] transition-colors">
       <section
         id="difference"
         className="relative w-full py-20 sm:py-28 md:py-36 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Sticky Oversized Headline Split */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#111116]/85 font-bold select-none">
-              <span className="px-2 py-0.5 bg-[#111116] text-white">04</span>
+          <motion.div
+            initial={reduced ? false : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.08 }}
+            className="lg:col-span-5 min-w-0 lg:sticky lg:top-[var(--sticky-offset)] space-y-6"
+          >
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, x: -12 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: STUDIO_EASE } },
+              }}
+              className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#111116] font-bold select-none"
+            >
+              <span className="px-2 py-0.5 bg-[#111116] text-white">02</span>
               <span>THE RIWA DIFFERENCE</span>
-            </div>
+            </motion.div>
 
-            <h2 className="font-display text-[clamp(2.4rem,5.5vw,4.6rem)] font-black uppercase tracking-tighter text-[#111116] leading-[0.94]">
-              <span>NOT ANOTHER</span><br />
-              <span>AGENCY</span>{' '}
-              <span className="font-serif italic font-normal tracking-normal text-white text-[1.12em] lowercase select-none">
-                playing
-              </span><br />
-              <span>IT SAFE</span><span className="text-white">.</span>
+            <h2 className="font-display text-[clamp(1.85rem,3.5vw,3.4rem)] font-extrabold uppercase tracking-tighter text-[#111116] leading-[0.95] break-words">
+              <span className="block overflow-hidden">
+                <motion.span
+                  variants={{
+                    hidden: { y: '108%', opacity: 0 },
+                    visible: { y: '0%', opacity: 1, transition: { duration: 0.68, delay: 0.05, ease: STUDIO_EASE } },
+                  }}
+                  className="block"
+                >
+                  NOT ANOTHER
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
+                <motion.span
+                  variants={{
+                    hidden: { y: '108%', opacity: 0 },
+                    visible: { y: '0%', opacity: 1, transition: { duration: 0.72, delay: 0.13, ease: STUDIO_EASE } },
+                  }}
+                  className="block"
+                >
+                  <span>AGENCY</span>{' '}
+                  <span className="font-serif italic font-normal tracking-normal text-[#111116] underline decoration-2 underline-offset-4 text-[1.1em] lowercase select-none">
+                    playing
+                  </span>
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span
+                  variants={{
+                    hidden: { y: '108%', opacity: 0 },
+                    visible: { y: '0%', opacity: 1, transition: { duration: 0.74, delay: 0.21, ease: STUDIO_EASE } },
+                  }}
+                  className="block"
+                >
+                  IT SAFE.
+                </motion.span>
+              </span>
             </h2>
 
-            <p className="font-sans text-sm sm:text-base text-[#111116]/90 font-medium leading-relaxed max-w-md">
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.28, ease: STUDIO_EASE } },
+              }}
+              className="font-sans text-sm sm:text-base text-[#111116]/90 font-medium leading-relaxed max-w-md"
+            >
               Ambitious brands don&apos;t stand out by blending into safe industry templates. Here is how we refuse ordinary execution.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          {/* Right Editorial Principle Rows with Large Section Numbers (No Cards) */}
-          <div className="lg:col-span-7 border-t-2 border-[#111116] divide-y-2 divide-[#111116]/25">
+          {/* Right Editorial Principle Rows with Large Section Numbers */}
+          <motion.div
+            initial={reduced ? false : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.08 }}
+            className="lg:col-span-7 min-w-0 border-t-2 border-[#111116] divide-y-2 divide-[#111116]/25"
+          >
             {PRINCIPLES.map((p, idx) => (
               <motion.div
                 key={p.number}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.4, delay: idx * 0.07 }}
-                className="py-7 sm:py-9 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8"
+                variants={{
+                  hidden: { opacity: 0, x: 18 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: { duration: 0.56, delay: idx * 0.08, ease: STUDIO_EASE },
+                  },
+                }}
+                className="py-7 sm:py-9 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8 transition-transform duration-300 ease-out hover:translate-x-1"
               >
-                <span className="font-display text-4xl sm:text-5xl font-black text-white leading-none shrink-0 select-none">
+                <span className="font-display text-4xl sm:text-5xl font-extrabold text-[#111116] leading-none shrink-0 select-none">
                   {p.number}
                 </span>
 
@@ -88,7 +149,7 @@ export const DifferenceSection: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

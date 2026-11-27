@@ -9,7 +9,10 @@ export const ProjectDetailPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
 
-  const resolvedId = projectId === 'solanas-baddies' ? 'solanas-campaign' : projectId;
+  const resolvedId =
+    projectId === 'solanas-baddies' || projectId === 'solanas-campaign'
+      ? 'solanas'
+      : projectId;
   const projectIndex = PROJECTS_DATA.findIndex((p) => p.id === resolvedId);
   const project = projectIndex >= 0 ? PROJECTS_DATA[projectIndex] : null;
 
@@ -26,7 +29,7 @@ export const ProjectDetailPage: React.FC = () => {
         <span className="font-mono text-xs uppercase tracking-widest text-[#EA1E4D] font-bold mb-3">
           ARCHIVE ENTRY NOT FOUND
         </span>
-        <h1 className="font-display text-4xl font-black uppercase mb-6">
+        <h1 className="font-display text-4xl font-extrabold uppercase mb-6">
           Project Not Available.
         </h1>
         <Link
@@ -68,7 +71,7 @@ export const ProjectDetailPage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
-              <h1 className="font-display text-[clamp(2.4rem,6.5vw,5rem)] font-black uppercase tracking-tighter leading-[0.94] mb-4">
+              <h1 className="font-display text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold uppercase tracking-tighter leading-[0.94] mb-4">
                 {project.title}
                 <span className="text-[#EA1E4D]">.</span>
               </h1>
@@ -95,15 +98,17 @@ export const ProjectDetailPage: React.FC = () => {
         </section>
 
         {/* Full-Width Hero Showcase Image */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-10 sm:py-14">
-          <div className="aspect-[16/10] sm:aspect-[21/10] w-full overflow-hidden bg-[#111116] border border-[#111116]/15 dark:border-white/15">
-            <img
-              src={project.heroImage}
-              alt={project.title}
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-        </section>
+        {project.heroImage && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-10 sm:py-14">
+            <div className="aspect-[16/10] sm:aspect-[21/10] w-full overflow-hidden bg-[#111116] border border-[#111116]/15 dark:border-white/15">
+              <img
+                src={project.heroImage}
+                alt={project.title}
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          </section>
+        )}
 
         {/* Case-Study Narrative Architecture */}
         <section className="w-full bg-[#F5F4F0] dark:bg-[#14141A] border-y border-[#111116]/15 dark:border-white/15 py-16 sm:py-24 transition-colors">
@@ -132,7 +137,7 @@ export const ProjectDetailPage: React.FC = () => {
                   <span className="font-mono text-xs text-[#FD7D3C] uppercase tracking-widest font-bold block mb-2">
                     // 06 · VERIFIED OUTCOME
                   </span>
-                  <p className="font-display text-2xl sm:text-3xl font-black uppercase text-white mb-2">
+                  <p className="font-display text-2xl sm:text-3xl font-extrabold uppercase text-white mb-2">
                     {project.metric}
                   </p>
                   <p className="font-sans text-sm sm:text-base text-white/80 leading-relaxed">
@@ -228,7 +233,7 @@ export const ProjectDetailPage: React.FC = () => {
                 <span className="font-mono text-[11px] font-bold text-[#EA1E4D] block mb-1">
                   {rel.archiveCode}
                 </span>
-                <h3 className="font-display text-xl font-black uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
+                <h3 className="font-display text-xl font-extrabold uppercase tracking-tight text-[#111116] dark:text-white group-hover:text-[#EA1E4D] transition-colors">
                   {rel.title}
                 </h3>
               </Link>

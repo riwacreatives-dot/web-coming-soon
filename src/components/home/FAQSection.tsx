@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FAQ_DATA } from '../../data/faqData';
 import { ChevronDown } from 'lucide-react';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+
+const STUDIO_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const FAQSection: React.FC = () => {
+  const reduced = useReducedMotion();
   const [openId, setOpenId] = useState<string | null>(FAQ_DATA[0].id);
 
   const toggle = (id: string) => {
@@ -16,24 +20,71 @@ export const FAQSection: React.FC = () => {
         id="faq"
         className="relative w-full py-16 sm:py-24 md:py-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto"
       >
-        <div className="mb-12 sm:mb-16 max-w-3xl">
-          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-semibold block mb-3 select-none">
-            12 / FREQUENTLY ASKED QUESTIONS
-          </span>
+        <motion.div
+          initial={reduced ? false : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
+          className="mb-12 sm:mb-16 max-w-3xl"
+        >
+          <motion.span
+            variants={{
+              hidden: { opacity: 0, x: -12 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: STUDIO_EASE } },
+            }}
+            className="font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-[#52525B] dark:text-white/60 font-semibold block mb-3 select-none"
+          >
+            02 — FREQUENTLY ASKED QUESTIONS
+          </motion.span>
           <h2 className="font-display text-[clamp(2.2rem,6.5vw,4.2rem)] font-black uppercase tracking-tight text-[#111116] dark:text-white leading-[1.02]">
-            <span>CLEAR ANSWERS.</span><br />
-            <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
-              zero
-            </span>{' '}
-            <span>GUESSWORK</span><span className="text-[#EA1E4D]">.</span>
+            <span className="block overflow-hidden">
+              <motion.span
+                variants={{
+                  hidden: { y: '108%', opacity: 0 },
+                  visible: { y: '0%', opacity: 1, transition: { duration: 0.68, delay: 0.05, ease: STUDIO_EASE } },
+                }}
+                className="block"
+              >
+                CLEAR ANSWERS.
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
+              <motion.span
+                variants={{
+                  hidden: { y: '108%', opacity: 0 },
+                  visible: { y: '0%', opacity: 1, transition: { duration: 0.72, delay: 0.14, ease: STUDIO_EASE } },
+                }}
+                className="block"
+              >
+                <span className="font-serif italic font-normal tracking-normal text-[#EA1E4D] text-[1.14em] lowercase select-none">
+                  zero
+                </span>{' '}
+                <span>GUESSWORK</span>
+                <span className="text-[#EA1E4D]">.</span>
+              </motion.span>
+            </span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="border-t border-[#111116]/20 dark:border-white/15 divide-y divide-[#111116]/20 dark:divide-white/15">
+        <motion.div
+          initial={reduced ? false : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.06 }}
+          className="border-t border-[#111116]/20 dark:border-white/15 divide-y divide-[#111116]/20 dark:divide-white/15"
+        >
           {FAQ_DATA.map((item, idx) => {
             const isOpen = openId === item.id;
             return (
-              <div key={item.id}>
+              <motion.div
+                key={item.id}
+                variants={{
+                  hidden: { opacity: 0, x: 14 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: { duration: 0.5, delay: idx * 0.06, ease: STUDIO_EASE },
+                  },
+                }}
+              >
                 <button
                   type="button"
                   onClick={() => toggle(item.id)}
@@ -79,10 +130,10 @@ export const FAQSection: React.FC = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </section>
     </div>
   );

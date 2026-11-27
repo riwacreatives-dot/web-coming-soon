@@ -1,97 +1,60 @@
-import React, { useRef, useState } from 'react';
-import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Sun, Moon } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
-import { SparkElement } from '../common/SparkElement';
-import { ProcessSection } from '../home/ProcessSection';
 
 const DIGITAL_CAPABILITIES = [
-  ['Digital strategy', 'Growth marketing'],
-  ['Website design & dev', 'Performance ad creative'],
-  ['UX & interface architecture', 'Social & content systems'],
-  ['E-commerce storefronts', 'Funnel & conversion flows'],
-  ['Event & ticketing portals', 'Analytics & iteration'],
+  ['Custom websites', 'UI/UX design'],
+  ['Digital products', 'Interactive experiences'],
+  ['Component libraries', 'Campaign microsites'],
+  ['Responsive front-end builds', 'Technical SEO setup'],
+  ['Event ticketing hubs', 'Performance architecture'],
 ];
 
-const FUNNEL_NODES = [
+const ARCHITECTURE_NODES = [
   {
     step: '01 // ATTENTION HOOK',
-    metric: '6.2% CTR',
-    title: 'Scroll-Stopping Campaign Creative',
-    detail: 'Visual-first Meta ads, street key visuals, and platform-native copy engineered to earn clicks instead of getting scrolled past.',
+    tag: 'ENTRY SPEED',
+    title: 'Immediate Above-the-Fold Clarity',
+    detail: 'Fast initial renders, semantic HTML hierarchy, and zero bloated page-builder wrappers so visitors understand the offer instantly.',
   },
   {
     step: '02 // DIGITAL EXPERIENCE',
-    metric: '+340% INBOUNDS',
-    title: 'Fast Purpose-Built Web Flow',
-    detail: 'Clean responsive destinations with zero bloat so mobile visitors reach booking or ordering actions in seconds.',
+    tag: 'RESPONSIVE UX',
+    title: 'Desktop & Thumb-First Adaptation',
+    detail: 'Layouts engineered cleanly for both wide editorial screens and 390px mobile viewports with accessible keyboard and reduced-motion support.',
   },
   {
-    step: '03 // VERIFIED ACTION',
-    metric: '+420% ORDERS',
-    title: 'Compounding Commercial Demand',
-    detail: 'Measured weekly on Solanas Chinese • Thai—connecting sharp creative direction directly to weekend orders.',
+    step: '03 // CONVERSION FLOW',
+    tag: 'ACTION READY',
+    title: 'Frictionless Enquiry & Launch Paths',
+    detail: 'Clear interactive pathways connecting storytelling directly into tailored project briefs, registrations, or direct studio contact.',
   },
 ];
 
-type LabTabId = 'interface' | 'interaction' | 'funnel';
+type LabTabId = 'interface' | 'interaction' | 'architecture';
 
-export const TheWorld: React.FC = () => {
+interface TheWorldProps {
+  embedded?: boolean;
+}
+
+export const TheWorld: React.FC<TheWorldProps> = ({ embedded = false }) => {
   const reduced = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
 
-  // Section-local Spark coordinate reticle (zero re-renders on pointer move)
-  const reticleX = useMotionValue(-120);
-  const reticleY = useMotionValue(-120);
-  const [reticleActive, setReticleActive] = useState(false);
-
-  // Interactive Sandbox states
   const [activeTab, setActiveTab] = useState<LabTabId>('interface');
   const [viewportMode, setViewportMode] = useState<'desktop' | 'mobile'>('desktop');
   const [previewDark, setPreviewDark] = useState(true);
-  const [mockReserved, setMockReserved] = useState(false);
+  const [mockTested, setMockTested] = useState(false);
   const [activeBtnStyle, setActiveBtnStyle] = useState<'solid' | 'hairline' | 'orange'>('solid');
   const [sliderValue, setSliderValue] = useState(65);
-  const [activeFunnelIdx, setActiveFunnelIdx] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (reduced || !sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
-    reticleX.set(e.clientX - rect.left - 14);
-    reticleY.set(e.clientY - rect.top - 14);
-    if (!reticleActive) setReticleActive(true);
-  };
-
-  const handleMouseLeave = () => {
-    setReticleActive(false);
-  };
+  const [activeNodeIdx, setActiveNodeIdx] = useState(0);
 
   return (
     <section
-      id="chapter-world"
-      ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      id="digital-technology-showcase"
       className="relative w-full bg-[#E7E7E9] dark:bg-[#111116] text-[#111116] dark:text-white overflow-hidden transition-colors"
     >
-      {/* THE SPARK — Ch04 Functional Section-Local UI Reticle (Desktop Fine Pointer) */}
-      {!reduced && reticleActive && (
-        <motion.div
-          aria-hidden="true"
-          style={{ x: reticleX, y: reticleY }}
-          className="hidden lg:block absolute top-0 left-0 pointer-events-none z-30"
-        >
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="9" stroke="#EA1E4D" strokeWidth="1" opacity="0.65" />
-            <line x1="14" y1="0" x2="14" y2="7" stroke="#EA1E4D" strokeWidth="1.2" />
-            <line x1="14" y1="21" x2="14" y2="28" stroke="#EA1E4D" strokeWidth="1.2" />
-            <line x1="0" y1="14" x2="7" y2="14" stroke="#EA1E4D" strokeWidth="1.2" />
-            <line x1="21" y1="14" x2="28" y2="14" stroke="#EA1E4D" strokeWidth="1.2" />
-          </svg>
-        </motion.div>
-      )}
-
       {/* Subtle Ruled Blueprint Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04] dark:opacity-[0.06]"
@@ -103,44 +66,28 @@ export const TheWorld: React.FC = () => {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto pt-20 sm:pt-28 md:pt-36 px-4 sm:px-8 md:px-12">
-
-        {/* Chapter Label with THE SPARK Crosshair ⌖ */}
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.45 }}
-          className="flex items-center gap-3 mb-10 sm:mb-14"
-        >
-          <SparkElement chapter={3} size={20} />
-          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.28em] text-[#EA1E4D] font-bold">
-            04 — DIGITAL, TECHNOLOGY &amp; GROWTH
+      <div className="relative z-10 max-w-7xl mx-auto py-16 sm:py-24 md:py-28 px-4 sm:px-8 md:px-12">
+        <div className="flex items-center gap-3 mb-8 sm:mb-12">
+          <span className="w-2.5 h-2.5 rounded-full border-2 border-[#EA1E4D] inline-block" aria-hidden="true" />
+          <span className="font-mono text-xs uppercase tracking-[0.28em] text-[#C4123D] dark:text-[#FD7D3C] font-bold">
+            03 — DIGITAL &amp; TECHNOLOGY
           </span>
-        </motion.div>
+        </div>
 
-        {/* Main Headline */}
-        <motion.h2
-          initial={reduced ? false : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[clamp(2.4rem,6.5vw,5.2rem)] font-black uppercase tracking-tighter text-[#111116] dark:text-white leading-[0.92] mb-12 sm:mb-16 max-w-4xl"
-        >
+        <h2 className="font-display text-[clamp(2.2rem,6vw,4.8rem)] font-extrabold uppercase tracking-tighter text-[#111116] dark:text-white leading-[0.92] mb-12 sm:mb-16 max-w-4xl">
           <span className="block">YOUR BRAND LIVES</span>
           <span className="block font-serif italic font-normal tracking-tight text-[#EA1E4D] text-[1.06em] lowercase mt-1">
             in the browser now.
           </span>
-        </motion.h2>
+        </h2>
 
-        {/* Two-Column: Capability Matrix + Real Interactive Digital Experience Lab */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start pb-16 sm:pb-20">
-
-          {/* Left 5 Cols: Capability Matrix + Deep-Dive Link */}
+        {/* Two-Column: Capability Matrix + Interactive Digital Studio Sandbox */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Left 5 Cols: Capability Matrix + Architecture Note */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[#52525B] dark:text-white/50 font-bold block mb-4">
-                DIGITAL &amp; GROWTH CAPABILITY MATRIX
+              <span className="font-mono text-[11px] uppercase tracking-widest text-[#52525B] dark:text-[#B4B4BE] font-bold block mb-4">
+                DIGITAL &amp; TECHNOLOGY CAPABILITY MATRIX
               </span>
               <div className="border-t border-[#111116]/15 dark:border-white/15">
                 {DIGITAL_CAPABILITIES.map(([left, right]) => (
@@ -151,7 +98,7 @@ export const TheWorld: React.FC = () => {
                     <span className="font-mono text-xs sm:text-sm text-[#111116] dark:text-white/90 font-medium">
                       {left}
                     </span>
-                    <span className="font-mono text-xs sm:text-sm text-[#52525B] dark:text-white/55">
+                    <span className="font-mono text-xs sm:text-sm text-[#52525B] dark:text-[#B4B4BE]">
                       {right}
                     </span>
                   </div>
@@ -159,34 +106,41 @@ export const TheWorld: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-5 border border-[#111116]/15 dark:border-white/15 bg-white/60 dark:bg-[#181820] space-y-3">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[#EA1E4D] font-bold block">
+            <div className="p-5 border border-[#111116]/15 dark:border-white/15 bg-white/70 dark:bg-[#181820] space-y-3">
+              <span className="font-mono text-[11px] uppercase tracking-widest text-[#C4123D] dark:text-[#FD7D3C] font-bold block">
                 ZERO PAGE-BUILDER BLOAT
               </span>
-              <p className="font-sans text-sm text-[#3F3F46] dark:text-white/75 leading-relaxed">
-                This very website runs custom React, TypeScript, Tailwind, and hardware-accelerated motion crafted cleanly in-house—designed to adapt independently for desktop and thumb navigation.
+              <p className="font-sans text-sm text-[#3F3F46] dark:text-white/80 leading-relaxed">
+                This very website runs custom React 19, TypeScript, Tailwind CSS, and responsive motion crafted cleanly in-house—engineered to adapt cleanly across desktop and mobile viewports.
               </p>
-              <div className="flex flex-wrap gap-4 pt-1 font-mono text-xs font-bold">
-                <Link to="/services/technology-experiences" className="inline-flex items-center gap-1 text-[#EA1E4D] hover:underline uppercase">
-                  <span>Technology Scope</span>
-                  <ArrowUpRight size={13} />
-                </Link>
-                <Link to="/services/digital-growth" className="inline-flex items-center gap-1 text-[#111116] dark:text-white hover:text-[#EA1E4D] uppercase">
-                  <span>Growth Scope</span>
-                  <ArrowUpRight size={13} />
-                </Link>
-              </div>
+              {!embedded && (
+                <div className="flex flex-wrap gap-4 pt-1 font-mono text-xs font-bold">
+                  <Link
+                    to="/services/digital-technology"
+                    className="inline-flex items-center gap-1 text-[#C4123D] dark:text-[#FD7D3C] hover:underline uppercase"
+                  >
+                    <span>Digital &amp; Tech Scope</span>
+                    <ArrowUpRight size={13} aria-hidden="true" />
+                  </Link>
+                  <Link
+                    to="/contact?service=digital-technology"
+                    className="inline-flex items-center gap-1 text-[#111116] dark:text-white hover:text-[#C4123D] uppercase"
+                  >
+                    <span>Start a Build</span>
+                    <ArrowUpRight size={13} aria-hidden="true" />
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Right 7 Cols: Interactive Digital Studio Sandbox (Visitors test real UI) */}
+          {/* Right 7 Cols: Interactive Digital Studio Sandbox */}
           <div className="lg:col-span-7 bg-[#111116] dark:bg-[#17171E] text-white border border-[#111116] dark:border-white/15 overflow-hidden shadow-xl">
-            {/* Sandbox Header Bar */}
             <div className="px-4 sm:px-5 py-3.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-widest">
               <span className="text-[#FD7D3C] font-bold flex items-center gap-2">
                 ⌖ LIVE DIGITAL STUDIO SANDBOX
               </span>
-              <span className="text-white/45">CLICK CONTROLS TO TEST</span>
+              <span className="text-[#B4B4BE]">CLICK CONTROLS TO TEST</span>
             </div>
 
             {/* 3 Mode Switcher Tabs */}
@@ -194,16 +148,16 @@ export const TheWorld: React.FC = () => {
               {[
                 { id: 'interface' as const, label: '01 // INTERFACE DEMO' },
                 { id: 'interaction' as const, label: '02 // COMPONENT LAB' },
-                { id: 'funnel' as const, label: '03 // GROWTH FLOW' },
+                { id: 'architecture' as const, label: '03 // ARCHITECTURE' },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`py-3 px-2 sm:px-4 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border-r last:border-r-0 border-white/10 transition-colors cursor-pointer ${
+                  className={`min-h-[44px] py-3 px-2 sm:px-4 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border-r last:border-r-0 border-white/10 transition-colors cursor-pointer ${
                     activeTab === tab.id
-                      ? 'bg-[#EA1E4D] text-white'
-                      : 'text-white/55 hover:text-white hover:bg-white/5'
+                      ? 'bg-[#C4123D] text-white'
+                      : 'text-[#B4B4BE] hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {tab.label}
@@ -211,7 +165,6 @@ export const TheWorld: React.FC = () => {
               ))}
             </div>
 
-            {/* Active Interactive Sandbox Panel */}
             <div className="p-4 sm:p-6 min-h-[340px]">
               <AnimatePresence mode="wait">
                 {activeTab === 'interface' && (
@@ -223,16 +176,16 @@ export const TheWorld: React.FC = () => {
                     transition={{ duration: 0.2 }}
                     className="space-y-4"
                   >
-                    {/* Browser Toolbar with Responsive & Theme Switchers */}
+                    {/* Browser Toolbar */}
                     <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10 font-mono text-[10px]">
                       <div className="flex items-center gap-1.5">
                         <button
                           type="button"
                           onClick={() => setViewportMode('desktop')}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 border cursor-pointer transition-colors ${
+                          className={`min-h-[36px] inline-flex items-center gap-1.5 px-2.5 py-1 border cursor-pointer transition-colors ${
                             viewportMode === 'desktop'
                               ? 'border-[#FD7D3C] text-[#FD7D3C] bg-[#FD7D3C]/10 font-bold'
-                              : 'border-white/15 text-white/55 hover:text-white'
+                              : 'border-white/20 text-[#B4B4BE] hover:text-white'
                           }`}
                         >
                           <span>DESKTOP</span>
@@ -240,10 +193,10 @@ export const TheWorld: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setViewportMode('mobile')}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 border cursor-pointer transition-colors ${
+                          className={`min-h-[36px] inline-flex items-center gap-1.5 px-2.5 py-1 border cursor-pointer transition-colors ${
                             viewportMode === 'mobile'
                               ? 'border-[#FD7D3C] text-[#FD7D3C] bg-[#FD7D3C]/10 font-bold'
-                              : 'border-white/15 text-white/55 hover:text-white'
+                              : 'border-white/20 text-[#B4B4BE] hover:text-white'
                           }`}
                         >
                           <span>MOBILE (390PX)</span>
@@ -253,14 +206,14 @@ export const TheWorld: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setPreviewDark((d) => !d)}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-white/15 text-white/75 hover:border-white/40 cursor-pointer"
+                        className="min-h-[36px] inline-flex items-center gap-1.5 px-2.5 py-1 border border-white/20 text-white/85 hover:border-white/40 cursor-pointer"
                       >
                         {previewDark ? <Sun size={11} className="text-[#FD7D3C]" /> : <Moon size={11} />}
                         <span>{previewDark ? 'LIGHT SURFACE' : 'DARK SURFACE'}</span>
                       </button>
                     </div>
 
-                    {/* Live Mini Website Instance Inside Frame */}
+                    {/* Live Mini Website Instance */}
                     <div className="flex justify-center bg-[#09090D] p-3 border border-white/10">
                       <motion.div
                         layout={!reduced}
@@ -273,47 +226,52 @@ export const TheWorld: React.FC = () => {
                             : 'bg-[#F5F4F0] text-[#111116] border-[#111116]/20'
                         }`}
                       >
-                        {/* Mini Top Bar */}
-                        <div className="px-4 py-2.5 border-b border-current/10 flex items-center justify-between font-mono text-[9px] uppercase tracking-wider">
-                          <span className="font-bold">SOLANAS // EXPERIENCE</span>
-                          <span className="text-[#EA1E4D] font-bold">
+                        <div className="px-4 py-2.5 border-b border-current/15 flex items-center justify-between font-mono text-[9px] uppercase tracking-wider">
+                          <span className="font-bold">RIWA // DIGITAL SPEC</span>
+                          <span className="text-[#FD7D3C] font-bold">
                             {viewportMode === 'mobile' ? '390PX' : '1280PX'}
                           </span>
                         </div>
 
-                        {/* Mini Site Content */}
                         <div className={`p-4 grid gap-4 items-center ${viewportMode === 'mobile' ? 'grid-cols-1' : 'grid-cols-12'}`}>
                           <div className={viewportMode === 'mobile' ? '' : 'col-span-7'}>
-                            <span className="font-mono text-[8px] text-[#EA1E4D] font-bold uppercase tracking-widest block mb-1">
-                              NIGHTLY TABLE DROP
+                            <span className={`font-mono text-[9px] font-bold uppercase tracking-widest block mb-1 ${previewDark ? 'text-[#FD7D3C]' : 'text-[#C4123D]'}`}>
+                              RESPONSIVE INTERFACE
                             </span>
-                            <h4 className="font-display text-lg font-black uppercase tracking-tight leading-none mb-2">
-                              HOTTER THAN ORDINARY DINING.
-                            </h4>
-                            <p className="font-sans text-[11px] opacity-75 leading-snug mb-3">
-                              Interactive ordering funnel connecting key visuals straight to bookings.
+                            <h3 className="font-display text-lg font-extrabold uppercase tracking-tight leading-none mb-2">
+                              DESIGNED FOR REAL INTERACTION.
+                            </h3>
+                            <p className="font-sans text-[11px] opacity-80 leading-snug mb-3">
+                              Interactive UI architecture connecting visual identity cleanly to working digital flows.
                             </p>
                             <button
                               type="button"
-                              onClick={() => setMockReserved((r) => !r)}
-                              className={`px-3.5 py-2 font-mono text-[9px] font-bold uppercase tracking-wider cursor-pointer transition-all ${
-                                mockReserved
-                                  ? 'bg-emerald-500 text-[#07080B]'
-                                  : 'bg-[#EA1E4D] text-white hover:brightness-110'
+                              onClick={() => setMockTested((r) => !r)}
+                              className={`min-h-[36px] px-3.5 py-2 font-mono text-[9px] font-bold uppercase tracking-wider cursor-pointer transition-all ${
+                                mockTested
+                                  ? 'bg-[#FD7D3C] text-[#111116]'
+                                  : 'bg-[#C4123D] text-white hover:bg-[#EA1E4D]'
                               }`}
                             >
-                              {mockReserved ? '✓ TABLE ACTION TESTED (RESET)' : 'TEST LIVE INTERACTION →'}
+                              {mockTested ? '✓ INTERACTION TESTED (RESET)' : 'TEST LIVE INTERACTION →'}
                             </button>
                           </div>
 
+                          {/* Honest Architectural Wireframe Preview (Zero unapproved photography) */}
                           <div className={viewportMode === 'mobile' ? '' : 'col-span-5'}>
-                            <div className="aspect-[4/3] overflow-hidden border border-current/15 bg-black">
-                              <img
-                                src="/work/solanas-sushi.png"
-                                alt="Solanas Interactive Web Preview"
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                              />
+                            <div className="aspect-[4/3] border border-current/20 bg-[#0D0E12] text-white p-3 flex flex-col justify-between">
+                              <div className="flex items-center justify-between font-mono text-[8px] text-[#B4B4BE]">
+                                <span>SYSTEM // UI</span>
+                                <span className="text-[#FD7D3C]">LIVE</span>
+                              </div>
+                              <div className="space-y-1.5">
+                                <div className="h-4 border border-[#EA1E4D]/60 bg-[#EA1E4D]/15" />
+                                <div className="grid grid-cols-2 gap-1.5">
+                                  <div className="h-7 border border-white/15 bg-white/5" />
+                                  <div className="h-7 border border-white/15 bg-white/5" />
+                                </div>
+                              </div>
+                              <div className="font-mono text-[8px] text-white/55">REACT · TS · TAILWIND</div>
                             </div>
                           </div>
                         </div>
@@ -331,24 +289,23 @@ export const TheWorld: React.FC = () => {
                     transition={{ duration: 0.2 }}
                     className="space-y-5"
                   >
-                    <p className="font-mono text-xs text-white/70">
+                    <p className="font-mono text-xs text-white/80">
                       Test interactive component states built with accessibility &amp; motion discipline:
                     </p>
 
-                    {/* CTA Variant Tester */}
                     <div className="p-5 bg-[#09090D] border border-white/10 space-y-4">
                       <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px]">
-                        <span className="text-white/50 uppercase">INTERACTIVE BUTTON SYSTEM</span>
+                        <span className="text-[#B4B4BE] uppercase">INTERACTIVE BUTTON SYSTEM</span>
                         <div className="flex gap-1.5">
                           {(['solid', 'hairline', 'orange'] as const).map((style) => (
                             <button
                               key={style}
                               type="button"
                               onClick={() => setActiveBtnStyle(style)}
-                              className={`px-2.5 py-1 uppercase border cursor-pointer ${
+                              className={`min-h-[32px] px-2.5 py-1 uppercase border cursor-pointer ${
                                 activeBtnStyle === style
                                   ? 'border-white text-white bg-white/15 font-bold'
-                                  : 'border-white/15 text-white/50'
+                                  : 'border-white/20 text-[#B4B4BE]'
                               }`}
                             >
                               {style}
@@ -367,9 +324,9 @@ export const TheWorld: React.FC = () => {
                               prev === 'solid' ? 'hairline' : prev === 'hairline' ? 'orange' : 'solid'
                             )
                           }
-                          className={`px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${
+                          className={`min-h-[44px] px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-widest transition-all cursor-pointer ${
                             activeBtnStyle === 'solid'
-                              ? 'rounded-full bg-[#EA1E4D] text-white'
+                              ? 'rounded-full bg-[#C4123D] text-white'
                               : activeBtnStyle === 'hairline'
                                 ? 'border border-white text-white hover:bg-white hover:text-[#111116]'
                                 : 'bg-[#FD7D3C] text-[#111116] shadow-[4px_4px_0px_#FFFFFF]'
@@ -380,11 +337,10 @@ export const TheWorld: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Tactile Motion Tension Scrubber */}
                     <div className="p-5 bg-[#09090D] border border-white/10 space-y-3">
                       <div className="flex items-center justify-between font-mono text-[10px] uppercase">
-                        <span className="text-white/55">KINETIC WIDTH SCRUBBER</span>
-                        <span className="text-[#FD7D3C] font-bold">{sliderValue}% ALLOCATION</span>
+                        <span className="text-[#B4B4BE]">LAYOUT PROPORTION SCRUBBER</span>
+                        <span className="text-[#FD7D3C] font-bold">{sliderValue}% GRID SPLIT</span>
                       </div>
                       <input
                         type="range"
@@ -393,58 +349,54 @@ export const TheWorld: React.FC = () => {
                         value={sliderValue}
                         aria-label="Interactive proportion scrubber"
                         onChange={(e) => setSliderValue(Number(e.target.value))}
-                        className="w-full accent-[#EA1E4D] cursor-pointer"
+                        className="w-full accent-[#FD7D3C] cursor-pointer"
                       />
                       <div className="h-3 bg-white/10 overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-[#EA1E4D] to-[#FD7D3C] transition-all duration-150"
+                          className="h-full bg-gradient-to-r from-[#C4123D] to-[#FD7D3C] transition-all duration-150"
                           style={{ width: `${sliderValue}%` }}
                         />
-                      </div>
-                      <div className="font-mono text-[9px] text-white/45 flex justify-between pt-1">
-                        <span>REDUCED-MOTION HOOK: {reduced ? 'ACTIVE' : 'STANDARD'}</span>
-                        <span>REACT + TAILWIND + MOTION</span>
                       </div>
                     </div>
                   </motion.div>
                 )}
 
-                {activeTab === 'funnel' && (
+                {activeTab === 'architecture' && (
                   <motion.div
-                    key="tab-funnel"
+                    key="tab-architecture"
                     initial={reduced ? false : { opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.2 }}
                     className="space-y-4"
                   >
-                    <p className="font-mono text-xs text-white/70">
-                      Anchored in verified Solanas performance metrics (inspect each node):
+                    <p className="font-mono text-xs text-white/80">
+                      Inspect how brand clarity, interface design, and front-end engineering align:
                     </p>
 
                     <div className="space-y-2.5">
-                      {FUNNEL_NODES.map((node, idx) => {
-                        const isSelected = activeFunnelIdx === idx;
+                      {ARCHITECTURE_NODES.map((node, i) => {
+                        const isOpen = activeNodeIdx === i;
                         return (
                           <button
                             key={node.step}
                             type="button"
-                            onClick={() => setActiveFunnelIdx(idx)}
-                            className={`w-full text-left p-4 border transition-all cursor-pointer ${
-                              isSelected
-                                ? 'border-[#EA1E4D] bg-[#EA1E4D]/15'
-                                : 'border-white/15 bg-[#09090D] hover:border-white/35'
+                            onClick={() => setActiveNodeIdx(i)}
+                            className={`w-full text-left p-4 border transition-colors cursor-pointer ${
+                              isOpen
+                                ? 'border-[#FD7D3C] bg-[#09090D]'
+                                : 'border-white/15 bg-[#0D0E12] hover:border-white/35'
                             }`}
                           >
-                            <div className="flex items-center justify-between gap-2 mb-1 font-mono text-[10px]">
-                              <span className="text-white/60 font-bold">{node.step}</span>
-                              <span className="text-[#FD7D3C] font-black">{node.metric}</span>
+                            <div className="flex items-center justify-between font-mono text-[10px] mb-1">
+                              <span className="text-[#FD7D3C] font-bold">{node.step}</span>
+                              <span className="text-[#B4B4BE]">{node.tag}</span>
                             </div>
-                            <p className="font-display text-base font-black uppercase text-white mb-1">
+                            <p className="font-display text-base font-extrabold uppercase text-white mb-1">
                               {node.title}
                             </p>
-                            {isSelected && (
-                              <p className="font-sans text-xs text-white/75 leading-relaxed pt-1">
+                            {isOpen && (
+                              <p className="font-sans text-xs text-white/80 leading-relaxed pt-1">
                                 {node.detail}
                               </p>
                             )}
@@ -456,20 +408,9 @@ export const TheWorld: React.FC = () => {
                 )}
               </AnimatePresence>
             </div>
-
-            <div className="border-t border-white/10 px-5 py-3 flex items-center justify-between font-mono text-[9px] text-white/45 uppercase tracking-widest">
-              <span className="flex items-center gap-1.5">
-                <Sparkles size={11} className="text-[#FD7D3C]" />
-                LIVE ENGINEERING BY RIWA
-              </span>
-              <span>NO TEMPLATES USED</span>
-            </div>
           </div>
         </div>
       </div>
-
-      {/* Embedded 5-Stage Delivery Process — Unified cleanly inside Chapter 04 */}
-      <ProcessSection embedded />
     </section>
   );
 };

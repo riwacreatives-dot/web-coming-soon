@@ -5,6 +5,10 @@ import { CategoryPills } from './CategoryPills';
 import { BudgetTiers, BUDGET_TIERS } from './BudgetTiers';
 import { ResponsiveModalShell } from '../common/ResponsiveModalShell';
 import { ArrowUpRight, Check, Copy, Mail, Send, Sparkles } from 'lucide-react';
+import { CONTACT_CONFIG, FOUNDER_PRINCIPAL } from '../../data/studioData';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+
+const STUDIO_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface IntakeSectionProps {
   standalone?: boolean;
@@ -74,11 +78,22 @@ const COMMISSION_TYPES: CommissionType[] = [
 
 export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false }) => {
   const [searchParams] = useSearchParams();
-  const initialTypeParam = searchParams.get('type');
+  const reduced = useReducedMotion();
+  const initialTypeParam = searchParams.get('type') || searchParams.get('service');
+
+  const resolveCategoryId = (param: string | null): CommissionType['id'] | null => {
+    if (!param) return null;
+    if (param === 'brand-identity') return 'brand';
+    if (param === 'creative-advertising') return 'campaign';
+    if (param === 'digital-technology') return 'digital';
+    if (param === 'events-experiences') return 'event';
+    if (param === 'brand-management-growth') return 'other';
+    const matched = COMMISSION_TYPES.find((t) => t.id === param);
+    return matched ? matched.id : null;
+  };
 
   const [selectedTypeId, setSelectedTypeId] = useState<CommissionType['id'] | null>(() => {
-    const matched = COMMISSION_TYPES.find((t) => t.id === initialTypeParam);
-    return matched ? matched.id : 'brand';
+    return resolveCategoryId(initialTypeParam) || 'brand';
   });
 
   const [selectedDisciplines, setSelectedDisciplines] = useState<string[]>([
@@ -99,7 +114,8 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
   const [formattedBriefText, setFormattedBriefText] = useState('');
 
   useEffect(() => {
-    const matched = COMMISSION_TYPES.find((t) => t.id === initialTypeParam);
+    const resolvedId = resolveCategoryId(initialTypeParam);
+    const matched = COMMISSION_TYPES.find((t) => t.id === resolvedId);
     if (matched) {
       setSelectedTypeId(matched.id);
       setSelectedDisciplines(matched.defaultDisciplines);
@@ -138,8 +154,8 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
     );
     const body = encodeURIComponent(briefPlain);
 
-    // Trigger user's default mail client cleanly (without claiming unverified server persistence)
-    window.location.href = `mailto:riwacreatives@gmail.com?subject=${subject}&body=${body}`;
+    // Trigger user's default mail client cleanly using preserved handler target
+    window.location.href = `mailto:${CONTACT_CONFIG.clientSideMailtoHandlerEmail}?subject=${subject}&body=${body}`;
     setIsSubmittedModalOpen(true);
   };
 
@@ -164,86 +180,130 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
       } px-4 sm:px-8 md:px-12 max-w-7xl mx-auto`}
     >
       {/* Top Studio Eyebrow */}
-      <div className="flex flex-wrap items-center gap-3 mb-8 font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold select-none">
-        <span className="inline-block w-2 h-2 rounded-full bg-[#EA1E4D]" />
-        <span className="text-text-primary font-bold">COMMISSION A PROJECT</span>
-        <span className="text-line-border">|</span>
-        <span style={{ color: accentColor }} className="font-bold">
-          DIRECT FOUNDER DESK · RANJAN KUMAR
-        </span>
-      </div>
+      <motion.div
+        initial={reduced ? false : 'hidden'}
+        animate="visible"
+      >
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: -12 },
+            visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: STUDIO_EASE } },
+          }}
+          className="flex flex-wrap items-center gap-3 mb-8 font-mono text-xs sm:text-sm uppercase tracking-[0.22em] text-text-secondary font-semibold select-none"
+        >
+          <span className="inline-block w-2 h-2 rounded-full bg-[#EA1E4D]" />
+          <span className="text-text-primary font-bold">01 — COMMISSION A PROJECT</span>
+          <span className="text-line-border">|</span>
+          <span style={{ color: accentColor }} className="font-bold">
+            DIRECT FOUNDER DESK · RANJAN KUMAR
+          </span>
+        </motion.div>
 
-      {/* Main Prompt Headline */}
-      <div className="max-w-5xl mb-10 sm:mb-14">
-        <h1 className="font-display text-[clamp(2.35rem,7vw,5.4rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.94] mb-5">
-          <span>WHAT ARE WE</span>{' '}
-          <span
-            style={{ color: accentColor }}
-            className="font-serif italic font-normal tracking-normal lowercase text-[1.12em]"
-          >
-            making
-          </span>{' '}
-          <span>TODAY</span>
-          <span style={{ color: accentColor }}>?</span>
-        </h1>
-        <p className="font-sans text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
-          Select what you are building below to configure your studio commission brief. Direct email routing to{' '}
-          <a
-            href="mailto:riwacreatives@gmail.com"
-            className="text-text-primary font-bold underline decoration-[#EA1E4D]"
-          >
-            riwacreatives@gmail.com
-          </a>
-          .
-        </p>
-      </div>
-
-      {/* STEP 01: Interactive Project Commissioning Categories */}
-      <div className="mb-12">
-        <span className="font-mono text-xs uppercase tracking-[0.2em] text-text-secondary font-bold block mb-4">
-          00 / CHOOSE YOUR COMMISSION CATEGORY
-        </span>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
-          {COMMISSION_TYPES.map((type) => {
-            const isSelected = activeCommission.id === type.id;
-            const activeBg = type.id === 'event' ? 'bg-[#FD7D3C] text-[#111116]' : 'bg-[#EA1E4D] text-white';
-            return (
-              <button
-                key={type.id}
-                type="button"
-                onClick={() => handleSelectCommission(type)}
-                className={`p-5 text-left border transition-all cursor-pointer flex flex-col justify-between min-h-[132px] ${
-                  isSelected
-                    ? `${activeBg} border-transparent shadow-lg`
-                    : 'bg-surface/40 border-line-border text-text-primary hover:border-text-primary/50'
-                }`}
+        {/* Main Prompt Headline */}
+        <div className="max-w-5xl mb-10 sm:mb-14">
+          <h1 className="font-display text-[clamp(2.35rem,7vw,5.4rem)] font-black uppercase tracking-tighter text-text-primary leading-[0.94] mb-5">
+            <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em] px-1 -mx-1">
+              <motion.span
+                variants={{
+                  hidden: { y: '108%', opacity: 0 },
+                  visible: { y: '0%', opacity: 1, transition: { duration: 0.72, delay: 0.05, ease: STUDIO_EASE } },
+                }}
+                className="block"
               >
-                <div className="flex items-center justify-between font-mono text-xs font-bold mb-3">
-                  <span>{type.code} —</span>
-                  <ArrowUpRight size={14} className={isSelected ? 'opacity-100' : 'opacity-40'} />
-                </div>
-
-                <div>
-                  <span className="font-display text-base sm:text-lg font-black uppercase tracking-tight block leading-tight mb-1">
-                    {type.label}
-                  </span>
-                  <span
-                    className={`font-sans text-xs block leading-snug ${
-                      isSelected
-                        ? type.id === 'event'
-                          ? 'text-[#111116]/85 font-medium'
-                          : 'text-white/90'
-                        : 'text-text-secondary'
-                    }`}
-                  >
-                    {type.subline}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
+                <span>WHAT ARE WE</span>{' '}
+                <span
+                  style={{ color: accentColor }}
+                  className="font-serif italic font-normal tracking-normal lowercase text-[1.12em]"
+                >
+                  making
+                </span>{' '}
+                <span>TODAY</span>
+                <span style={{ color: accentColor }}>?</span>
+              </motion.span>
+            </span>
+          </h1>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 12 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.16, ease: STUDIO_EASE } },
+            }}
+            className="font-sans text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed"
+          >
+            Select what you are building below to configure and launch your studio commission brief
+            {CONTACT_CONFIG.publicEmail ? (
+              <>
+                {' '}
+                or write directly to{' '}
+                <a
+                  href={`mailto:${CONTACT_CONFIG.publicEmail}`}
+                  className="text-text-primary font-bold underline decoration-[#EA1E4D]"
+                >
+                  {CONTACT_CONFIG.publicEmail}
+                </a>
+              </>
+            ) : (
+              '. Your brief opens directly in your email client or can be copied cleanly in one click'
+            )}
+            .
+          </motion.p>
         </div>
-      </div>
+
+        {/* STEP 01: Interactive Project Commissioning Categories */}
+        <div className="mb-12">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-text-secondary font-bold block mb-4">
+            01 / CHOOSE YOUR COMMISSION CATEGORY
+          </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            {COMMISSION_TYPES.map((type, idx) => {
+              const isSelected = activeCommission.id === type.id;
+              const activeBg = type.id === 'event' ? 'bg-[#FD7D3C] text-[#111116]' : 'bg-[#EA1E4D] text-white';
+              return (
+                <motion.button
+                  key={type.id}
+                  type="button"
+                  onClick={() => handleSelectCommission(type)}
+                  variants={{
+                    hidden: { opacity: 0, y: 16 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.5, delay: 0.12 + idx * 0.05, ease: STUDIO_EASE },
+                    },
+                  }}
+                  whileTap={reduced ? undefined : { scale: 0.98 }}
+                  className={`p-5 text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[132px] ${
+                    isSelected
+                      ? `${activeBg} border-transparent shadow-lg -translate-y-0.5`
+                      : 'bg-surface/40 border-line-border text-text-primary hover:border-text-primary/50 hover:-translate-y-0.5'
+                  }`}
+                >
+                  <div className="flex items-center justify-between font-mono text-xs font-bold mb-3">
+                    <span>{type.code} —</span>
+                    <ArrowUpRight size={14} className={isSelected ? 'opacity-100' : 'opacity-40'} />
+                  </div>
+
+                  <div>
+                    <span className="font-display text-base sm:text-lg font-black uppercase tracking-tight block leading-tight mb-1">
+                      {type.label}
+                    </span>
+                    <span
+                      className={`font-sans text-xs block leading-snug ${
+                        isSelected
+                          ? type.id === 'event'
+                            ? 'text-[#111116]/85 font-medium'
+                            : 'text-white/90'
+                          : 'text-text-secondary'
+                      }`}
+                    >
+                      {type.subline}
+                    </span>
+                  </div>
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
 
       {/* STEP 02: Dynamic Contextual Enquiry Form */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -297,7 +357,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
               <div className="space-y-6 font-mono text-xs sm:text-sm">
                 <div>
                   <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                    03 / Your Name &amp; Role *
+                    04 / Your Name &amp; Role *
                   </label>
                   <input
                     type="text"
@@ -312,7 +372,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
 
                 <div>
                   <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                    04 / Work Email *
+                    05 / Work Email *
                   </label>
                   <input
                     type="email"
@@ -328,12 +388,12 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
 
                 <div>
                   <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                    05 / Brand, Event Name or Social Handle
+                    06 / Brand, Event Name or Social Handle
                   </label>
                   <input
                     type="text"
                     autoComplete="organization"
-                    placeholder="e.g. Solanas, @brandhandle, or company.in"
+                    placeholder="e.g. Studio Name, @brandhandle, or company.in"
                     value={formData.brandOrWebsite}
                     onChange={(e) => setFormData({ ...formData, brandOrWebsite: e.target.value })}
                     className="w-full bg-transparent border-b border-line-border py-2.5 text-xs sm:text-sm text-text-primary placeholder:text-text-secondary/40 focus:border-[#EA1E4D] focus:outline-none transition-colors"
@@ -342,7 +402,7 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
 
                 <div>
                   <label className="text-xs sm:text-sm uppercase tracking-wider text-text-secondary block mb-2 font-bold">
-                    06 / What Are We Making Together?
+                    07 / What Are We Making Together?
                   </label>
                   <textarea
                     rows={3}
@@ -370,45 +430,68 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
           </AnimatePresence>
         </div>
 
-        {/* Right Column: Direct Official Studio Channels */}
+        {/* Right Column: Verified Studio Guidance & Conditional Direct Channels */}
         <div className="lg:col-span-4 space-y-4 font-mono">
           <div className="p-6 border border-line-border bg-surface/40 space-y-4">
-            <span className="text-xs uppercase tracking-widest text-[#EA1E4D] font-bold block">
-              ✦ Direct Founder Desk
+            <span className="text-xs uppercase tracking-widest text-[#C4123D] dark:text-[#FD7D3C] font-bold block">
+              ✦ Studio Project Desk
             </span>
             <p className="font-sans text-sm text-text-secondary leading-relaxed">
-              Prefer starting directly with a note? Reach Ranjan Kumar and the creative squad through verified channels below.
+              Every project enquiry goes directly to founder {FOUNDER_PRINCIPAL.name}. Use the brief configurator to launch your email app or copy your formatted summary cleanly.
             </p>
-            <div className="space-y-3 pt-2 border-t border-line-border text-xs">
-              <a
-                href="mailto:riwacreatives@gmail.com"
-                className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold transition-colors"
-              >
-                <span className="flex items-center gap-2">
-                  <Mail size={14} className="text-[#EA1E4D]" />
-                  riwacreatives@gmail.com
-                </span>
-                <ArrowUpRight size={14} />
-              </a>
-              <a
-                href="https://instagram.com/madebyriwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold border-t border-line-border transition-colors"
-              >
-                <span>Instagram · @madebyriwa</span>
-                <ArrowUpRight size={14} />
-              </a>
-              <a
-                href="https://wa.me/917015048144"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between py-2 text-text-primary hover:text-emerald-500 font-bold border-t border-line-border transition-colors"
-              >
-                <span>WhatsApp · +91 70150 48144</span>
-                <ArrowUpRight size={14} />
-              </a>
-            </div>
+
+            {(CONTACT_CONFIG.publicEmail ||
+              CONTACT_CONFIG.instagramUrl ||
+              CONTACT_CONFIG.publicWhatsappUrl ||
+              CONTACT_CONFIG.linkedinUrl) && (
+              <div className="space-y-3 pt-2 border-t border-line-border text-xs">
+                {CONTACT_CONFIG.publicEmail && (
+                  <a
+                    href={`mailto:${CONTACT_CONFIG.publicEmail}`}
+                    className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Mail size={14} className="text-[#EA1E4D]" aria-hidden="true" />
+                      {CONTACT_CONFIG.publicEmail}
+                    </span>
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                )}
+                {CONTACT_CONFIG.instagramUrl && (
+                  <a
+                    href={CONTACT_CONFIG.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold border-t border-line-border transition-colors"
+                  >
+                    <span>Instagram</span>
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                )}
+                {CONTACT_CONFIG.publicWhatsappUrl && (
+                  <a
+                    href={CONTACT_CONFIG.publicWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between py-2 text-text-primary hover:text-emerald-500 font-bold border-t border-line-border transition-colors"
+                  >
+                    <span>WhatsApp</span>
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                )}
+                {CONTACT_CONFIG.linkedinUrl && (
+                  <a
+                    href={CONTACT_CONFIG.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between py-2 text-text-primary hover:text-[#EA1E4D] font-bold border-t border-line-border transition-colors"
+                  >
+                    <span>LinkedIn</span>
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -438,9 +521,8 @@ export const IntakeSection: React.FC<IntakeSectionProps> = ({ standalone = false
             <h3 className="font-display text-2xl sm:text-3xl font-black uppercase text-white">
               Send via Email Client<span className="text-[#EA1E4D]">.</span>
             </h3>
-            <p className="font-sans text-xs sm:text-sm text-white/75 mt-2 leading-relaxed">
-              Your formatted brief for <strong className="text-white">{activeCommission.label}</strong> has been prepared and opened in your email app addressed to{' '}
-              <span className="text-white font-bold">riwacreatives@gmail.com</span>. If your browser didn&apos;t launch an email app automatically, copy the brief below and email it directly.
+            <p className="font-sans text-xs sm:text-sm text-white/80 mt-2 leading-relaxed">
+              Your formatted brief for <strong className="text-white">{activeCommission.label}</strong> has been prepared and opened in your email app. If your browser didn&apos;t launch an email app automatically, copy the formatted brief below.
             </p>
           </div>
 

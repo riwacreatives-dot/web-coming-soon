@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { STUDIO_IDENTITY } from '../data/studioData';
 
 interface DocumentMeta {
   title: string;
@@ -8,56 +10,70 @@ interface DocumentMeta {
   ogImage?: string;
 }
 
-const BASE_URL = 'https://riwacreatives.vercel.app';
-const DEFAULT_OG_IMAGE = `${BASE_URL}/work/solanas-chilli-chicken.jpg`;
+const BASE_URL = STUDIO_IDENTITY.canonicalUrl;
+
+function isUnapprovedClientAssetUrl(url?: string): boolean {
+  if (!url) return true;
+  // Block unapproved Solanas paths in OG/Twitter meta until DEC-12 written permission clears
+  return url.toLowerCase().includes('/work/solanas-');
+}
 
 export function useDocumentMeta(meta: DocumentMeta) {
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    // Page Title
     document.title = meta.title;
 
-    // Meta Description
     const descMeta = document.querySelector('meta[name="description"]');
     if (descMeta) {
       descMeta.setAttribute('content', meta.description);
     }
 
-    // Helper for OpenGraph meta
-    const setOG = (property: string, content: string) => {
-      let el = document.querySelector(`meta[property="${property}"]`);
+    // Canonical URL normalized on https://riwacreatives.in
+    const canonicalHref = pathname === '/' ? `${BASE_URL}/` : `${BASE_URL}${pathname}`;
+    let canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link');
+      canonicalEl.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', canonicalHref);
+
+    const setOrCreateMeta = (attr: 'property' | 'name', key: string, content: string) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
       if (el) {
         el.setAttribute('content', content);
       } else {
-        const newEl = document.createElement('meta');
-        newEl.setAttribute('property', property);
-        newEl.setAttribute('content', content);
-        document.head.appendChild(newEl);
-      }
-    };
-
-    setOG('og:title', meta.ogTitle || meta.title);
-    setOG('og:description', meta.ogDescription || meta.description);
-    setOG('og:image', meta.ogImage || DEFAULT_OG_IMAGE);
-
-    // Helper for Twitter meta
-    const setTwitter = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`);
-      if (el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
         el.setAttribute('content', content);
-      } else {
-        const newEl = document.createElement('meta');
-        newEl.setAttribute('name', name);
-        newEl.setAttribute('content', content);
-        document.head.appendChild(newEl);
+        document.head.appendChild(el);
       }
     };
 
-    setTwitter('twitter:title', meta.ogTitle || meta.title);
-    setTwitter('twitter:description', meta.ogDescription || meta.description);
-    setTwitter('twitter:image', meta.ogImage || DEFAULT_OG_IMAGE);
+    const removeMetaIfPresent = (attr: 'property' | 'name', key: string) => {
+      const el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (el) el.remove();
+    };
+
+    setOrCreateMeta('property', 'og:url', canonicalHref);
+    setOrCreateMeta('property', 'og:title', meta.ogTitle || meta.title);
+    setOrCreateMeta('property', 'og:description', meta.ogDescription || meta.description);
+
+    setOrCreateMeta('name', 'twitter:title', meta.ogTitle || meta.title);
+    setOrCreateMeta('name', 'twitter:description', meta.ogDescription || meta.description);
+
+    // Only emit social share image meta when backed by an approved image (never unapproved client artwork)
+    if (meta.ogImage && !isUnapprovedClientAssetUrl(meta.ogImage)) {
+      setOrCreateMeta('property', 'og:image', meta.ogImage);
+      setOrCreateMeta('name', 'twitter:image', meta.ogImage);
+    } else {
+      removeMetaIfPresent('property', 'og:image');
+      removeMetaIfPresent('name', 'twitter:image');
+    }
 
     return () => {
-      document.title = 'RIWA CREATIVES — We Make It Happen';
+      document.title = STUDIO_IDENTITY.defaultDocumentTitle;
     };
-  }, [meta.title, meta.description, meta.ogTitle, meta.ogDescription, meta.ogImage]);
+  }, [meta.title, meta.description, meta.ogTitle, meta.ogDescription, meta.ogImage, pathname]);
 }

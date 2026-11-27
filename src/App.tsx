@@ -1,157 +1,121 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { MotionConfig, motion } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { TransitionProvider } from './contexts/TransitionContext';
-import { SmoothScroll } from './components/common/SmoothScroll';
-import { StudioCardWarpLoader } from './components/common/StudioCardWarpLoader';
-import { ScrollProgressBar } from './components/common/ScrollProgressBar';
 import { HeaderHUD } from './components/navigation/HeaderHUD';
 import { MenuDrawer } from './components/navigation/MenuDrawer';
-import { BottomDock } from './components/navigation/BottomDock';
-import { CustomCursor } from './components/common/CustomCursor';
-import { NoiseOverlay } from './components/common/NoiseOverlay';
+import { StickyProjectBar } from './components/navigation/StickyProjectBar';
 import { ScrollToTop } from './components/common/ScrollToTop';
-import { WhatsAppCTA } from './components/common/WhatsAppCTA';
+import { ScrollProgressBar } from './components/common/ScrollProgressBar';
+import { useStickyOffset } from './hooks/useStickyOffset';
 
-// Code-split route components to avoid monolithic 600kB+ initial bundle
+// Code-split routes cleanly
 const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })));
 const WorkPage = lazy(() => import('./pages/WorkPage').then((m) => ({ default: m.WorkPage })));
-const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage })));
+const ProjectDetailPage = lazy(() =>
+  import('./pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage }))
+);
 const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
-const VisionPage = lazy(() => import('./pages/VisionPage').then((m) => ({ default: m.VisionPage })));
-const ServicesPage = lazy(() => import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage })));
-const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage').then((m) => ({ default: m.ServiceDetailPage })));
-const LeadershipPage = lazy(() => import('./pages/LeadershipPage').then((m) => ({ default: m.LeadershipPage })));
-const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
-
-const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-  >
-    {children}
-  </motion.div>
+const ServicesPage = lazy(() =>
+  import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage }))
+);
+const ServiceDetailPage = lazy(() =>
+  import('./pages/ServiceDetailPage').then((m) => ({ default: m.ServiceDetailPage }))
+);
+const LeadershipPage = lazy(() =>
+  import('./pages/LeadershipPage').then((m) => ({ default: m.LeadershipPage }))
+);
+const ContactPage = lazy(() =>
+  import('./pages/ContactPage').then((m) => ({ default: m.ContactPage }))
+);
+const NotFoundPage = lazy(() =>
+  import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
 
 export const AppContent: React.FC = () => {
+  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const appShellRef = useRef<HTMLDivElement>(null);
 
+  useStickyOffset();
+
+  // Accessible background inertness when modal navigation drawer is open
   useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-    return () => window.removeEventListener('resize', checkDesktop);
-  }, []);
+    const el = appShellRef.current as (HTMLDivElement & { inert?: boolean }) | null;
+    if (el) {
+      el.inert = isMenuOpen;
+    }
+  }, [isMenuOpen]);
 
   return (
     <ThemeProvider>
-      <TransitionProvider>
-        <SmoothScroll>
-          <ScrollToTop />
-          <div className="relative min-h-screen bg-canvas text-text-primary transition-colors duration-300 overflow-x-hidden">
-            {/* Top Red Laser Scroll Progress Bar */}
-            <ScrollProgressBar />
+      <MotionConfig reducedMotion="user">
+        <ScrollToTop />
+        <ScrollProgressBar />
 
-            {/* 3D Card Warp Loader & In-Between Transition */}
-            <StudioCardWarpLoader />
+        {/* Non-blocking razor-thin editorial aperture sweep on route transition */}
+        <motion.div
+          key={`sweep-${pathname}`}
+          aria-hidden="true"
+          initial={{ scaleX: 0, opacity: 0.95 }}
+          animate={{ scaleX: [0, 1, 1], opacity: [0.95, 0.95, 0] }}
+          transition={{ duration: 0.55, times: [0, 0.55, 1], ease: [0.22, 1, 0.36, 1] }}
+          className="fixed top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#EA1E4D] via-[#FD7D3C] to-[#EA1E4D] origin-left z-[160] pointer-events-none"
+        />
 
-            {/* Tactile Analog Noise Film Grain */}
-            <NoiseOverlay />
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
 
-            {/* RIWA Inertial Custom Cursor */}
-            <CustomCursor />
+        <div
+          ref={appShellRef}
+          className="relative min-h-screen bg-canvas text-text-primary transition-colors duration-300 overflow-x-clip"
+        >
+          <HeaderHUD
+            isMenuOpen={isMenuOpen}
+            onOpenMenu={() => setIsMenuOpen(true)}
+            onCloseMenu={() => setIsMenuOpen(false)}
+            menuTriggerRef={menuTriggerRef}
+          />
 
-            {/* Direct Studio WhatsApp Concierge */}
-            <WhatsAppCTA />
-
-            {/* RIWA Fixed Difference Navigation HUD */}
-            <HeaderHUD
-              isMenuOpen={isMenuOpen}
-              onOpenMenu={() => setIsMenuOpen(true)}
-              onCloseMenu={() => setIsMenuOpen(false)}
-            />
-
-            {/* RIWA 3D Page Tilt Container */}
-            <motion.div
-              id="page-main"
-              animate={
-                isMenuOpen
-                  ? isDesktop
-                    ? {
-                        rotate: 8,
-                        x: 200,
-                        y: 250,
-                        scale: 1.08,
-                        opacity: 0.15,
-                        filter: 'blur(6px)',
-                      }
-                    : {
-                        opacity: 0.25,
-                      }
-                  : isDesktop
-                    ? {
-                        rotate: 0,
-                        x: 0,
-                        y: 0,
-                        scale: 1,
-                        opacity: 1,
-                        filter: 'none',
-                      }
-                    : {
-                        opacity: 1,
-                      }
-              }
-              transition={{
-                duration: 0.75,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              style={
-                isDesktop
-                  ? {
-                      transformOrigin: 'top right',
-                      transform: isMenuOpen ? undefined : 'none',
-                    }
-                  : undefined
-              }
-              className="w-full"
-            >
-              <Suspense fallback={<div className="min-h-screen bg-canvas" />}>
+          <div id="main-content" tabIndex={-1} className="outline-none">
+            <Suspense fallback={<div className="min-h-screen bg-canvas" />}>
+              <motion.div
+                key={pathname}
+                initial={{ opacity: 0.72, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              >
                 <Routes>
-                  <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
-                  <Route path="/work" element={<PageTransition><WorkPage /></PageTransition>} />
-                  <Route path="/work/:projectId" element={<PageTransition><ProjectDetailPage /></PageTransition>} />
-                  <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/work" element={<WorkPage />} />
+                  <Route path="/work/:projectId" element={<ProjectDetailPage />} />
+                  <Route path="/about" element={<AboutPage />} />
                   <Route path="/vision" element={<Navigate to="/about" replace />} />
                   <Route path="/protocol" element={<Navigate to="/about" replace />} />
                   <Route path="/manifesto" element={<Navigate to="/about" replace />} />
-                  <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
-                  <Route path="/services/:serviceId" element={<PageTransition><ServiceDetailPage /></PageTransition>} />
-                  <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
+                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+                  <Route path="/leadership" element={<LeadershipPage />} />
                   <Route path="/team" element={<Navigate to="/leadership" replace />} />
-                  <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+                  <Route path="/contact" element={<ContactPage />} />
                   <Route path="/brief" element={<Navigate to="/contact" replace />} />
-                  <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Routes>
-              </Suspense>
-            </motion.div>
-
-            {/* RIWA Diagonal Polygon Menu Curtain */}
-            <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-
-            {/* Fixed Difference Bottom Dock (Desktop) & Floating Thumb Capsule (Mobile) */}
-            <BottomDock
-              isMenuOpen={isMenuOpen}
-              onOpenMenu={() => setIsMenuOpen(true)}
-              onCloseMenu={() => setIsMenuOpen(false)}
-            />
+              </motion.div>
+            </Suspense>
           </div>
-        </SmoothScroll>
-      </TransitionProvider>
+        </div>
+
+        <MenuDrawer
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          returnFocusRef={menuTriggerRef}
+        />
+
+        <StickyProjectBar isMenuOpen={isMenuOpen} />
+      </MotionConfig>
     </ThemeProvider>
   );
 };

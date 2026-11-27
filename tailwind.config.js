@@ -15,6 +15,7 @@ export default {
         'text-mono': 'var(--text-mono)',
         'line-border': 'var(--border-line)',
         'brand-red': '#EA1E4D',
+        'brand-red-text': '#C4123D',
         'brand-amber': 'var(--accent-amber)',
         'brand-orange': '#FD7D3C',
         'riwa-orange': '#FD7D3C',
@@ -39,7 +40,10 @@ export default {
       lineHeight: {
         hero: '0.88',
       },
+      transitionTimingFunction: {
+        editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
     },
   },
   plugins: [],
-}
+};

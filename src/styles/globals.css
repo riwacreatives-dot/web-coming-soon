@@ -2,39 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root[data-theme="dark"],
-:root:not([data-theme="light"]) {
+:root[data-theme="dark"] {
   --bg-canvas: #0B0B0F;
   --bg-surface: #111116;
   --text-primary: #FFFFFF;
-  --text-secondary: #A1A1AA;
+  --text-secondary: #B4B4BE;
   --text-mono: #D4D4D8;
   --border-line: rgba(255, 255, 255, 0.14);
   --border-line-strong: rgba(255, 255, 255, 0.28);
   --accent-red: #EA1E4D;
   --accent-amber: #F5B31B;
   --accent-orange: #FD7D3C;
-  --spotlight-base: #FFFFFF;
-  --spotlight-accent: #EA1E4D;
 }
 
+:root,
 :root[data-theme="light"] {
-  --bg-canvas: #FFFFFF;
-  --bg-surface: #F5F4F0;
+  --bg-canvas: #F7F6F2;
+  --bg-surface: #FFFFFF;
   --text-primary: #111116;
   --text-secondary: #52525B;
   --text-mono: #27272A;
   --border-line: rgba(17, 17, 22, 0.12);
-  --border-line-strong: rgba(17, 17, 22, 0.25);
+  --border-line-strong: rgba(17, 17, 22, 0.26);
   --accent-red: #EA1E4D;
   --accent-amber: #D97706;
   --accent-orange: #FD7D3C;
-  --spotlight-base: #111116;
-  --spotlight-accent: #EA1E4D;
+}
+
+:root {
+  --header-height: 4.5rem;
+  --subnav-height: 0px;
+  --sticky-offset: calc(var(--header-height) + var(--subnav-height) + 1rem);
+  --font-display: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 /* ==========================================================================
-   Light Mode Box Shadows & Contrast Elevation (Addresses Item 2 & 3)
+   Original Soft Light Mode Card Elevations
    ========================================================================== */
 
 :root[data-theme="light"] [class*="rounded-2xl"].border:not(.dark-card):not([data-theme="dark"]),
@@ -42,41 +48,34 @@
 :root[data-theme="light"] [class*="rounded-3xl"].border:not(.dark-card):not([data-theme="dark"]),
 :root[data-theme="light"] form.border {
   background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 
+  border-color: rgba(17, 17, 22, 0.12);
+  box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.04),
     0 8px 24px -4px rgba(0, 0, 0, 0.07),
     0 20px 48px -8px rgba(0, 0, 0, 0.05);
 }
 
-:root[data-theme="light"] [class*="rounded-2xl"].border:hover,
-:root[data-theme="light"] [class*="rounded-xl"].border:hover {
-  box-shadow: 
-    0 2px 6px rgba(0, 0, 0, 0.05),
-    0 12px 32px -4px rgba(0, 0, 0, 0.09),
-    0 24px 54px -8px rgba(0, 0, 0, 0.07) !important;
-}
-
-:root[data-theme="light"] button.rounded-full.border:not(.bg-brand-red),
-:root[data-theme="light"] .rounded-full.border:not(.bg-brand-red) {
+:root[data-theme="light"] .bg-surface.rounded-full.border,
+:root[data-theme="light"] .bg-white.rounded-full.border {
   background-color: #ffffff;
-  border-color: rgba(0, 0, 0, 0.12);
+  border-color: rgba(17, 17, 22, 0.14);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-:root[data-theme="light"] button.rounded-full.border:not(.bg-brand-red):hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 4px 14px rgba(0, 0, 0, 0.05);
-}
-
 html {
-  scroll-behavior: auto !important;
+  scroll-behavior: auto;
+  scroll-padding-top: var(--sticky-offset);
   background-color: var(--bg-canvas);
   color: var(--text-primary);
+  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
-/* Optimize touch interactions & remove grey mobile tap highlight box */
+[id] {
+  scroll-margin-top: var(--sticky-offset);
+}
+
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -84,29 +83,21 @@ html {
 button,
 a,
 input,
-textarea {
+textarea,
+select {
   touch-action: manipulation;
 }
 
-/* Prevent iOS Safari unwanted auto-zoom on form input focus */
+/* Prevent iOS Safari zoom on input focus */
 @media screen and (max-width: 768px) {
-  input[type="text"],
-  input[type="email"],
-  input[type="number"],
+
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='number'],
   textarea,
   select {
     font-size: 16px !important;
-  }
-}
-
-/* Only hide native OS mouse cursor when custom cursor is actively mounted */
-@media (pointer: fine) {
-  html.custom-cursor-active,
-  html.custom-cursor-active body,
-  html.custom-cursor-active *,
-  html.custom-cursor-active *::before,
-  html.custom-cursor-active *::after {
-    cursor: none !important;
   }
 }
 
@@ -116,75 +107,71 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-canvas);
   color: var(--text-primary);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth transitions for theme switching */
-* {
-  border-color: var(--border-line);
+/* WCAG 2.2 SC 2.4.1 — Skip to main content */
+.skip-to-content {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background-color: #111116;
+  color: #F5F4F0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #F5F4F0;
+}
+
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 1rem;
+  outline: 2px solid #FD7D3C;
+  outline-offset: 3px;
 }
 
 /* Accessible focus ring */
-button:focus-visible,
 a:focus-visible,
+button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--accent-red);
-  outline-offset: 2px;
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #EA1E4D;
+  outline-offset: 3px;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-canvas);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-line-strong);
-  border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-red);
-}
-
-/* Kinetic typography utilities */
+/* Font families & upright/italic constraints (SIL OFL-1.1) */
 .font-display {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
+  font-style: normal;
 }
 
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
+.font-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
 }
 
-/* ==========================================================================
-   Interactive Circular Mouse Hover Text Spotlight
-   ========================================================================== */
-
-/* Always enforce vibrant red on genuine brand-red text */
-.text-brand-red {
-  color: var(--accent-red) !important;
-  -webkit-text-fill-color: var(--accent-red) !important;
+.font-mono,
+code,
+pre {
+  font-family: var(--font-mono);
+  font-variant-ligatures: no-contextual;
 }
 
-/* Guard: Prevent any background-clip text transparency anomalies */
-[data-no-spotlight],
-[data-no-spotlight] *,
-footer h2,
-footer h2 * {
-  -webkit-text-fill-color: currentColor !important;
-  color: inherit !important;
-  background-clip: border-box !important;
-  -webkit-background-clip: border-box !important;
-}
-
-/* ==========================================================================
-   Mobile-Only Touch Ergonomics, Scroll Snap & Optical Focus (< 768px)
-   ========================================================================== */
-
+/* Scrollbar hiding */
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -200,69 +187,17 @@ footer h2 * {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
   }
-
-  /* Oversized tactile range slider thumb with comfortable hit ergonomics */
-  input[type="range"].riwa-mobile-slider {
-    height: 32px;
-    background: transparent;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  input[type="range"].riwa-mobile-slider::-webkit-slider-runnable-track {
-    height: 6px;
-    border-radius: 9999px;
-    background: var(--border-line-strong);
-  }
-
-  input[type="range"].riwa-mobile-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 26px;
-    height: 26px;
-    margin-top: -10px;
-    border-radius: 9999px;
-    background: var(--accent-red);
-    border: 3px solid var(--bg-canvas);
-    box-shadow: 0 4px 16px rgba(255, 42, 85, 0.45);
-    transition: transform 0.15s ease;
-  }
-
-  input[type="range"].riwa-mobile-slider:active::-webkit-slider-thumb {
-    transform: scale(1.15);
-  }
-
-  input[type="range"].riwa-mobile-slider::-moz-range-track {
-    height: 6px;
-    border-radius: 9999px;
-    background: var(--border-line-strong);
-  }
-
-  input[type="range"].riwa-mobile-slider::-moz-range-thumb {
-    width: 26px;
-    height: 26px;
-    border-radius: 9999px;
-    background: var(--accent-red);
-    border: 3px solid var(--bg-canvas);
-    box-shadow: 0 4px 16px rgba(255, 42, 85, 0.45);
-  }
 }
 
-/* Scroll-triggered optical crimson luminance on touch-primary devices only */
-@media (hover: none) and (pointer: coarse) {
-  .mobile-scroll-focus {
-    transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-      filter 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+/* Unconditional Prefers-Reduced-Motion Neutralization (WCAG 2.2) */
+@media (prefers-reduced-motion: reduce) {
 
-  :root[data-theme="dark"] .mobile-scroll-focus[data-inview="true"],
-  :root:not([data-theme="light"]) .mobile-scroll-focus[data-inview="true"] {
-    filter: drop-shadow(0 0 14px rgba(255, 42, 85, 0.45));
-  }
-
-  :root[data-theme="light"] .mobile-scroll-focus[data-inview="true"] {
-    filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.3));
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
-

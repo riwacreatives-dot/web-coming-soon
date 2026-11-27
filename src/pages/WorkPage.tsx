@@ -8,21 +8,20 @@ export const WorkPage: React.FC = () => {
   useDocumentMeta({
     title: 'The Creative Archive — Riwa Creatives',
     description:
-      "A curated collection of things we've imagined, designed, built and brought to life at Riwa Creatives.",
+      'Selected client stories, studio-initiated IP, and creative initiatives by Riwa Creatives.',
     ogTitle: 'The Creative Archive — Riwa Creatives',
     ogDescription:
-      'Explore selected branding, commercial advertising, digital experience, and conceptual work by Riwa Creatives.',
-    ogImage: 'https://riwacreatives.in/work/solanas-chilli-chicken.jpg',
+      'Explore selected brand identity, commercial advertising, digital experience, and studio archive work by Riwa Creatives.',
   });
 
   return (
     <>
       <main className="w-full">
-        {/* 01 Opening Statement, 02 Featured Story, 03 Supporting Stories, 04 Further Work */}
+        {/* Full Portfolio, Featured Stories & Creative Archive */}
         <SelectedWorks standalone />
 
-        {/* 05 Final Project CTA */}
-        <FinalCTASection />
+        {/* Closing Call to Action */}
+        <FinalCTASection eyebrow="02 — START A PROJECT" />
       </main>
 
       <EditorialFooter />

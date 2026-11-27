@@ -1,62 +1,48 @@
 import React from 'react';
 import { HeroSection } from '../components/hero/HeroSection';
-import { BrandTicker } from '../components/home/BrandTicker';
-import { ThePointOfView } from '../components/chapters/ThePointOfView';
-import { TheAttention } from '../components/chapters/TheAttention';
-import { TheWorld } from '../components/chapters/TheWorld';
-import { TheRealWorld } from '../components/chapters/TheRealWorld';
-import { ThePeople } from '../components/chapters/ThePeople';
+import { SelectedProjectsSection } from '../components/home/SelectedProjectsSection';
 import { ManifestoSection } from '../components/home/ManifestoSection';
-import { TheNextIdea } from '../components/chapters/TheNextIdea';
+import { CapabilitiesOverviewSection } from '../components/home/CapabilitiesOverviewSection';
+import { FinalCTASection } from '../components/home/FinalCTASection';
 import { EditorialFooter } from '../components/footer/EditorialFooter';
-import { ChapterIndicator } from '../components/common/ChapterIndicator';
-import { useChapterScroll } from '../hooks/useChapterScroll';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import { STUDIO_IDENTITY } from '../data/studioData';
 
+/**
+ * Project-First Editorial Homepage:
+ * 01. Hero (Restored db4d0a2 Worktable)
+ * 02. Featured Work (Interactive Kinetic Split-Aperture Exhibition Deck)
+ * 03. Studio Credo / Manifesto ("We don't believe in ordinary.")
+ * 04. What We Do (Compact 5 confirmed capabilities index)
+ * 05. Closing CTA & Footer
+ */
 export const HomePage: React.FC = () => {
-  const activeChapter = useChapterScroll();
-
   useDocumentMeta({
-    title: 'Riwa Creatives — Independent Creative & Growth Studio',
+    title: STUDIO_IDENTITY.defaultDocumentTitle,
     description:
-      'Riwa Creatives is an independent creative and growth studio bringing together brand identity, commercial advertising, digital growth, technology, and live experiences.',
+      'Riwa Creatives is an independent creative and growth studio uniting brand identity, creative advertising, digital technology, events, and ongoing brand growth.',
     ogTitle: 'Riwa Creatives — Making Unreasonable Brands Happen',
     ogDescription:
-      'We turn ambitious ideas into distinctive identities, disruptive campaigns and digital experiences.',
+      'We build brands, campaigns and experiences that move people.',
   });
 
   return (
     <>
-      {/* Fixed Left Chapter Datum + Continuous Spark State (xl+ desktop gutter, never obstructs content) */}
-      <ChapterIndicator activeChapter={activeChapter} />
-
       <main className="w-full">
-        {/* ══ CH01 — THE SPARK (Studio Workbench Hero) ══ */}
+        {/* SECTION 01 — HERO */}
         <HeroSection />
 
-        {/* Discipline Ticker Transition Strip */}
-        <BrandTicker />
+        {/* SECTION 02 — FEATURED WORK */}
+        <SelectedProjectsSection />
 
-        {/* ══ CH02 — THE POINT OF VIEW (Brand & Identity + System Specimen) ══ */}
-        <ThePointOfView />
+        {/* SECTION 03 — STUDIO CREDO / MANIFESTO */}
+        <ManifestoSection eyebrow="03 — STUDIO CREDO" />
 
-        {/* ══ CH03 — THE ATTENTION (Commercial Creative & 4-Stage Solanas Case Spread) ══ */}
-        <TheAttention />
+        {/* SECTION 04 — WHAT WE DO */}
+        <CapabilitiesOverviewSection />
 
-        {/* ══ CH04 — THE WORLD (Digital & Growth + Interactive UI Sandbox + Embedded Process) ══ */}
-        <TheWorld />
-
-        {/* ══ CH05 — THE REAL WORLD (Full #FD7D3C Orange Events Stage Takeover) ══ */}
-        <TheRealWorld />
-
-        {/* ══ CH06 — THE PEOPLE (Personal Founder Story, Genuine Assets & Verified Proof) ══ */}
-        <ThePeople />
-
-        {/* Narrative Beat bridging Studio Reality into Your Next Idea */}
-        <ManifestoSection eyebrow="STUDIO CREDO // THE RIWA WAY" />
-
-        {/* ══ CH07 — THE NEXT IDEA (Enquiry Selectors, Direct Brief & Editorial FAQ) ══ */}
-        <TheNextIdea />
+        {/* SECTION 05 — CLOSING CTA */}
+        <FinalCTASection eyebrow="05 — START A PROJECT" />
       </main>
 
       <EditorialFooter />
